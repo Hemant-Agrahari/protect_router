@@ -1,11 +1,15 @@
-import { useAppSelector } from '@/redux/hooks'
-import { PostMethod } from '@/services/fetchAPI'
-import { logError, scrollToTop } from '@/utils'
-import { FormControl, Pagination } from '@mui/material'
-import { addDays } from 'date-fns'
-import React, { useEffect, useState } from 'react'
-import DatePicker from 'react-datepicker'
-import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '@/redux/hooks';
+import { PostMethod } from '@/services/fetchAPI';
+import { logError, scrollToTop } from '@/utils';
+import { FormControl, Pagination } from '@mui/material';
+import { addDays } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Loader from '@/component/common/mui-component/Loader';
+import CustomMuiPagination from '@/component/common/mui-component/CustomMuiPagination';
+import { CustomButton } from '@/component/common';
+import CustomDatePicker from '@/component/common/mui-component/CustomDatePicker';
+
 
 const Statistics = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -52,7 +56,6 @@ const Statistics = () => {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        // toast.error(error.message)
         logError(error)
       }
     } finally {
@@ -77,35 +80,25 @@ const Statistics = () => {
       <div className="StatisticsTab">
         <div className="bonus-date">
           <FormControl className="statistics-startEndDate">
-            <DatePicker
-              selected={startDate}
-              onChange={handleDate}
-              startDate={startDate}
-              endDate={endDate}
-              selectsRange
-              maxDate={new Date()}
-              placeholderText={t('Start - End Date')}
-            />
+          <CustomDatePicker
+            selected={startDate}
+            onChange={handleDate}
+            startDate={startDate}
+            endDate={endDate}
+            maxDate={new Date()}
+            placeholderText={t('"Start - End Date"')}
+          />
           </FormControl>
-          <button className="search-btn" onClick={handleSearch}>
+          <CustomButton className="search-btn" onClick={handleSearch}>
             {t('Search')}
-          </button>
+          </CustomButton>
         </div>
 
-        <div className="depositTable" style={{ overflowX: 'auto' }}>
+        <div className="depositTable over-flow-x-auto">
           {isLoading ? (
-            <div className="loader-animate-division">
-              <div className="loader"></div>
-            </div>
+            <Loader />
           ) : (
-            <table
-              className="table table-border"
-              style={{
-                backgroundColor: 'transparent',
-                color: 'white !important',
-                borderCollapse: 'collapse',
-              }}
-            >
+            <table className="table table-border text-white table-container">
               <thead>
                 <tr>
                   <th scope="col">{t('Bonus')}</th>
@@ -120,9 +113,7 @@ const Statistics = () => {
                       <td>{item?.bonus?.toFixed(2)}</td>
                       <td>{item.nickName}</td>
                       <td>
-                        <span
-                          style={{ fontWeight: '400', marginRight: '12px' }}
-                        >
+                        <span className="font-weight-400 mr-3">
                           {item?.date?.split('T')[0]}
                         </span>
                       </td>
@@ -140,20 +131,19 @@ const Statistics = () => {
           )}
         </div>
       </div>
-      <div className="depositPagination">
-        <Pagination
-          className="pagination-text"
-          page={pageSkip / 10 + 1}
-          count={Math.ceil(
-            Number(statisticsReport?.totalCount || 1) / Number(pageLimit),
-          )}
-          onChange={(e, v: number) => {
-            setPageSkip((v - 1) * pageLimit)
-          }}
-          variant="outlined"
-          shape="rounded"
-        />
-      </div>
+      {statisticsReport?.totalCount && statisticsReport?.totalCount > 0 && (
+        <div className="depositPagination">
+          <CustomMuiPagination
+            className="pagination-text"
+            pageSkip={pageSkip}
+            totalCount={statisticsReport?.totalCount}
+            pageLimit={pageLimit}
+            onChange={(e, v: number) => {
+              setPageSkip((v - 1) * pageLimit)
+            }}
+          />
+        </div>
+      )}
     </>
   )
 }

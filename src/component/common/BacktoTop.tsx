@@ -1,45 +1,53 @@
-import { useState, useEffect } from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import { useState, useEffect } from 'react';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { CustomButton } from '@/component/common';
 
+/**
+ * BackToTop is a button component that becomes visible when the user scrolls down a specified distance
+ * on the page (300px in this case). When clicked, the button smoothly scrolls the page back to the top.
+ * 
+ * This component listens for the scroll event and toggles the visibility of the "back to top" button,
+ * making it a useful UI element for long pages.
+ * */
 const BackToTop: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Show or hide the button based on scroll position
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
-      setIsVisible(true)
+      setIsVisible(true);
     } else {
-      setIsVisible(false)
+      setIsVisible(false);
     }
-  }
+  };
 
-  // Scroll the page to the top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Smooth scrolling
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
-    // Add the scroll event listener
-    window.addEventListener('scroll', toggleVisibility)
+    window.addEventListener('scroll', toggleVisibility);
 
     return () => {
-      // Clean up the event listener
-      window.removeEventListener('scroll', toggleVisibility)
-    }
-  }, [])
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
 
   return (
-    <div className="loginSignUp-btn" style={{ marginLeft: '12px' }}>
+    <div className="loginSignUp-btn back-to-top">
       {isVisible && (
-        <button type="button" className="btn backtopbtn" onClick={scrollToTop}>
+        <CustomButton
+          type="button"
+          className="btn backtopbtn"
+          onClick={scrollToTop}
+        >
           <ArrowUpwardIcon />
-        </button>
+        </CustomButton>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default BackToTop
+export default BackToTop;

@@ -8,8 +8,8 @@
   margin-left: 25px;
   background: linear-gradient(
     180deg,
-    var(--gray-800, #4a184b) 0%,
-    var(--gray-800, #86188f) 100%
+    var(--gray-800,   --deep-plum) 0%,
+    var(--gray-800, --purple-pink) 100%
   );
   border-radius: 10px;
   padding: 40px 30px;
@@ -25,7 +25,7 @@
   font-weight: 800;
   font-size: 22px;
   line-height: 27px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .leaderboard-prize .leaderboardPrize-col .leader-row {
@@ -54,7 +54,7 @@
   font-weight: 800;
   font-size: 14px;
   line-height: 17px;
-  color: #ffc635;
+  color: var(--yellow-vivid);
 }
 
 .leaderboard-prize .leaderboardPrize-col .leader-row .leader-col img {
@@ -66,7 +66,7 @@
   font-weight: 800;
   font-size: 10px;
   line-height: 10px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 5px;
 }
 
@@ -74,7 +74,7 @@
   font-weight: 800;
   font-size: 8px;
   line-height: 7px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .leaderboard-prize .leaderboardPrize-col .wonPrize-ul {
@@ -87,14 +87,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--gray-600, #420c29);
+  background-color: var(--gray-600, --burgundy-red);
   border-radius: 10px;
   padding: 15px 25px;
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 13px;
   line-height: 15px;
-  color: #9aa4cf;
+  color: var(--periwinkle);
 }
 
 .leaderboard-prize .leaderboardPrize-col .wonPrize-ul li:last-child {
@@ -102,7 +102,7 @@
 }
 
 .leaderboard-prize .leaderboardPrize-col .wonPrize-ul li .prize {
-  color: #ffcf53;
+  color: var(--sunshine-yellow);
 }
 
 @media screen and (max-width: 991.98px) {

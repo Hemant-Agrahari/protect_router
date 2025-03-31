@@ -1,0 +1,34 @@
+.forgot-password-input-field {
+    background: var(--gray-500);
+    border-radius: 2px;
+  } 
+  
+  .forgot-password-input-field .MuiOutlinedInput-input {
+    color: var(--white);
+  }
+  
+  .forgot-password-input-field .MuiInputAdornment-root {
+    position: start;
+  }
+
+.forgot-password-input {
+  background: var(--gray-500);
+  border-radius: 2px;
+}
+
+.forgot-password-input .MuiOutlinedInput-input {
+  color:var(--white);
+}
+
+.forgot-password-input .MuiInputAdornment-root {
+  padding-left: 10px;
+}
+
+.forgot-password-input .input-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.login-age-verify-text{
+  color: var(--gray-200);
+}

@@ -1,0 +1,55 @@
+.affiliateModal .MuiDialog-paper {
+  width: 95%;
+  max-width: 465px !important;
+  background: var(--gray-500,--crimson-1);
+  border-radius: 10px;
+  margin: 10px 5px 10px;
+  overflow: initial;
+}
+
+.affiliateModal .affiliate-modal-dialog-text {
+  background-color: var(--gray-400, --burgundy-dark);
+  border-radius: 10px 10px 0px 0px;
+}
+
+.css-xrt2rx-MuiTypography-root-MuiDialogTitle-root {
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+  text-align: center;
+  padding: 16px 24px;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.affiliateModal .close_form_btn {
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+}
+
+.affiliateModal .modal-content .affiliate-modal-container{
+    padding: 12px 24px;
+}
+
+.form-field .MuiOutlinedInput-input {
+  color: var(--white);
+}

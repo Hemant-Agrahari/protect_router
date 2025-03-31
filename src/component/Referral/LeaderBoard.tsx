@@ -1,5 +1,6 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 const LeaderBoard = () => {
   const { t } = useTranslation()
@@ -10,19 +11,19 @@ const LeaderBoard = () => {
         <div className="leader-row">
           <div className="leader-col">
             <div className="leader-title">{t('Second Place')}</div>
-            <img src="/assets/images/leaderTop-2.png" alt={t('Second Place')} />
+            <CustomImage src="/assets/images/leaderTop-2.png" alt='Second Place' width={55} height={55}/>
             <div className="leader-user">User820769654</div>
             <div className="leader-price">$ 8413570</div>
           </div>
           <div className="leader-col">
             <div className="leader-title">{t('First Place')}</div>
-            <img src="/assets/images/leaderTop-1.png" alt={t('First Place')} />
+            <CustomImage src="/assets/images/leaderTop-1.png" alt='First Place' width={55} height={55} />
             <div className="leader-user">User720769654</div>
             <div className="leader-price">$ 17201880</div>
           </div>
           <div className="leader-col">
             <div className="leader-title">{t('Third Place')}</div>
-            <img src="/assets/images/leaderTop-3.png" alt={t('Third Place')} />
+            <CustomImage src="/assets/images/leaderTop-3.png" alt='Third Place' width={55} height={55} />
             <div className="leader-user">User820769654</div>
             <div className="leader-price">$ 8413570</div>
           </div>

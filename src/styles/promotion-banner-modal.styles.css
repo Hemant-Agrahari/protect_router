@@ -1,6 +1,6 @@
 .promotionFirstModal .MuiDialog-paper {
     max-width: 465px !important;
-    background: var(--gray-700, #5c2242);
+    background: var(--gray-700,--crimson-1);
     border-radius: 10px;
     padding: 0 18px 30px;
     margin: 110px 10px 10px;
@@ -11,7 +11,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    color: #fff;
+    color: var(--white);
     cursor: pointer;
     z-index: 1;
   }
@@ -44,7 +44,7 @@
   }
   
   .promotionGift-logo {
-    background: var(--gray-600, #420c29);
+    background: var(--gray-600, --burgundy-red);
     text-align: center;
     margin-inline: -18px;
     margin-top: -30px;
@@ -67,7 +67,7 @@
   }
   
   .promotionGift-footer {
-    background: var(--gray-600, #420c29);
+    background: var(--gray-600,--burgundy-red);
     margin-inline: -18px;
     padding-block: 12px;
     text-align: center;
@@ -75,19 +75,19 @@
   
   .promotionGift-footer p {
     font-size: clamp(12px, 1vw, 16px);
-    color: #fff;
+    color: var(--white);
     font-weight: 500;
     margin-bottom: 10px;
   }
   
   .promotionGift-footer a {
-    color: #ffc635;
+    color: var(--yellow-vivid);
     font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     text-decoration: none;
     display: inline-block;
     padding: 9px 20px;
-    background: var(--gray-600, #31001b);
+    background: var(--gray-600,--burgundy-dark);
     border-radius: 8px;
   }
   
@@ -98,23 +98,21 @@
   .promoGift-ul .promoGift-title {
     font-weight: 600;
     font-size: 20px;
-    color: #fff;
+    color: var(--white);
   }
   
   .promoGift-ul li {
     font-weight: 400;
     font-size: clamp(12px, 1.8vw, 20px);
-    color: #fff;
+    color: var(--white);
     margin-bottom: 15px;
     margin-top: 15px;
   }
 
 
   .promotionSecondModal .MuiDialog-paper {
-    /* max-width: 1287px !important; */
-    background: var(--gray-700, #5c2242);
+    background: var(--gray-700,--crimson-1);
     border-radius: 10px;
-    /* width: 70%; */
     margin: 10px;
   }
   
@@ -122,7 +120,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    color: #fff;
+    color: var(--white);
     cursor: pointer;
   }
   
@@ -136,7 +134,7 @@
     font-size: 28px;
     line-height: 44px;
     text-align: center;
-    color: #ffffff;
+    color: var(--white);
     padding: 6px;
     background: var(--gray-600) !important;
   }
@@ -145,3 +143,6 @@
     margin: 0 -10px;
   }
   
+  .promotion-tab-padding{
+    padding-top: 56.25%;
+  }

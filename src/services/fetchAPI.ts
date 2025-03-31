@@ -1,6 +1,7 @@
-import axios from 'axios'
+import { getLocalStorageItem } from '@/utils';
+import axios from 'axios';
 
-//     const GetAuth: string | null = localStorage.getItem("auth");
+//     const GetAuth: string | null = getLocalStorageItem("auth");
 //   let Token: string | null = null;
 
 //   if (GetAuth) {
@@ -10,13 +11,13 @@ import axios from 'axios'
 //     }
 //   }
 
-let userData: string | null = null
-let userToken: any = null
+let userData: string | null = null;
+let userToken: any = null;
 
 export const PostMethod = (url: any, data?: any) => {
   return new Promise((resolve, reject) => {
-    userData = localStorage.getItem('auth')
-    const parsedUserData = JSON.parse(userData || '{}')
+    userData = getLocalStorageItem('auth');
+    const parsedUserData = JSON.parse(userData || '{}');
 
     axios
       .post(`${process.env.NEXT_PUBLIC_BASE_URL}/${url}`, data, {
@@ -27,11 +28,11 @@ export const PostMethod = (url: any, data?: any) => {
         },
       })
       .then((res) => {
-        resolve(res)
+        resolve(res);
       })
-      .catch((err) => reject(err))
-  })
-}
+      .catch((err) => reject(err));
+  });
+};
 
 export const GetMethod = (url: any) => {
   return new Promise((resolve, reject) => {
@@ -44,8 +45,8 @@ export const GetMethod = (url: any) => {
         },
       })
       .then((res) => {
-        resolve(res)
+        resolve(res);
       })
-      .catch((err) => reject(err))
-  })
-}
+      .catch((err) => reject(err));
+  });
+};

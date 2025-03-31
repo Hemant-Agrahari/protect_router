@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import ProfitTodayChart from './ProfitTodayChart'
-import { useFetch, useMutateData } from '@/services'
-import { useAppSelector } from '@/redux/hooks'
-import FormsData from '@/types/formsData'
-import { logError } from '@/utils'
-import { useTranslation } from 'react-i18next'
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import ProfitTodayChart from './ProfitTodayChart';
+import { useFetch, useMutateData } from '@/services';
+import { useAppSelector } from '@/redux/hooks';
+import FormsData from '@/types/formsData';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 const Forms = () => {
   const { mutateData } = useMutateData()
@@ -30,7 +30,6 @@ const Forms = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const { data } = useFetch<any>('formContent')
-
   const ProfitTodays =
     formsData?.todayInvitaionBonus &&
     formsData?.todayInvitaionBonus + formsData?.todayBettingbonus &&
@@ -98,7 +97,7 @@ const Forms = () => {
         <div className="partner">
           <div className="profitToday-title">{t('Profit Today')}</div>
           <div className="profitToday-img">
-          <Image src='/assets/images/profit-today.png' alt="profit today" width={176} height={140}/>
+          <CustomImage src='/assets/images/profit-today.png' alt="profit today" width={176} height={140}/>
           </div>
           <div className="profitToday-value">
             {ProfitTotals?.toFixed(2) === 'NaN'

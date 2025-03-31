@@ -3,20 +3,20 @@
 }
 
 .get-commission .referalPageSection-title {
-  color: #fff;
+  color: var(--white);
   margin-bottom: 15px;
 }
 
 .get-commission .referalPageSection-titleText {
-  color: #fff;
+  color: var(--white);
   margin-bottom: 32px;
 }
 
 .get-commission .getCommission-col {
   background: linear-gradient(
     1.04deg,
-    var(--gray-400, #4a184b) 0.99%,
-    var(--gray-800, #86188f) 99.21%
+    var(--gray-400,--deep-plum) 0.99%,
+    var(--gray-800, --purple-pink) 99.21%
   );
 
   border-radius: 10px;
@@ -34,8 +34,8 @@
   .bonus-rules {
   background: linear-gradient(
     109.85deg,
-    var(--gray-400, #31001b) 13.26%,
-    var(--gray-400, #31001b) 88.12%
+    var(--gray-400,--burgundy-dark) 13.26%,
+    var(--gray-400, --burgundy-dark) 88.12%
   );
   border-radius: 10px;
   margin-bottom: 20px;
@@ -50,7 +50,7 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 15px;
 }
 
@@ -73,7 +73,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 13px;
 }
 
@@ -84,7 +84,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #fff;
+  color: var(--white);
 }
 
 .getCommission-col .getCommission-colTop .getCommission-colTop-img {
@@ -108,8 +108,8 @@
   width: 48.7%;
   background: linear-gradient(
     109.85deg,
-    var(--gray-800, #31001b) 13.26%,
-    var(--gray-800, #31001b) 88.12%
+    var(--gray-800, --burgundy-dark) 13.26%,
+    var(--gray-800, --burgundy-dark) 88.12%
   );
   border-radius: 10px;
   padding: 30px;
@@ -124,7 +124,7 @@
   font-size: 20px;
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .getCommission-col
@@ -144,7 +144,7 @@
   .income-title
   .MuiSvgIcon-root {
   font-size: 21px;
-  color: #fff;
+  color: var(--white);
 }
 
 .getCommission-col .getCommission-colBotm .income-calculator .calculat-value {
@@ -154,7 +154,7 @@
   line-height: 46px;
   display: flex;
   align-items: center;
-  color: #ffd569;
+  color: var(--golden-yellow);
 }
 
 .getCommission-col .getCommission-colBotm .income-calculator .invite-user {
@@ -162,7 +162,7 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #fff;
+  color: var(--white);
   max-width: 280px;
   margin: 0 auto clamp(20px, 3vw, 40px);
 }
@@ -195,7 +195,7 @@
   .calculat-slider
   .MuiSlider-root
   .MuiSlider-rail {
-  background-color: var(--gray-300, #5c2242);
+  background-color: var(--gray-300,--crimson-1);
   opacity: 1;
 }
 
@@ -205,7 +205,7 @@
   .calculat-slider
   .MuiSlider-root
   .MuiSlider-track {
-  background-color: var(--gray-100, #a2246b);
+  background-color: var(--gray-100,--deep-pink);
   border: 0;
 }
 
@@ -215,7 +215,7 @@
   .calculat-slider
   .MuiSlider-root
   .MuiSlider-thumb {
-  background-color: var(--gray-500, #a2246b);
+  background-color: var(--gray-500,--deep-pink);
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -271,7 +271,7 @@
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 25px;
-    color: white;
+    color: var(--white);
   }
 
   .getCommission-col

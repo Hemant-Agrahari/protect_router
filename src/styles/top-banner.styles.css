@@ -29,25 +29,21 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 31px;
-  color: #ffffff;
+  color:var(--white);
 }
 
 .homeBannerDesktop .homeBanner-content .title span {
-  color: #dd244a;
+  color:var(--raspberry-red);
 }
 
 .homeBannerDesktop .homeBanner-content .price {
   margin-top: 8px;
   font-weight: 700;
   font-size: 46px;
-  background: linear-gradient(90deg, #ffc700 0%, #ffea2b 20.31%, #ffc327 100%);
+  background: linear-gradient(90deg, var( --golden-yellow) 0%, var(--sunshine-yellow) 20.31%, var(--yellow-vivid) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0 0 0 23px;
-}
-
-.homeTabPromotion-content {
-  margin: 0 -9px;
 }
 
 .BannerBigHomeSlider {
@@ -79,6 +75,10 @@
 }
 
 @media screen and (max-width: 991.98px) {
+  .homeTabPromotion-content {
+    margin: 0 -9px;
+  }
+
   .homeBannerDesktop .homeBanner-content {
     max-width: 60%;
   }
@@ -96,6 +96,21 @@
   .homeBannerDesktop .homeBanner-content .price {
     font-size: 30px;
     padding: 0;
+  }
+  .homeBanner-content .bannerHeading {
+    font-size: 14px !important;
+  }
+  .homeBanner-content .bannerHeading {
+    font-size: 16px;
+  }
+  .homeBanner-content .bannerHeading img {
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+  }
+  .homeBanner-content .bannerSubHeading {
+    font-size: 13px;
+    margin-top: 0 !important;
   }
 }
 
@@ -122,6 +137,9 @@
     font-size: 13px;
     margin-top: 0 !important;
   }
+  .homeTabPromotion-content .homeTabPromotionContent-col {
+    width: 47.6%;
+  }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -140,7 +158,6 @@
   .homeBannerDesktop .homeBanner-content .price {
     font-size: 23px;
   }
-
   .homeTabPromotion-content {
     margin: 0;
   }

@@ -44,3 +44,4 @@ node_modules/*
 sw.*
 workbox-*
 swe-worker-*.env
+.qodo

@@ -1,0 +1,79 @@
+.userimgName {
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.userimgName .MainUserLogo {
+  margin: 0 10px 0 0;
+  width: 68px;
+}
+
+.userDisplayPC .MainUserLogo.normalActive {
+  border: 5px solid var(--white);
+}
+
+.userSaveButton {
+  padding: 12px 36px;
+  background: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  border: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.userLeaveButton {
+  padding: 12px 36px;
+  background: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  border: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.userDisplayPC {
+  background: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.userDisplayButton {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-input {
+  color: var(--white);
+}
+
+.custom-input .MuiOutlinedInput-input {
+  color: var(--white);
+}
+
+.back-to-top {
+  margin-left: 12px;
+}

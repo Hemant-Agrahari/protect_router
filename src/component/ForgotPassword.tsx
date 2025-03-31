@@ -1,13 +1,16 @@
-import { Box, InputAdornment, OutlinedInput } from '@mui/material'
-import * as Yup from 'yup'
-import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik'
-import { useMutateData } from '@/services'
-import { toast } from 'react-toastify'
-import { Button } from './common'
-import CloseIcon from '@mui/icons-material/Close'
-import Image from 'next/image'
-import { logError } from '@/utils'
-import { useTranslation } from 'react-i18next'
+import { Box, InputAdornment} from '@mui/material';
+import { FormikHelpers, useFormik } from 'formik';
+import { useMutateData } from '@/services';
+import { toast } from 'react-toastify';
+import { CustomButton, CustomMuiOutlinedInput } from '@/component/common';
+import CloseIcon from '@mui/icons-material/Close';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod'
+import { validationMsg } from '@/utils/validationMsg';
+import { withZodSchema } from 'formik-validator-zod';
+import FormErrorMessage from './common/FormErrorMessage';
+import CustomImage from './common/CustomImage';
 
 const ForgetPasswordPopup = ({
   handleCloseForgetPassword,
@@ -17,15 +20,14 @@ const ForgetPasswordPopup = ({
 }) => {
   const { mutateData, isMutating } = useMutateData()
   const { t } = useTranslation()
-  const initialValues = {
-    resetEmail: '',
-  }
 
-  const passwordValidation = Yup.object().shape({
-    resetEmail: Yup.string()
-      .required(`${t('Please Enter Your E-mail')}`)
-      .email(`${t('Invalid email format')}`),
+  const validationSchema = z.object({
+    resetEmail: z
+      .string()
+      .email(`${t(validationMsg.email.invalidEmail)}`)
+      .nonempty(t(validationMsg.email.require)),
   })
+  type ValidationSchemaType = z.infer<typeof validationSchema>
 
   const handleLoginSubmit = (
     values: { resetEmail: string },
@@ -37,9 +39,10 @@ const ForgetPasswordPopup = ({
       },
     })
       .then((res) => {
+        console.log(res,'res');
+        
         if (res?.status !== 'success') {
-          toast.error(res?.message)
-          return
+          throw new Error(res?.message)
         }
 
         toast.success(res?.message)
@@ -51,73 +54,64 @@ const ForgetPasswordPopup = ({
       })
   }
 
+  const formik = useFormik<ValidationSchemaType>({
+    initialValues: {
+      resetEmail: '',
+    },
+    validate: withZodSchema(validationSchema),
+    onSubmit: handleLoginSubmit,
+  })
+
   return (
     <div className="modal-content">
       <div className="modal_closebtn">
-        <Button
+        <CustomButton
           type="button"
           className="close_form_btn m-1"
           data-bs-dismiss="modal"
           aria-label="Close"
           onClick={handleCloseForgetPassword}
         >
-          <CloseIcon style={{ color: 'white', fontSize: '32px' }} />
-        </Button>
+          <CloseIcon className="text-white font-size-32" />
+        </CustomButton>
       </div>
       <div className="modal-body">
         <div className="modal_form_signIn">
           <div>
-            <h2
-              style={{ color: '#fff', fontSize: '22px' }}
-              className="m-3 mb-4 text-center "
-            >
+            <h2 className="m-3 mb-4 text-center font-size-22 text-white">
               {t('Forgot Password')}
             </h2>
             <Box>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={passwordValidation}
-                onSubmit={handleLoginSubmit}
-              >
-                <Form>
-                  <Field
-                    as={OutlinedInput}
-                    sx={{
-                      '& .MuiOutlinedInput-input': { color: '#fff' },
-                      //   border: "1px solid gray",
-                      background: 'var(--gray-500)',
-                      borderRadius: 2,
-                    }}
-                    id="input-with-icon-textfield"
-                    placeholder={t('E-mail')}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <Image
-                          src={'/assets/images/msg_login_sign.png'}
-                          width={30}
-                          height={30}
-                          alt={t('Mail icon')}
-                        />
-                      </InputAdornment>
-                    }
-                    fullWidth
-                    name="resetEmail"
-                  />
-                  <p
-                    style={{ color: 'red', fontWeight: '700' }}
-                    className="m-2"
-                  >
-                    <ErrorMessage name="resetEmail" />
-                  </p>
-                  <Button
-                    className="modal-btn-losign mt-3"
-                    type="submit"
-                    isLoading={isMutating}
-                  >
-                    {t('Submit')}
-                  </Button>
-                </Form>
-              </Formik>
+              <form onSubmit={formik.handleSubmit}>
+                <CustomMuiOutlinedInput
+                  className="forgot-password-input"
+                  id="input-with-icon-textfield"
+                  placeholder={t('E-mail')}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <CustomImage
+                        src='/assets/images/msg_login_sign.png'
+                        width={30}
+                        height={30}
+                        alt={t('Mail icon')}
+                      />
+                    </InputAdornment>
+                  }
+                  fullWidth
+                  {...formik.getFieldProps('resetEmail')}
+                />
+                <FormErrorMessage
+                  touched={formik.touched?.resetEmail}
+                  error={formik.errors?.resetEmail}
+                />
+                <CustomButton
+                  className="modal-btn-losign mt-3"
+                  type="submit"
+                  isLoading={isMutating}
+                >
+                  {t('Submit')}
+                </CustomButton>
+              </form>
             </Box>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import Image from 'next/image'
+
 import { useTranslation } from 'react-i18next'
+import CustomImage from '../common/CustomImage'
 const AwardsIssued = () => {
   const { t } = useTranslation()
   // Define your static data as an array of objects
@@ -33,7 +34,7 @@ const AwardsIssued = () => {
         {awardsData.map((award, index) => (
           <div className="awardsIssued-col" key={index}>
             <div className="awardsIssued-img d-md-none">
-              <Image
+              <CustomImage
                 src={award.imgSrc}
                 alt={t(award.title)}
                 width={100}
@@ -41,7 +42,7 @@ const AwardsIssued = () => {
               />
             </div>
             <div className="awardsIssued-img d-none d-md-block">
-              <Image
+              <CustomImage
                 src={award.imgSrc}
                 alt={t(award.title)}
                 width={100}

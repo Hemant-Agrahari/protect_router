@@ -1,0 +1,166 @@
+.personal-center-container{
+    margin-top: 12vh;
+}
+
+.personal-center-info {
+  border-radius: 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800, --purple-heart) 85.68%
+  );
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.personal-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MainUserPI {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.MainUserPI img {
+  max-width: 100%;
+}
+
+.userButtonCopy {
+  width: 142px;
+  height: 36px;
+  background: var(--gray-600, --deep-pink);
+  border-radius: 5px;
+  border: 1px solid var(--gray-600, --deep-pink);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.icon-userInfo {
+  padding: 8px;
+  border-radius: 20px;
+  background: var(--gray-600,  --burgundy-red);
+  cursor: pointer;
+}
+
+.MainUserLogo {
+  border-radius: 190px;
+  background: linear-gradient(180deg, var(--vivid-sky-blue) 0%, var(--royal-blue) 100%);
+  cursor: pointer;
+  margin: 0 10px 10px 5px;
+}
+
+.walletWithdraw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--gray-600, --burgundy-red);
+  padding: 8px 0px;
+  width: 100%;
+  border-radius: 10px;
+}
+.walletRupee {
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--white);
+  text-align: center;
+  color: var(--yellow-vivid);
+}
+
+.amount-redeemed {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 10px;
+  text-align: center;
+  color: var(--white);
+}
+
+.amount-redeemed button {
+  min-width: initial;
+  margin-left: 7px;
+  padding: 0;
+}
+
+.walletBtnContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.walletBtnContainer .walletBtn,
+.walletBtnContainer .walletBtnWithdraw {
+  width: 48%;
+  height: 40px;
+  background: linear-gradient(
+    158.06deg,
+    var(--gray-800, --purple-plum) 0.09%,
+    var(--gray-800,  --purple-heart) 85.68%
+  );
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var( --blue-violet) 98.45%);
+  border: 1px solid var( --blue) !important;
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.walletBtnContainer .walletBtnWithdraw {
+  background: transparent;
+  border: 1px solid var( --blue) !important;
+}
+
+.personal-user .PersonallevelsPoint {
+  position: absolute;
+  transform: translate(122%, 0px);
+  z-index: 1;
+  color: var(  --steel-blue);
+  font-weight: 900;
+  font-size: 20px;
+  line-height: normal;
+  margin-top: -45px;
+}
+
+
+.bet-amount-linear-progress{
+  background-color: var(--black) !important;
+}
+
+.bet-amount-linear-progress .MuiLinearProgress-bar {
+  background-color: var(--medium-violet) !important;
+}
+
+.result-linear-progress{
+  background-color: var(--black) !important;
+}
+
+.result-linear-progress .MuiLinearProgress-bar {
+  background-color: var(--yellow-vivid) !important;
+}
+
+.walle-history{
+  color: var(--vivid-blue);
+}
+
+.vip-user-level{
+  color:var(--golden-yellow);
+  font-size: 24px;
+  text-align:center ;
+  font-weight: 800;
+}
+
+.ranking-vip{
+  color: var(--vivid-blue);
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+}

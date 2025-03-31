@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import { useMutateData } from '@/services'
-import { logError } from '@/utils'
-import { useTranslation } from 'react-i18next'
-import { GetStaticProps } from 'next'
-import { commonStaticProps } from '@/utils/translation'
-import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useMutateData } from '@/services';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import { GetStaticProps } from 'next';
+import { commonStaticProps } from '@/utils/translation';
+import dynamic from 'next/dynamic';
+import CustomImage from '@/component/common/CustomImage';
 
 // Method is for language switch
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -34,15 +35,18 @@ const PromotionsFourth = () => {
   }, [id])
 
   return (
-    <div className="container" style={{ marginTop: '12vh' }}>
+    <div className="container margin-top-12">
       <div className="promotion-banner text-center">
         {isMutating ? (
           t('Loading...')
         ) : (
-          <img
-            src={base_url + promotionBanner?.banner}
-            alt={t('English banner')}
-            style={{ width: '100%', height: '100%' }}
+          <CustomImage
+            src={
+              promotionBanner?.banner ? base_url + promotionBanner.banner : ''
+            }
+            alt="English banner"
+            width={1421}
+            height={300}
           />
         )}
       </div>

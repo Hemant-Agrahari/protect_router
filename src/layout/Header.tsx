@@ -1,18 +1,17 @@
-import { MouseEvent, useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import Logo from '../../public/assets/images/headerLogo.png'
-import SidbarArrow from '../../public/assets/images/icon-sidebar.png'
-import SidecrownImg from '../../public/assets/images/SidecrownImg.png'
-import SidemoneyImg from '../../public/assets/images/SidemoneyImg.png'
-import SidecontactImg from '../../public/assets/images/SidecontactImg.png'
-import SidegameImgSide from '../../public/assets/images/SidegameImgSide.png'
-import connectFB from '../../public/assets/images/connect_facebook.png'
-import connectGoogle from '../../public/assets/images/connect_google.png'
-import vip_banner from '../../public/assets/images/vip_banner.png'
-import Link from 'next/link'
-import Dialog from '@mui/material/Dialog'
-import Login from '../component/Login'
-import NotificationsIcon from '@mui/icons-material/Notifications'
+import { MouseEvent, useEffect, useRef, useState } from 'react';
+import Logo from '../../public/assets/images/headerLogo.png';
+import SidbarArrow from '../../public/assets/images/icon-sidebar.png';
+import SidecrownImg from '../../public/assets/images/SidecrownImg.png';
+import SidemoneyImg from '../../public/assets/images/SidemoneyImg.png';
+import SidecontactImg from '../../public/assets/images/SidecontactImg.png';
+import SidegameImgSide from '../../public/assets/images/SidegameImgSide.png';
+import connectFB from '../../public/assets/images/connect_facebook.png';
+import connectGoogle from '../../public/assets/images/connect_google.png';
+import vip_banner from '../../public/assets/images/vip_banner.png';
+import Link from 'next/link';
+import Dialog from '@mui/material/Dialog';
+import Login from '../component/Login';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import {
   Button,
   ClickAwayListener,
@@ -24,90 +23,58 @@ import {
   Paper,
   Popper,
   Typography,
-} from '@mui/material'
+} from '@mui/material';
 import {
   KeyboardArrowDown,
   NotificationsNoneOutlined,
-} from '@mui/icons-material'
-import WalletPopup from '@/component/HeaderModals/WalletPopup'
-import { userProfilePhoto } from '@/utils/data'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { toast } from 'react-toastify'
-import { removeUser } from '@/redux/user/userReducer'
-import { useMutateData } from '@/services'
-import NotificationType from '@/types/notification'
-import { logError } from '@/utils'
-import { useRouter } from 'next/router'
-import socketService from '@/services/socketService'
-import { CustomOutlinedInput } from '@/component/common'
-import { useTranslation } from 'react-i18next'
-import LanguageSwitcher from '@/component/common/LanguageSwitcher'
-import { PostMethod } from '@/services/fetchAPI'
+} from '@mui/icons-material';
+import WalletPopup from '@/component/HeaderModals/WalletPopup';
+import { userProfilePhoto } from '@/utils/data';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { toast } from 'react-toastify';
+import { removeUser } from '@/redux/user/userReducer';
+import { useMutateData } from '@/services';
+import NotificationType from '@/types/notification';
+import { logError } from '@/utils';
+import socketService from '@/services/socketService';
+import { setTab } from '@/redux/games/gamesReducer';
+import { CustomButton, CustomMuiOutlinedInput } from '@/component/common';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '@/component/common/LanguageSwitcher';
+import { copyToClipboard } from '@/utils/commonMethod';
+import CustomImage from '@/component/common/CustomImage';
+import CustomMuiTypography from '@/component/common/mui-component/CustomMuiTypography';
 
 const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
-  const { t } = useTranslation()
-  const socket = socketService.getSocket()
-  const router = useRouter()
-  const user = useAppSelector((state) => state.user.user)
-  const userBalance = useAppSelector((state) => state.user.userBalance)
-  const dispatch = useAppDispatch()
-  const userChips: any = user && user?.bonusChips + user?.chips
+  const { t } = useTranslation();
+  const socket = socketService.getSocket();
+  const user = useAppSelector((state) => state.user.user);
+  const userBalance = useAppSelector((state) => state.user.userBalance);
+  const dispatch = useAppDispatch();
+  const userChips: any = user && user?.bonusChips + user?.chips;
 
-  const [openLoginModal, setOpenLoginModal] = useState(false)
-  const handleCloseLoginModal = () => setOpenLoginModal(false)
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const handleCloseLoginModal = () => setOpenLoginModal(false);
 
-  const [Wallet_Anchor, setWallet_Anchor] = useState(0)
-  const [openWalletModal, setOpenWalletModal] = useState(false)
-  const [currentBalance, setCurrentBalance] = useState(0)
+  const [Wallet_Anchor, setWallet_Anchor] = useState(0);
+  const [openWalletModal, setOpenWalletModal] = useState(false);
+  const [currentBalance, setCurrentBalance] = useState(0);
   const handleCloseWalletModal = () => {
-    setOpenWalletModal(false)
-  }
-  const [tabIndex, setTabIndex] = useState(0)
-  const [openPopover, setOpenPopover] = useState(false)
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const { mutateData } = useMutateData()
+    setOpenWalletModal(false);
+  };
+  const [tabIndex, setTabIndex] = useState(0);
+  const [openPopover, setOpenPopover] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { mutateData, isMutating } = useMutateData();
   const [allNotifications, setAllNotifications] =
-    useState<NotificationType | null>(null)
-  const notificationsLength = allNotifications?.notification?.length ?? 0
-  const [triggerRefetch, setTriggerRefetch] = useState<boolean>(false)
-  const searchParams = new URLSearchParams(window.location.search)
-  const referralCode = searchParams.get('referralcode')
-  const agentId = searchParams.get('agentId')
-
-  useEffect(() => {
-    mutateData(`notification`, {
-      body: {
-        userId: user?._id,
-      },
-    })
-      .then((response) => {
-        setAllNotifications(response?.data)
-      })
-      .catch((err) => {
-        logError(err)
-      })
-  }, [user?._id, openPopover, triggerRefetch])
-
-  useEffect(() => {
-    const handleCurrentBalance = (res: any) => {
-      if (res?.result.userId === user?._id) {
-        setCurrentBalance(res?.result.currentBalance)
-      }
-    }
-
-    if (socketService.isConnected()) {
-      socket.on('currentBalance', handleCurrentBalance)
-    } else {
-      console.log('socket disconnected')
-    }
-
-    return () => {
-      if (socketService.isConnected()) {
-        socket.off('currentBalance', handleCurrentBalance)
-      }
-    }
-  }, [user?._id, socket])
-
+    useState<NotificationType | null>(null);
+  const notificationsLength = allNotifications?.notification?.length ?? 0;
+  const [triggerRefetch, setTriggerRefetch] = useState<boolean>(false);
+  const searchParams = new URLSearchParams(window.location.search);
+  const referralCode = searchParams.get('referralcode');
+  const agentId = searchParams.get('agentId');
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef<any>(null);
   const handleMarkAsRead = (type: 'single' | 'many', id?: string) => {
     mutateData(`updateNotification`, {
       body:
@@ -123,122 +90,72 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
     })
       .then((response) => {
         if (response?.status === 'success') {
-          toast.success(response?.message)
-          setTriggerRefetch(!triggerRefetch)
-          type === 'many' && setOpenPopover(false)
-          return
+          toast.success(response?.message);
+          setTriggerRefetch(!triggerRefetch);
+          type === 'many' && setOpenPopover(false);
+          return;
         }
-        toast.error(response?.message)
+        toast.error(response?.message);
       })
       .catch((err) => {
-        logError(err)
-      })
-  }
+        logError(err);
+      });
+  };
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-    setOpenPopover((previousOpen) => !previousOpen)
-  }
+    setAnchorEl(event.currentTarget);
+    setOpenPopover((previousOpen) => !previousOpen);
+  };
 
   const handleLoginSignupTab = (id: any) => {
-    setTabIndex(id)
-    setOpenLoginModal(true)
-  }
-
-  const [open, setOpen] = useState(false)
-  const anchorRef = useRef<any>(null)
+    setTabIndex(id);
+    setOpenLoginModal(true);
+  };
 
   const handleToggle = () => {
     if (window.matchMedia('(max-width: 992px)').matches) {
-      setActive(false)
+      setActive(false);
     }
-    setOpen((prevOpen) => !prevOpen)
-  }
+    setOpen((prevOpen) => !prevOpen);
+  };
 
   const handleClose = (event: any) => {
     if (anchorRef?.current && anchorRef.current?.contains(event.target)) {
-      return
+      return;
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   function handleListKeyDown(event: any) {
     if (event.key === 'Tab') {
-      event.preventDefault()
-      setOpen(false)
+      event.preventDefault();
+      setOpen(false);
     } else if (event.key === 'Escape') {
-      setOpen(false)
+      setOpen(false);
     }
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = useRef(open)
-
-  const handleLogout = async () => {
-    if (socketService.isConnected()) {
-      if (user?._id) {
-        socket.emit('playerConnect', { playerId: user?._id, type: 'logout' })
-      }
-    }
-
-    try {
-      const response: any = await PostMethod('logout', {
-        userId: user?._id,
-      })
-
-      if (response.data?.status !== 'success') {
-        throw new Error(response.data.message || t('Something went wrong'))
-      }
-
-      if (response.data.result) {
-        toast.success(response.data.message)
-        dispatch(removeUser())
-      } else {
-        throw new Error(response.data.message || t('Something went wrong'))
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        if (error.message.includes('404')) {
-          router.push('/').then(() => {
-            toast.error(t('Please login'))
-            dispatch(removeUser())
-          })
-        }
-        // toast.error(error.message)
-        logError(error)
-      }
-    }
-  }
-
-  const copyId = async () => {
-    await navigator.clipboard.writeText(`${user?.playerId}`)
-    toast.success(t('ID Copied'))
-  }
+  const prevOpen = useRef(open);
 
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
-      anchorRef && anchorRef?.current.focus()
+      anchorRef && anchorRef?.current.focus();
     }
 
-    prevOpen.current = open
-  }, [open])
+    prevOpen.current = open;
+  }, [open]);
 
-  useEffect(() => {
-    if (referralCode || agentId) {
-      setTabIndex(1) // Set tabIndex to 1 to open Sign Up tab
-      setOpenLoginModal(true) // Open the login & signup modal
+  const handleLogout = (isShowToast: boolean) => {
+    dispatch(removeUser());
+    if (isShowToast) {
+      toast.success(t('You have been successfully logged out'));
+    } else {
+      setOpenLoginModal(true);
     }
-  }, [referralCode, agentId])
+  };
 
-  useEffect(() => {
-    if (socketService.isConnected()) {
-      if (user?._id) {
-        socket.emit('playerConnect', { playerId: user?._id, type: 'login' })
-      }
-    }
-  }, [user?._id])
-
-  const depositPercentage = user?.vipLevelDetails?.depositPer
+  const depositPercentage = user?.vipLevelDetails?.depositPer;
   const result =
     depositPercentage === undefined
       ? 0
@@ -246,9 +163,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
         ? 100
         : depositPercentage > 0
           ? parseFloat(depositPercentage.toFixed(2))
-          : 0
+          : 0;
 
-  const betPercentage = user?.vipLevelDetails?.betPer
+  const betPercentage = user?.vipLevelDetails?.betPer;
 
   const betResult =
     betPercentage === undefined
@@ -257,13 +174,54 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
         ? 100
         : betPercentage > 0
           ? parseFloat(betPercentage.toFixed(2))
-          : 0
+          : 0;
+
+  useEffect(() => {
+    if (referralCode || agentId) {
+      setTabIndex(1); // Set tabIndex to 1 to open Sign Up tab
+      handleLogout(false);
+    }
+  }, [referralCode, agentId]);
+
+  useEffect(() => {
+    mutateData(`notification`, {
+      body: {
+        userId: user?._id,
+      },
+    })
+      .then((response) => {
+        setAllNotifications(response?.data);
+      })
+      .catch((err) => {
+        logError(err);
+      });
+  }, [user?._id, openPopover, triggerRefetch]);
+
+  useEffect(() => {
+    const handleCurrentBalance = (res: any) => {
+      if (res?.result.userId === user?._id) {
+        setCurrentBalance(res?.result.currentBalance);
+      }
+    };
+
+    if (socketService.isConnected()) {
+      socket.on('currentBalance', handleCurrentBalance);
+    } else {
+      console.log('socket disconnected');
+    }
+
+    return () => {
+      if (socketService.isConnected()) {
+        socket.off('currentBalance', handleCurrentBalance);
+      }
+    };
+  }, [user?._id, socket]);
 
   return (
     <>
-      <header className={`header ${active ? '' : ''}`}>
+      <header className="header">
         <div className="header_toggle">
-          <Image
+          <CustomImage
             src={SidbarArrow}
             width={50}
             height={50}
@@ -272,7 +230,7 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
             className={`sideBarArrow ${active ? 'sideBarArrowOper' : ''}`}
           />
           <Link href="/">
-            <Image
+            <CustomImage
               src={Logo}
               width={95}
               height={70}
@@ -284,7 +242,8 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
         {user ? (
           <div className="afterLogin">
             <div className="search-input my-1 d-none d-md-block">
-              <CustomOutlinedInput
+              <CustomMuiOutlinedInput
+                className="search-bar"
                 placeholder={t('Search games')}
                 startAdornment={
                   <InputAdornment position="start">
@@ -326,9 +285,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
               />
             </div>
             <div className="balance-deposit">
-              <div className="balance ">
-                <Image
-                  src={'/assets/images/coin.png'}
+              <div className="balance d-flex">
+                <CustomImage
+                  src="/assets/images/coin.png"
                   alt={t('coin')}
                   width={22}
                   height={22}
@@ -341,20 +300,20 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                       : userChips?.toFixed(2)}
                 </span>
               </div>
-              <button
+              <CustomButton
                 className="btn deposit-btn"
                 onClick={() => setOpenWalletModal(true)}
               >
-                <Image
-                  src={'/assets/images/wallet.png'}
+                <CustomImage
+                  src="/assets/images/wallet.png"
                   alt={t('coin')}
                   width={22}
                   height={22}
                 />
                 <span className="d-none d-md-block ">{t('Deposit')}</span>
-              </button>
+              </CustomButton>
             </div>
-            <div className="headerProfile">
+            <div className="headerProfile header-paper">
               <Button
                 disableRipple
                 aria-controls={open ? 'headerProfile-menu' : undefined}
@@ -368,12 +327,12 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                 ref={anchorRef}
               >
                 <span className="profile-img">
-                  <Image
+                  <CustomImage
                     src={userProfilePhoto[Number(user?.avatar)]?.image}
                     alt={t('UserPhoto')}
                     key={userProfilePhoto[Number(user?.avatar)]?.id}
-                    width={25}
-                    height={25}
+                    width={10}
+                    height={10}
                   />
                 </span>
                 <span className="profile-name">
@@ -398,7 +357,7 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                           : 'left bottom',
                     }}
                   >
-                    <Paper style={{ background: 'var(--gray-600, #420C29)' }}>
+                    <Paper className="header-paper">
                       <ClickAwayListener onClickAway={handleClose}>
                         <MenuList
                           autoFocusItem={open}
@@ -409,7 +368,7 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                           <div className="hpMenu-top" onClick={handleClose}>
                             <div className="user-info">
                               <div className="user-img">
-                                <Image
+                                <CustomImage
                                   src={
                                     userProfilePhoto[Number(user?.avatar)]
                                       ?.image
@@ -423,15 +382,23 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                 />
                               </div>
                               <div className="user-name">{user?.playerId}</div>
-                              <button
+                              <Button
                                 className="btn userCopy-btn"
-                                onClick={copyId}
-                              ></button>
+                                onClick={() =>
+                                  copyToClipboard(
+                                    `${user?.playerId}`,
+                                    t('ID Copied!'),
+                                  )
+                                }
+                              ></Button>
                             </div>
                             <div className="user-levelScore">
                               <div className="userLevel">
                                 <div className="vipImg">
-                                  <Image src={vip_banner} alt={t('VIP')} />
+                                  <CustomImage
+                                    src={vip_banner}
+                                    alt={t('VIP')}
+                                  />
                                 </div>
                                 <div className="levalName">
                                   {t('VIP')} {user?.level}
@@ -442,8 +409,8 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                   <div className="title-value">
                                     <div className="title">{t('Deposit')}</div>
                                     <div className="amount">
-                                      <Image
-                                        src={'/assets/images/coin.png'}
+                                      <CustomImage
+                                        src="/assets/images/coin.png"
                                         alt={t('coin')}
                                         width={14}
                                         height={14}
@@ -453,13 +420,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                         2,
                                       )}
                                       /
-                                      <span
-                                        style={{
-                                          color: '#FFC635',
-                                        }}
-                                      >
-                                        <Image
-                                          src={'/assets/images/coin.png'}
+                                      <span className="yellow-shade">
+                                        <CustomImage
+                                          src="/assets/images/coin.png"
                                           alt={t('coin')}
                                           width={14}
                                           height={14}
@@ -476,15 +439,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                     <LinearProgress
                                       variant="determinate"
                                       value={result || 0}
-                                      sx={{
-                                        backgroundColor: '#000000 !important',
-                                        '& .MuiLinearProgress-bar': {
-                                          backgroundColor: '#FFC635 !important',
-                                        },
-                                      }}
+                                      className="header-result-linear-progress"
                                     />
                                     <div className="progressValue">
-                                      {' '}
                                       {result}%
                                     </div>
                                   </div>
@@ -495,8 +452,8 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                       {t('Bet Amount')}
                                     </div>
                                     <div className="amount">
-                                      <Image
-                                        src={'/assets/images/coin.png'}
+                                      <CustomImage
+                                        src="/assets/images/coin.png"
                                         alt={t('coin')}
                                         width={14}
                                         height={14}
@@ -506,13 +463,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                         2,
                                       )}
                                       /
-                                      <span
-                                        style={{
-                                          color: '#9643FF',
-                                        }}
-                                      >
-                                        <Image
-                                          src={'/assets/images/coin.png'}
+                                      <span className="purple-shade">
+                                        <CustomImage
+                                          src="/assets/images/coin.png"
                                           alt={t('coin')}
                                           width={14}
                                           height={14}
@@ -526,15 +479,9 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                     <LinearProgress
                                       variant="determinate"
                                       value={betResult}
-                                      sx={{
-                                        backgroundColor: '#000000 !important',
-                                        '& .MuiLinearProgress-bar': {
-                                          backgroundColor: '#9643FF !important',
-                                        },
-                                      }}
+                                      className="header-bet-result-linear-progress"
                                     />
                                     <div className="progressValue">
-                                      {' '}
                                       {betResult}%
                                     </div>
                                   </div>
@@ -542,67 +489,39 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                               </div>
                             </div>
                           </div>
-                          <div style={{ padding: '4px 8px' }}>
-                            <div
-                              className="hpMenu-botm"
-                              style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                padding: '15px 10px 0px',
-                              }}
-                            >
+                          <div className="link-container">
+                            <div className="hpMenu-botm d-flex justify-content-between link-container-list">
                               <ul className="profilePane-ul">
-                                <li
-                                  style={{ width: '160px' }}
-                                  className="me-md-2"
-                                  onClick={handleToggle}
-                                >
+                                <li className="me-md-2" onClick={handleToggle}>
                                   <Link href="/ranking-vip">
-                                    <Image src={SidecrownImg} alt="" />
+                                    <CustomImage
+                                      src={SidecrownImg}
+                                      alt="custom-image"
+                                    />
                                     {t('Vip Level')}
                                   </Link>
                                 </li>
                               </ul>
                               <ul className="profilePane-ul">
-                                <li
-                                  style={{ width: '160px' }}
-                                  onClick={handleToggle}
-                                >
-                                  <Link
-                                    href="/referral"
-                                    style={{
-                                      backgroundImage:
-                                        'linear-gradient(180deg, #E611DD 0%, #471883 100%)',
-                                    }}
-                                  >
-                                    <Image src={SidemoneyImg} alt="" />
+                                <li onClick={handleToggle}>
+                                  <Link href="/referral" className="referral">
+                                    <CustomImage
+                                      src={SidemoneyImg}
+                                      alt="side-money"
+                                    />
                                     {t('Referral')}
                                   </Link>
                                 </li>
                               </ul>
                             </div>
-                            <div
-                              className="hpMenu-botm"
-                              style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                padding: '0px 10px 0px',
-                              }}
-                            >
+                            <div className="hpMenu-botm d-flex justify-content-between personal-link-container">
                               <ul className="profilePane-ul">
-                                <li
-                                  style={{ width: '160px' }}
-                                  className="me-md-2"
-                                  onClick={handleToggle}
-                                >
+                                <li className="me-md-2" onClick={handleToggle}>
                                   <Link
                                     href="/personal-center"
-                                    style={{
-                                      backgroundImage:
-                                        'linear-gradient(180deg, #E67711 0%, #831818 100%)',
-                                    }}
+                                    className="personal-center"
                                   >
-                                    <Image
+                                    <CustomImage
                                       src={SidecontactImg}
                                       alt={t('Personal Center')}
                                     />
@@ -611,18 +530,12 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                                 </li>
                               </ul>
                               <ul className="profilePane-ul">
-                                <li
-                                  style={{ width: '160px' }}
-                                  onClick={handleToggle}
-                                >
+                                <li onClick={handleToggle}>
                                   <Link
                                     href="/game-history"
-                                    style={{
-                                      backgroundImage:
-                                        'linear-gradient(180deg, #5428D2 0%, #7B1893 100%)',
-                                    }}
+                                    className="game-history"
                                   >
-                                    <Image
+                                    <CustomImage
                                       src={SidegameImgSide}
                                       alt={t('Game History')}
                                     />
@@ -635,26 +548,24 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                               ''
                             ) : (
                               <>
-                                {' '}
-                                <Image
+                                <CustomImage
                                   src={connectFB}
                                   alt={t('Facebook logo')}
-                                  style={{ height: '46px' }}
+                                  className="facebook-height"
                                 />
-                                <Image
+                                <CustomImage
                                   src={connectGoogle}
                                   alt={t('Gmail logo')}
-                                  style={{ height: '48px' }}
-                                  className="mt-2"
+                                  className="mt-2 gamil-height"
                                 />
                               </>
                             )}
-                            <div
-                              className="hpMenu-botm"
-                              style={{ padding: '0' }}
-                            >
+                            <div className="hpMenu-botm hpmenu-botm-logout">
                               <div className="profile-logout">
-                                <Link href="/" onClick={() => handleLogout()}>
+                                <Link
+                                  href="/"
+                                  onClick={() => handleLogout(true)}
+                                >
                                   {t('Log out')}
                                 </Link>
                               </div>
@@ -669,7 +580,7 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
             </div>
             <div className="headerMsg">
               <div className="msgIcon" onClick={handleClick}>
-                <NotificationsIcon style={{ color: '#b5b5b5' }} />
+                <NotificationsIcon className="notification-icons" />
                 {!allNotifications?.isRead && (
                   <span className="activeMsg"></span>
                 )}
@@ -678,29 +589,14 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                 onClose={handleClick}
                 open={openPopover}
                 anchorEl={anchorEl}
-                className="notificationList"
-                sx={{
-                  marginTop: '1.5rem',
-                  '& .MuiPaper-root': {
-                    backgroundColor: '#420C29',
-                    color: '#B5B5B5',
-                    borderRadius: '10px',
-                    boxShadow: '0px 2px 8px rgba(0,0,0,0.32)',
-                    maxWidth: '450px',
-                  },
-                }}
+                className="notification-list"
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
                 {!allNotifications?.isRead && notificationsLength > 0 && (
                   <div className="d-flex justify-content-end mx-3">
                     <Button
-                      style={{
-                        fontWeight: '600',
-                        color: 'white',
-                        backgroundColor: 'var(--gray-400, #580935)',
-                        textTransform: 'none',
-                      }}
+                      className="font-weight-600 text-white mark-all-read-button"
                       onClick={() => handleMarkAsRead('many')}
                     >
                       {t('Mark all as read')}
@@ -714,58 +610,25 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                         handleMarkAsRead('single', notification?._id)
                       }
                       key={notification?._id}
+                      className="font-weight-600 font-size-18 notification-container"
                       style={{
-                        fontWeight: '600',
-                        padding: '0px 20px',
-                        fontSize: '18px',
-                        color: '#B5B5B5',
-                        margin: '15px 0px 8px 0px',
                         cursor: notification?.read ? '' : 'pointer',
                         background: notification?.read
                           ? ''
-                          : 'var(--gray-400, #580935)',
+                          : 'var(--gray-400, --crimson)',
                       }}
                     >
-                      <div
-                        className="d-flex  align-items-center"
-                        style={{
-                          padding: '10px',
-                        }}
-                      >
-                        <div
-                          className="p-2 rounded-circle"
-                          style={{
-                            backgroundColor: 'var(--gray-600, #A2246B)',
-                          }}
-                        >
-                          <NotificationsNoneOutlined
-                            style={{
-                              fontSize: '30px',
-                              color: '#B5B5B5',
-                            }}
-                          />
+                      <div className="d-flex  align-items-center p-3">
+                        <div className="p-2 rounded-circle d-flex align-items-center justify-content-center notification-active-color">
+                          <NotificationsNoneOutlined className="font-size-32 notification-icons" />
                         </div>
                         <div className="flex-grow-1 d-flex justify-content-between align-items-center ms-3">
-                          <Typography variant="body1">
-                            <strong
-                              style={{
-                                color: '#ffffff',
-                                fontWeight: '600',
-                                marginBottom: '0.5rem',
-                              }}
-                            >
+                          <Typography variant="body1" title="">
+                            <strong className="text-white font-weight-600 mb-3">
                               {notification?.title}
-                            </strong>{' '}
+                            </strong>
                             <br />
-                            <p
-                              style={{
-                                color: '#B5B5B5',
-                                fontWeight: '400',
-                                fontSize: '14px',
-                                marginBottom: '0px',
-                              }}
-                            >
-                              {' '}
+                            <p className=" font-size-14 font-weight-400 mb-0">
                               {notification?.content}
                             </p>
                           </Typography>
@@ -775,29 +638,27 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
                   ))
                 ) : (
                   <div className="d-flex justify-content-center p-3">
-                    <Typography
+                    <CustomMuiTypography
+                      title={t('No notifications')}
                       variant="body1"
-                      sx={{ color: 'white', ml: 1, fontWeight: '900' }}
-                    >
-                      {t('No notifications')}
-                    </Typography>
+                      className="text-white font-weight-900 ml-1"
+                    />
                   </div>
                 )}
               </Menu>
             </div>
-            <div>
+            <div className="language-switcher">
               <LanguageSwitcher />
             </div>
           </div>
         ) : (
           <div className="loginSignUp-btn">
             <div className="search-input my-1 d-none d-md-block">
-              <CustomOutlinedInput
+              <CustomMuiOutlinedInput
                 placeholder={t('Search games')}
-                className=""
+                className="search-input-container"
                 startAdornment={
                   <InputAdornment position="start">
-                    {/* <SearchIcon sx={{ color: '#fff' }} /> */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -836,20 +697,20 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
               />
             </div>
 
-            <button
+            <Button
               type="button"
-              className="btn login-btn"
+              className="btn login-btn text-capitalize"
               onClick={() => handleLoginSignupTab(0)}
             >
               {t('Log in')}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className="btn signUp-btn  btn-gradient"
+              className="btn signUp-btn  btn-gradient text-capitalize"
               onClick={() => handleLoginSignupTab(1)}
             >
               {t('Register')}
-            </button>
+            </Button>
             <div>
               <LanguageSwitcher />
             </div>
@@ -886,7 +747,7 @@ const Header = ({ handleSearch, searchQuery, setActive, active }: any) => {
         />
       </Dialog>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

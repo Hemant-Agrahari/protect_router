@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import CloseIcon from '@mui/icons-material/Close'
-import Image from 'next/image'
-import { Dialog } from '@mui/material'
-import { useAppSelector } from '@/redux/hooks'
-import { logError } from '@/utils'
-import { GetMethod } from '@/services/fetchAPI'
-import { useTranslation } from 'react-i18next'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import Link from 'next/link'
+import React, { useEffect, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import { Dialog } from '@mui/material';
+import { useAppSelector } from '@/redux/hooks';
+import { getLocalStorageItem, logError, setLocalStorageItem } from '@/utils';
+import { GetMethod } from '@/services/fetchAPI';
+import { useTranslation } from 'react-i18next';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Link from 'next/link';
+import CustomImage from '../common/CustomImage';
 
 const PromotionBanner_Modal = () => {
-  const base_url = process.env.NEXT_PUBLIC_IMAGE_URL
-  const [openPromo, setOpenPromo] = useState(false)
-  const [promotions, setPromotions] = useState<any>([])
-  const user = useAppSelector((state) => state.user.user)
-  const { t } = useTranslation()
+  const base_url = process.env.NEXT_PUBLIC_IMAGE_URL;
+  const [openPromo, setOpenPromo] = useState(false);
+  const [promotions, setPromotions] = useState<any>([]);
+  const user = useAppSelector((state) => state.user.user);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const hasClosedPromo = localStorage.getItem('hasClosedPromo')
+    const hasClosedPromo = getLocalStorageItem('hasClosedPromo');
     // Show the promo modal only if the user is logged in and has not closed it before
     if (user?._id && !hasClosedPromo) {
-      setOpenPromo(true)
+      setOpenPromo(true);
     }
-  }, [user?._id])
+  }, [user?._id]);
 
   const handleClosePromo = () => {
-    setOpenPromo(false)
-    localStorage.setItem('hasClosedPromo', 'true')
-  }
+    setOpenPromo(false);
+    setLocalStorageItem('hasClosedPromo', 'true');
+  };
 
   useEffect(() => {
     GetMethod(`popup`)
       .then((response: any) => {
         setPromotions(
           response?.data.result.filter((item: any) => item?.type === 'second'),
-        )
+        );
       })
       .catch((err) => {
-        logError(err)
-      })
-  }, [])
+        logError(err);
+      });
+  }, []);
 
   return (
     <>
@@ -56,18 +56,18 @@ const PromotionBanner_Modal = () => {
           </div>
           <div className="promotionGift">
             <LazyLoadImage
-              src={'/assets/images/promotion-gift.png'}
+              src="/assets/images/promotion-gift.png"
               alt={t('Promotions')}
               className="img-lazy"
-              placeholderSrc={'/assets/images/come-get.png'}
+              placeholderSrc="/assets/images/come-get.png"
               effect="blur"
             />
           </div>
           <div className="promotionGift-logo">
             <LazyLoadImage
-              src={'/assets/images/logo.png'}
+              src="/assets/images/logo.png"
               alt={t('Logo')}
-              placeholderSrc={'/assets/images/logo.png'}
+              placeholderSrc="/assets/images/logo.png"
             />
           </div>
 
@@ -80,7 +80,7 @@ const PromotionBanner_Modal = () => {
             </li>
           </ul>
           <div className="promotionGift-bonus">
-            <Image
+            <CustomImage
               src={
                 promotions[0]?.image
                   ? `${base_url}${promotions[0]?.image}`
@@ -99,7 +99,7 @@ const PromotionBanner_Modal = () => {
         </div>
       </Dialog>
     </>
-  )
-}
+  );
+};
 
-export default PromotionBanner_Modal
+export default PromotionBanner_Modal;

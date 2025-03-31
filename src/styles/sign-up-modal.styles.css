@@ -1,46 +1,67 @@
 .signUpModaluniversal .MuiDialog-paper {
-    width: 95%;
-    max-width: 465px !important;
-    background: var(--gray-700);
-    border-radius: 10px;
-    padding: 15px clamp(20px, 3vw, 40px) 30px;
-    margin: 10px 5px 10px;
-    overflow: initial;
-  }
-  
-  .signUpModaluniversal .modal_closebtn {
-    position: absolute;
-    right: -20px;
-    top: -6px;
-    color: #7f8aba;
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .avatar-modal.signUpModaluniversal .modal_closebtn {
-    right: 0px;
-    top: 0px;
-  }
+  width: 95%;
+  max-width: 465px !important;
+  background: var(--gray-700);
+  border-radius: 10px;
+  padding: 15px clamp(20px, 3vw, 40px) 30px;
+  margin: 10px 5px 10px;
+  overflow: initial;
+}
 
-  .modal .modal_closebtn {
-    display: flex;
-    justify-content: flex-end;
-  }
+.signUpModaluniversal .modal_closebtn {
+  position: absolute;
+  right: -20px;
+  top: -6px;
+  color: var(--blue-gray-mute);
+  cursor: pointer;
+  z-index: 1;
+}
 
-  .WalletModaluniversal .MuiDialog-paper {
-    width: 95%;
-    max-width: 465px !important;
-    background: rgb(24, 31, 43);
-    border-radius: 10px;
-    margin: 10px 5px 10px;
-    overflow: initial;
-  }
-  
-  .WalletModaluniversal .modal_closebtn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    color: #7f8aba;
-    cursor: pointer;
-    z-index: 1;
-  }
+.avatar-modal.signUpModaluniversal .modal_closebtn {
+  right: 0px;
+  top: 0px;
+}
+
+.modal .modal_closebtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.WalletModaluniversal .MuiDialog-paper {
+  width: 95%;
+  max-width: 465px !important;
+  background: rgb(24, 31, 43);
+  border-radius: 10px;
+  margin: 10px 5px 10px;
+  overflow: initial;
+}
+
+.WalletModaluniversal .modal_closebtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: var(--blue-gray-mute);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.signin-checkbox-icon {
+  font-size: 25px;
+  color: var( --semi-transparent-white) !important;
+  background: var(--gray-400, --burgundy-red);
+}
+
+.signin-checkbox-checked .MuiSvgIcon-root {
+  color: var(--white);
+}
+
+.promotion-checkbox-icon .MuiSvgIcon-root {
+  font-size: 25px;
+  color: var( --semi-transparent-white);
+  background: var(--gray-400, --burgundy-red);
+}
+
+
+.promotion-checkbox-icon.Mui-checked .MuiSvgIcon-root {
+  color: var(--white);
+}

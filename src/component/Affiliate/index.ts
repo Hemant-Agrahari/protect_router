@@ -1,1 +1,1 @@
-export { default as AffiliateModal } from './AffiliateModal'
+export { default as AffiliateModal } from './AffiliateModal';

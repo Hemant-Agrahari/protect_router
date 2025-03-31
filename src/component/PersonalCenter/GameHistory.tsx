@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react'
-import {
-  FormControl,
-  Pagination,
-  Autocomplete,
-  TextField,
-  Paper,
-} from '@mui/material'
-import DatePicker from 'react-datepicker'
-import { addDays } from 'date-fns'
-import { useAppSelector } from '@/redux/hooks'
-import { logError, scrollToTop } from '@/utils'
-import GameType from '@/types/game'
-import { useTranslation } from 'react-i18next'
-import dayjs from 'dayjs'
-import { Button } from '../common'
-import { PostMethod } from '@/services/fetchAPI'
+import { useEffect, useState } from 'react';
+import { FormControl, Autocomplete, TextField, Paper } from '@mui/material';
+import { addDays } from 'date-fns';
+import { useAppSelector } from '@/redux/hooks';
+import { logError, scrollToTop } from '@/utils';
+import GameType from '@/types/game';
+import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
+import { CustomButton } from '@/component/common';
+import { PostMethod } from '@/services/fetchAPI';
+import Loader from '@/component/common/mui-component/Loader';
+import CustomMuiPagination from '@/component/common/mui-component/CustomMuiPagination';
+import CustomDatePicker from '@/component/common/mui-component/CustomDatePicker';
 
 const GameHistory = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -44,10 +40,9 @@ const GameHistory = () => {
       if (response.data.status !== 'success') {
         throw new Error(response.data.message || t('Something went wrong'))
       }
-      //
       if (
         response.data.result &&
-        Array.isArray(response.data.result.gameHistory)
+        Array.isArray(response.data?.result?.gameHistory)
       ) {
         setGameHistory(response.data.result)
       } else {
@@ -56,7 +51,6 @@ const GameHistory = () => {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        // toast.error(error.message)
         logError(error)
       }
     } finally {
@@ -90,36 +84,15 @@ const GameHistory = () => {
     <>
       <div className="bonus-date">
         <FormControl className="statistics-startEndDate">
-          <DatePicker
+          <CustomDatePicker
             selected={startDate}
             onChange={handleDate}
             startDate={startDate}
             endDate={endDate}
-            selectsRange
             maxDate={new Date()}
-            placeholderText={t('Start - End Date')}
+            placeholderText={t('"Start - End Date"')}
           />
         </FormControl>
-        {/* <FormControl className="invitationBonus">
-          <Select
-            value={gametypeSelection}
-            onChange={gameTypeHandle}
-            autoWidth
-            displayEmpty
-            inputProps={{ 'aria-label': 'Without label' }}
-            IconComponent={KeyboardArrowDownIcon}
-          >
-            <MenuItem value="" disabled>
-              <em>Select Option</em>
-            </MenuItem>
-            <MenuItem value="">All</MenuItem>
-            {user?.Game?.map((item: string, key: number) => (
-              <MenuItem value={item} key={key}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl> */}
         <FormControl className="invitationBonus" fullWidth>
           <Autocomplete
             value={gametypeSelection}
@@ -135,75 +108,31 @@ const GameHistory = () => {
                 placeholder={t('Select Option')}
                 InputProps={{
                   ...params.InputProps,
-                  sx: {
-                    color: 'white', // Set the text color to white
-                    '& .MuiAutocomplete-input': {
-                      color: 'white', // Ensure the input text color is white
-                    },
-                    backgroundColor: 'var(--gray-400)', // Set the background color
-                  },
+                  className: 'custom-autocomplete',
                 }}
-                sx={{
-                  '& .MuiInputBase-input': {
-                    color: 'white', // Set the text color to white
-                    opacity: 1,
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'white', // Set the border color to white
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'white', // Set the border color to white on hover
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'white', // Set the border color to white when focused
-                    },
-                    backgroundColor: 'var(--gray-400)', // Set the background color
-                  },
-                  '& .MuiFormLabel-root': {
-                    color: 'white', // Set the label color to white
-                  },
-                }}
+                className="custom-autocomplete"
               />
             )}
             PaperComponent={({ children }) => (
-              <Paper
-                sx={{
-                  backgroundColor: 'var(--gray-400)',
-                  '& .MuiAutocomplete-option': {
-                    color: 'white', // Option text color
-                    '&:hover': {
-                      backgroundColor: 'var(--blue) !important', // Hover background color for options
-                    },
-                  },
-                }}
-              >
-                {children}
-              </Paper>
+              <Paper className="custom-autocomplete">{children}</Paper>
             )}
           />
         </FormControl>
-
-        <Button
+        <CustomButton
           className="search-btn"
           onClick={handleSearch}
           isLoading={isLoading}
         >
           {t('Search')}
-        </Button>
+        </CustomButton>
       </div>
-      <div
-        className="depositTable game-history-table"
-        style={{ overflowX: 'auto' }}
-      >
+      <div className="depositTable game-history-table over-flow-x-auto">
         {isLoading ? (
-          <div className="loader-animate-division">
-            <div className="loader"></div>
-          </div>
+          <Loader />
         ) : (
           <table className="table table-border">
             <thead>
-              <tr style={{ color: '#A0ABDB' }}>
+              <tr className="table-tr">
                 <th scope="col">{t('Transaction Id')}</th>
                 <th scope="col">{t('Period')}</th>
                 <th scope="col">{t('Game Name')}</th>
@@ -223,7 +152,7 @@ const GameHistory = () => {
                       new Date(a?.createdAt).getTime(),
                   )
                   .map((item) => (
-                    <tr style={{ color: '#fff' }} key={item?._id}>
+                    <tr className="text-white" key={item?._id}>
                       <th scope="row">{item?._id}</th>
                       <td>{`${dayjs(item?.createdAt).format('LLL')}`}</td>
                       <td>{item?.gameName}</td>
@@ -248,53 +177,20 @@ const GameHistory = () => {
             </tbody>
           </table>
         )}
-        {/* ======= Pagination buttons for Game History ===== */}
-
-        {/* <div className="depositPagination">
-          <button
-            className="btn paginationButton m-1"
-            onClick={() => setPageSkip(pageSkip - 10)}
-            disabled={isMutating || (pageSkip === 0 && pageLimit === 10)}
-          >
-            <ArrowBackIosNew className="fs-6" />
-          </button>
-          <button
-            className="btn paginationButton2 m-1"
-            onClick={() => setPageSkip(0)}
-            disabled={isMutating || (pageSkip === 0 && pageLimit === 10)}
-          >
-            First
-          </button>
-          <button
-            className="btn paginationButton2 m-1"
-            onClick={() => setPageSkip(Math.round(totalPages * pageLimit) - 10)}
-            disabled={isMutating || gameHistory?.length < pageLimit}
-          >
-            Last
-          </button>
-          <button
-            className="btn paginationButton m-1"
-            onClick={() => setPageSkip(pageSkip + 10)}
-            disabled={isMutating || gameHistory?.length < pageLimit}
-          >
-            <ArrowForwardIos className="fs-6" />
-          </button>
-        </div> */}
       </div>
-      <div className="depositPagination">
-        <Pagination
-          className="pagination-text"
-          page={pageSkip / 10 + 1}
-          count={Math.ceil(
-            Number(gameHistory?.totalCount || 1) / Number(pageLimit),
-          )}
-          onChange={(e, v: number) => {
-            setPageSkip((v - 1) * pageLimit)
-          }}
-          variant="outlined"
-          shape="rounded"
-        />
-      </div>
+      {gameHistory?.totalCount && gameHistory?.totalCount > 0 && (
+        <div className="depositPagination">
+          <CustomMuiPagination
+            className="pagination-text"
+            pageSkip={pageSkip}
+            totalCount={gameHistory?.totalCount}
+            pageLimit={pageLimit}
+            onChange={(e, v: number) => {
+              setPageSkip((v - 1) * pageLimit)
+            }}
+          />
+        </div>
+      )}
     </>
   )
 }

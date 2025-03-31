@@ -19,7 +19,7 @@
 
 .button__bar li button {
   border: none;
-  background: #fff;
+  background: var(--white);
   color: transparent;
   cursor: pointer;
   display: block;
@@ -31,7 +31,7 @@
 
 .button__bar .slick-dots li.slick-active button:before {
   opacity: 1;
-  color: #fff;
+  color: var(--white);
 }
 
 .button__bar .slick-dots li button:before {
@@ -46,7 +46,7 @@
   content: '•';
   text-align: center;
   opacity: 0.25;
-  color: #fff;
+  color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

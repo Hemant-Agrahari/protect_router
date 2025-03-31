@@ -1,29 +1,28 @@
 .depositTable table {
   min-width: 600px;
 }
-
 .depositTable table > :not(caption) > * > * {
   text-align: center;
 }
-
 .game-history-table table {
   min-width: 900px;
 }
-
 .game-history-table table > :not(caption) > * > * {
   text-align: center;
 }
-
 .white-input > * {
-  color: #fff !important;
+  color: var(--white) !important;
 }
-
 .depositTable {
   margin-top: 20px;
 }
-
 .depositTable::-webkit-scrollbar {
   height: 3px;
+}
+.table-container{
+  background-color:transparent;
+  color: var(--white) !important;
+  border-collapse: collapse;
 }
 
 @media screen and (max-width: 1299px) {
@@ -37,4 +36,63 @@
   .depositTable table > :not(caption) > * > * {
     text-align: start;
   }
+}
+
+
+/* Tooltip Styles */
+
+.customTooltip .MuiTooltip-arrow {
+  color: var(--midnight-blue);
+  width: 20px;
+  height: 14px;
+  margin-top: -16px !important;
+  bottom: -7px !important;
+}
+
+.customTooltip .MuiTooltip-tooltip {
+  background-color: var(--midnight-blue);
+  border: 1px solid var(--white);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  padding: 10px;
+}
+
+
+
+/* CustomMuiAccordionSummary css */
+
+.custom-accordion-summary .MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: rotate(90deg); 
+  border: none;
+  color: var(--white);
+}
+
+.custom-accordion-summary .MuiAccordionSummary-content {
+  border: none;
+}
+
+/* CustomMuiAccordion css */
+
+.custom-accordion {
+  margin-bottom: clamp(16px, 4px + 1.2vw, 32px);
+  background-color: var(--gray-600) !important;
+  border-radius: clamp(10px, 4px + 1vw, 24px);
+  padding: clamp(8px, 4px + .5vw, 12px);
+  border: 0px solid #ddd; 
+}
+
+.custom-accordion:not(:last-child) {
+  border-bottom: 0;
+}
+
+.custom-accordion::before {
+  display: none;
+}
+
+
+/* Custom accordion details css */
+.custom-accordion-details {
+  padding: 16px; 
+  border-top: 0px solid rgba(0, 0, 0, .125);
 }

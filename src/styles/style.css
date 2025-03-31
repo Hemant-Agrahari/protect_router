@@ -20,7 +20,7 @@ button {
     font-size: clamp(20px, 2vw, 32px);
 }
 .text-dark-gray{
-    color: #B5B5B5 !important;
+    color: var(--gray-100) !important;
 }
 .radius-8{
     border-radius: 8px;
@@ -32,10 +32,10 @@ button {
     text-decoration: none !important;
 }
 .gradiant-bg{
-    background: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
+    background: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
 }
 .text-gradiant {
-    background: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
+    background: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; /* For webkit browsers */
     background-clip: text; /* Non-webkit browsers */
@@ -43,7 +43,7 @@ button {
 }
 .border-gradiant {
     border: 5px solid transparent;
-    background-image: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
+    background-image: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
     background-clip: padding-box;
     border-radius: 5px;
     position: relative;
@@ -57,7 +57,7 @@ button {
     right: -1px;
     bottom: -1px;
     border-radius: inherit;
-    background: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
+    background: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
     z-index: -1;
     filter: blur(0px);
 }
@@ -101,14 +101,14 @@ button {
     } 
  
 .blog-banner h1 {
-    color: #fff;
+    color: var(--white);
     font-weight: 700;
     font-size: clamp(40px, 10px + 4vw, 100px);
     margin-bottom: 25px;
 }
 
 .contact-card {
-    background-color: #383838;
+    background-color: var(--charcoal-gray);
     border-radius: 8px;
     padding: clamp(23px, 2vw, 32px);
     transition: transform 0.3s ease-in-out;
@@ -120,7 +120,7 @@ button {
     transform: translateY(-10px);
 }
 .contact-icon {
-    background: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
+    background: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
     padding: 9px;
     border-radius: 8px;
     display: inline-block;
@@ -144,7 +144,7 @@ button {
 }
 
 .issue-button {
-    background-color: #383838;
+    background-color: var(--charcoal-gray);
     padding-inline:clamp(15px, 4vw, 32px);
     padding-block:clamp(13px, 4vw, 24px);
     border-radius: 8px;
@@ -185,20 +185,20 @@ button {
 .email_contact_input:-webkit-autofill:hover,
 .email_contact_input:-webkit-autofill:active {
 -webkit-text-fill-color: #000 !important; /* Set text color to black */
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Fix background color */
-  color: #000 !important; /* Set the text color */
+  -webkit-box-shadow: 0 0 0px 1000px var(--white) inset !important; /* Fix background color */
+  color: var(--black) !important; /* Set the text color */
 }
   
 .custom-file-upload {
     font-size: var(--fs-base);
     font-weight: 600;
-    color: #fff;
+    color: var(--white);
     border-radius: 8px;
     box-shadow: none;
     padding-inline:clamp(15px, 2vw, 20px);
     padding-block:clamp(12px, 1vw, 15px);
-    border: 1px solid #dee2e6;
-    background-color: #fff;
+    border: 1px solid var(--light-gray-2);
+    background-color: var(--white);
     cursor: pointer;
     width: 100%;
     height: clamp(45px, 4vw, 56px);
@@ -221,7 +221,7 @@ button {
 }
 
 .right-side {
-    color: #fff;
+    color: var(--white);
 }
 .content .right-side h2 {
     font-size: clamp(22px, 2.5vw, 42px);
@@ -230,7 +230,7 @@ section.content .container .left-side {
     position: -webkit-sticky;
     position: sticky;
     top: 50px;
-    background: #383838;
+    background: var(--charcoal-gray);
     padding: 24px;
     border-radius: 16px;
 }
@@ -242,7 +242,7 @@ section.content .container .left-side h3 {
     font-weight: 700 !important;
     font-size: clamp(20.5px, 8.2544px + 1.05vw, 28px);
     line-height: 24px;
-    color: #ffffff;
+    color: var(--white);
     margin-top: 0 !important;
     margin-bottom: .5rem !important;
 }
@@ -262,7 +262,7 @@ section.content .container .content-stick-scroll li {
     font-weight: 400;
     font-size: clamp(16px, 1.2vw, 20px);
     line-height: 22px;
-    color: #ffffff;
+    color: var(--white);
     position: relative;
     margin-bottom: 12px;
     text-align: left;
@@ -285,9 +285,9 @@ img.blog-detail-image.my-3 {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 5px; /* Border width */
-    background: linear-gradient(90deg, #7E43DE 0%, #4473E9 98.45%);
-    z-index: -1; /* Make sure it’s behind the text */
+    width: 5px;
+    background: linear-gradient(90deg,  0%, var(--blue-vivid) 98.45%);
+    z-index: -1;
     border-radius: 12px;
 }
 .px-4.border-left {

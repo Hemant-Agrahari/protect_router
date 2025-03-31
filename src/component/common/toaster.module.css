@@ -1,6 +1,7 @@
 .customToast {
-  background-color: var(--gray-600, #85194b);
-  color: #fff;
+  background-color: var(--gray-600, --wine-red);
+  color: var(--white);
+  font-weight: 400;
   font-size: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);

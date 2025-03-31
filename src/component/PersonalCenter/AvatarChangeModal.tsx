@@ -1,15 +1,15 @@
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { Close, Settings } from '@mui/icons-material'
-import { Dialog, IconButton } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { Button } from '../common'
-import { userProfilePhoto } from '@/utils/data'
-import { useMutateData } from '@/services'
-import { toast } from 'react-toastify'
-import { updateUser } from '@/redux/user/userReducer'
-import { logError } from '@/utils'
-import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { Close, Settings } from '@mui/icons-material';
+import { Dialog, IconButton } from '@mui/material';
+import { useState } from 'react';
+import { CustomButton } from '@/component/common';
+import { userProfilePhoto } from '@/utils/data';
+import { useMutateData } from '@/services';
+import { toast } from 'react-toastify';
+import { updateUser } from '@/redux/user/userReducer';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 const AvatarChangeModal = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -52,7 +52,6 @@ const AvatarChangeModal = () => {
 
   return (
     <>
-      {' '}
       <Dialog
         className="signUpModaluniversal avatar-modal"
         open={openUserDisplay}
@@ -74,21 +73,14 @@ const AvatarChangeModal = () => {
           </IconButton>
         </div>
         <h5
-          style={{
-            color: '#fff',
-            textAlign: 'center',
-            fontSize: '18px',
-            fontWeight: '800',
-            marginTop: '5px',
-            marginBottom: '15px',
-          }}
+          className="text-white mt-1 mb-3 text-align-center font-weight-800 font-size-18"
         >
           {t('Change Avatar')}
         </h5>
         <div className="">
           <div className="userimgName d-flex justify-content-center">
             <div className="MainUserLogo">
-              <Image
+              <CustomImage
                 src={
                   user?.avatar && userProfilePhoto[Number(user.avatar)]?.image
                     ? userProfilePhoto[Number(user.avatar)]?.image
@@ -102,13 +94,7 @@ const AvatarChangeModal = () => {
           </div>
 
           <div
-            className="userDisplayPC mt-3"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-around',
-              flexWrap: 'wrap',
-            }}
+            className="userDisplayPC mt-3 d-flex align-items-center justify-content-around flex-wrap"
           >
             {userProfilePhoto?.map((element) => {
               return (
@@ -121,9 +107,9 @@ const AvatarChangeModal = () => {
                       : ''
                   }`}
                 >
-                  <Image
+                  <CustomImage
                     src={element.image}
-                    alt={'User image'}
+                    alt='User image'
                     width={68}
                     height={68}
                   />
@@ -132,7 +118,7 @@ const AvatarChangeModal = () => {
             })}
           </div>
           <div className="userDisplayButton mt-3">
-            <button
+            <CustomButton
               className="userLeaveButton"
               onClick={() => {
                 setOpenUserDisplay(false)
@@ -140,19 +126,19 @@ const AvatarChangeModal = () => {
               }}
             >
               {t('Leave')}
-            </button>
-            <Button
+            </CustomButton>
+            <CustomButton
               className="userSaveButton mx-3"
               isLoading={isMutating}
               onClick={handleUserProfileData}
             >
               {t('Save')}
-            </Button>
+            </CustomButton>
           </div>
         </div>
-      </Dialog>{' '}
+      </Dialog>
       <div className="icon-userInfo" onClick={() => setOpenUserDisplay(true)}>
-        <Settings style={{ color: '#fff' }} />
+        <Settings className = 'text-white'/>
       </div>
     </>
   )

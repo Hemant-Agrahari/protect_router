@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Dialog,
   DialogTitle,
   IconButton,
   InputAdornment,
-  OutlinedInput,
-  Typography,
-} from '@mui/material'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-import { useMutateData } from '@/services'
-import { toast } from 'react-toastify'
-import CloseIcon from '@mui/icons-material/Close'
-import Image from 'next/image'
-import { Button } from '../common'
-import { useAppSelector } from '@/redux/hooks'
-import { useTranslation } from 'react-i18next'
-import { logError } from '@/utils'
+} from '@mui/material';
+import { useFormik } from 'formik';
+import { useMutateData } from '@/services';
+import { toast } from 'react-toastify';
+import CloseIcon from '@mui/icons-material/Close';
+import { CustomButton } from '../common';
+import { useAppSelector } from '@/redux/hooks';
+import { useTranslation } from 'react-i18next';
+import { logError } from '@/utils';
+import { CustomMuiOutlinedInput } from '@/component/common';
+import CustomImage from '@/component/common/CustomImage';
 
 interface Props {
   footer?: boolean
@@ -27,7 +25,6 @@ interface Props {
 }
 
 const AffiliateModal: React.FC<Props> = ({
-  footer,
   fullTitle,
   isOpenAffiliate,
   handleCloseAffilatte,
@@ -36,6 +33,7 @@ const AffiliateModal: React.FC<Props> = ({
   const [open, setOpen] = useState(isOpenAffiliate ? isOpenAffiliate : false)
   const { mutateData, isMutating } = useMutateData()
   const { t } = useTranslation()
+
   const fields = [
     { name: 'playerId', label: t('Player ID'), readOnly: true },
     {
@@ -50,43 +48,33 @@ const AffiliateModal: React.FC<Props> = ({
       rows: 3,
     },
   ]
-  const initialValues = {
-    playerId: user?.playerId || '',
-    email: user?.email || '',
-    description: '',
-  }
 
-  const affiliateValidation = Yup.object().shape({
-    playerId: Yup.string().optional(),
-    email: Yup.string()
-      .required(t('Please enter your email address.'))
-      .email(t('Invalid email format')),
-    description: Yup.string().optional(),
-  })
-
-  const handleSubmit = (values: {
-    playerId: string
-    email: string
-    description: string
-  }) => {
-    mutateData('becomeaffiliate', {
-      body: {
-        ...values,
-      },
-    })
-      .then((res) => {
-        if (res?.status === 'success') {
+  const formik = useFormik({
+    initialValues: {
+      playerId: user?.playerId || '',
+      email: user?.email || '',
+      description: '',
+    },
+    onSubmit: async (values: any) => {
+      mutateData('becomeaffiliate', {
+        body: {
+          ...values,
+        },
+      })
+        .then((res) => {
+          if (res?.status !== 'success') {
+            throw new Error(
+              res?.message ? res?.message : t('Something went wrong'),
+            )
+          }
           toast.success(res?.message)
           setOpen(false)
-          return
-        }
-        toast.error(res?.message ? res?.message : t('Something went wrong'))
-        return
-      })
-      .catch((err) => {
-        logError(`Error fetching game data: ${err}`)
-      })
-  }
+        })
+        .catch((err) => {
+          logError(`Error fetching game data: ${err}`)
+        })
+    },
+  })
 
   useEffect(() => {
     return () => {
@@ -102,105 +90,66 @@ const AffiliateModal: React.FC<Props> = ({
         scroll="body"
         maxWidth="md"
       >
-        <div
-          style={{
-            backgroundColor: 'var(--gray-400, #31001B)',
-            borderRadius: '10px 10px 0px 0px',
-          }}
-        >
-          <DialogTitle align="center" className="text-white">
+        <div className="affiliate-modal-dialog-text">
+          <DialogTitle className="text-white text-center">
             {t('Become an Affiliate')}
           </DialogTitle>
           <IconButton
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 0,
-            }}
-            className="close_form_btn m-1"
+            className="close_form_btn m-1 close-icon"
             aria-label="Close"
             onClick={() => setOpen(false)}
           >
-            <CloseIcon style={{ color: 'white', fontSize: '32px' }} />
+            <CloseIcon className="font-size-32 text-white" />
           </IconButton>
         </div>
 
-        <div className="modal-content" style={{ padding: '15px 40px 30px' }}>
-          <div className="modal-body">
+        <div className="modal-content">
+          <div className="modal-body affiliate-modal-container">
             <div className="modal_form_signIn">
               <Box>
-                <Formik
-                  initialValues={initialValues}
-                  validationSchema={affiliateValidation}
-                  onSubmit={handleSubmit}
-                >
-                  <Form>
-                    {fields.map((field) => (
-                      <div key={field.name} className="mb-3">
-                        <Field
-                          style={{
-                            background: 'var(--gray-400, #31001B)',
-                          }}
-                          readOnly={field?.readOnly}
-                          as={OutlinedInput}
-                          fullWidth
-                          name={field.name}
-                          placeholder={field.label}
-                          startAdornment={
-                            field.name === 'email' ? (
-                              <InputAdornment position="start">
-                                <Image
-                                  src="/assets/images/msg_login_sign.png"
-                                  width={30}
-                                  height={30}
-                                  alt={t('"Mail icon"')}
-                                />
-                              </InputAdornment>
-                            ) : null
-                          }
-                          multiline={field.multiline}
-                          rows={field.rows}
-                          sx={{
-                            '& .MuiOutlinedInput-input': {
-                              color: '#fff',
-                            },
-                          }}
-                        />
-                        <ErrorMessage name={field.name}>
-                          {(msg) => (
-                            <Typography
-                              variant="body2"
-                              color="error"
-                              className="m-2"
-                            >
-                              {msg}
-                            </Typography>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                    ))}
-                    <div className="d-flex justify-content-center gap-3">
-                      <Button
-                        type="submit"
-                        className="modal-btn-losign mt-3 "
-                        isLoading={isMutating}
-                      >
-                        {t('Submit')}
-                      </Button>
-                      <button
-                        onClick={() => setOpen(false)}
-                        type="button"
-                        className="modal-btn-losign mt-3"
-                        style={{
-                          backgroundColor: '#66324D',
-                          border: '1px solid #66324D',
-                        }}
-                      >
-                        {t('Cancel')}
-                      </button>
+                <form onSubmit={formik.handleSubmit}>
+                  {fields.map((field) => (
+                    <div key={field.name} className="mb-3">
+                      <CustomMuiOutlinedInput
+                        className="form-field custom-input"
+                        readOnly={field?.readOnly}
+                        fullWidth
+                        placeholder={field.label}
+                        startAdornment={
+                          field.name === 'email' ? (
+                            <InputAdornment position="start">
+                              <CustomImage
+                                src="/assets/images/msg_login_sign.png"
+                                width={30}
+                                height={30}
+                                alt={t('"Mail icon"')}
+                              />
+                            </InputAdornment>
+                          ) : null
+                        }
+                        multiline={field.multiline}
+                        rows={field.rows}
+                        {...formik.getFieldProps(field.name)}
+                      />
                     </div>
-                  </Form>
-                </Formik>
+                  ))}
+                  <div className="d-flex justify-content-center gap-3">
+                    <CustomButton
+                      type="submit"
+                      className="modal-btn-losign mt-3 "
+                      isLoading={isMutating}
+                    >
+                      {t('Submit')}
+                    </CustomButton>
+                    <CustomButton
+                      onClick={() => setOpen(false)}
+                      type="button"
+                      className="modal-btn-losign mt-3"
+                    >
+                      {t('Cancel')}
+                    </CustomButton>
+                  </div>
+                </form>
               </Box>
             </div>
           </div>
@@ -208,14 +157,13 @@ const AffiliateModal: React.FC<Props> = ({
       </Dialog>
       {fullTitle ? (
         <p
-          style={{ cursor: 'pointer' }}
           onClick={() => setOpen(true)}
-          className="side-bar-para"
+          className="side-bar-para cursor-pointer"
         >
           {t('Become an Affiliate')}
         </p>
       ) : (
-        <span style={{ cursor: 'pointer' }} onClick={() => setOpen(true)}>
+        <span onClick={() => setOpen(true)} className="cursor-pointer">
           {t('Affiliate')}
         </span>
       )}

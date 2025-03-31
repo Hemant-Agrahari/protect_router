@@ -8,7 +8,7 @@
 }
 
 .contact-us-banner h1 {
-  color: #fff;
+  color: var(--white);
   font-weight: 700;
   font-size: clamp(40px, 10px + 4vw, 100px);
   margin-bottom: 25px;
@@ -17,28 +17,32 @@
 .contact-form .btns {
   height: clamp(40px, 4vw, 56px);
   font-size: clamp(16px, 1.5vw, 20px);
-  background: linear-gradient(90deg, #7e43de 0%, #4473e9 98.45%);
-  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--blue-violet) 0%,
+    var(--blue-vivid) 98.45%
+  );
+  color: var(--white);
   font-weight: 600;
   border-radius: 8px;
 }
 .contact-form .form-container {
-  background: #383838;
+  background: var(--charcoal-gray);
   padding-inline: clamp(20px, 4vw, 60px);
   padding-block: clamp(20px, 4vw, 40px);
   border-radius: 8px;
 }
 .contact-form .form-control,
 .contact-form .form-select {
-  background-color: #171717 !important;
-  border-color: #171717 !important;
+  background-color: var(--charcoal-black) !important;
+  border-color: var(--charcoal-black) !important;
 }
 .contact-form .form-control,
 .contact-form .form-select {
   height: clamp(45px, 4vw, 56px);
   font-size: var(--fs-base);
   font-weight: 600;
-  color: #fff;
+  color: var(--white);
   border-radius: 8px;
   box-shadow: none;
   padding-inline: clamp(15px, 2vw, 20px);
@@ -50,15 +54,37 @@
 }
 .contact-form .form-control:focus,
 .contact-form .form-select:focus {
-  border-color: #dee2e6;
+  border-color: var(--light-gray-2);
 }
 .contact-form .form-control::placeholder,
 .contact-form .form-select::placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 1;
 }
 
 .contact-form .form-control::-ms-input-placeholder,
 .contact-form .form-select::-ms-input-placeholder {
-  color: #fff;
+  color: var(--white);
+}
+
+.outlined-textarea {
+  background-color: var(--charcoal-black);
+  border-color: var(--charcoal-black);
+  color:var(--white);
+  border-radius: 2px;
+}
+
+.outlined-textarea .MuiInputBase-input {
+  color: var(--white);
+}
+
+.outlined-textarea .MuiInputBase-input::placeholder {
+  color: var(--white) !important;
+  opacity: 1;
+  color: var(--white);
+  border: none;
+  background: transparent;
+  padding-inline: clamp(15px, 2vw, 20px);
+  font-weight: 600;
+  font-size: 14px;
 }

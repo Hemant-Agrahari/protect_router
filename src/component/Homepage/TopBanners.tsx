@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Slider from 'react-slick'
-import { useTranslation } from 'react-i18next'
-import { GetMethod } from '@/services/fetchAPI'
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import { useTranslation } from 'react-i18next';
+import { GetMethod } from '@/services/fetchAPI';
+import CustomImage from '../common/CustomImage';
 
 const TopBanners = () => {
   const [bannerBig, setBannerBig] = useState([])
@@ -72,11 +73,13 @@ const TopBanners = () => {
             bannerBig?.map((item: any, i) => (
               <div className="homeBanner" key={item}>
                 <div className="homeBannerDesktop">
-                  <img
+                  <CustomImage
                     src={base_url + item.bannerEnglishImage}
                     alt={t('Image')}
                     loading="eager"
                     className="BannerBigHomeSlider"
+                    width={1024}
+                    height={349}
                   />
                 </div>
               </div>

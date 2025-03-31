@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 const Blog = () => {
   const { t } = useTranslation()
   return (
     <div className="referal-bloger">
       <div className="referalBloger-img">
-        <Image src="/assets/images/referal-bloger.png" alt="referal bloger" width={390} height={191} />
+        <CustomImage src="/assets/images/referal-bloger.png" alt="referal bloger" width={390} height={191} />
       </div>
       <div className="referalBloger-contet">
         <p>

@@ -26,11 +26,21 @@ footer .fooLink-mobile .side-bar-para {
 }
 
 footer .fooLink-mobile .MuiAccordionSummary-expandIconWrapper {
-  color: #ffffff !important;
+  color: var(--white) !important;
 }
 
 footer .fooLink-desktop .fooText {
   width: 70%;
+}
+
+.fooLink-mobile .side-bar-para {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px !important;
+  line-height: 15px;
+  color: var(--pale-blue);
+  padding: 0;
+  font-weight: 600;
 }
 
 .fooLink-col .linkTitle {
@@ -38,7 +48,7 @@ footer .fooLink-desktop .fooText {
   font-size: clamp(16px, 1.8vw, 14px);
   line-height: 20px;
   align-items: center;
-  color: rgb(255, 255, 255);
+  color: var(--white);
   margin: 12px 0 20px;
 }
 
@@ -72,11 +82,11 @@ footer .fooLink-desktop .fooText {
 }
 
 .fooLink-col ul li a:hover {
-  color: #fff;
+  color: var(--white);
 }
 
 .fooLink-col ul li a.dailyTask:hover {
-  color: #abbdd9;
+  color: var(--pale-blue);
   cursor: default;
 }
 
@@ -90,7 +100,7 @@ footer .fooLink-desktop .fooText {
 .fooSocial .fooText {
   font-size: 17px;
   line-height: 15px;
-  color: #abbdd9;
+  color: var(--pale-blue);
   font-weight: 500;
 }
 
@@ -130,7 +140,7 @@ footer .fooLink-desktop .fooSocial .w-75 {
 
 .social_icons_wrapper,
 .social_icons_wrapper_mobile .social_icons_title {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .social_icons_wrapper,
@@ -143,7 +153,7 @@ footer .fooLink-desktop .fooSocial .w-75 {
 .social_icons_wrapper_mobile {
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid #4d4d4d;
+  border-top: 1px solid var(--slate-gray);
   padding-top: 25px;
   margin-top: 12px;
 }
@@ -178,7 +188,7 @@ footer .fooLink-desktop .fooSocial .w-75 {
 }
 
 .fooLink-mobile .MuiAccordionSummary-root .title {
-  color: #fff;
+  color: var(--white);
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
@@ -190,7 +200,7 @@ footer .fooLink-desktop .fooSocial .w-75 {
 }
 
 .fooLink-mobile .MuiAccordionSummary-expandIconWrapper {
-  color: #90a3c7;
+  color: var(--steel-blue);
 }
 
 .fooLink-mobile .MuiAccordionDetails-root {
@@ -225,12 +235,20 @@ footer .fooLink-desktop .fooSocial .w-75 {
 }
 
 .fooLink-mobile .MuiAccordionDetails-root ul li a:hover {
-  color: #fff;
+  color: var(--white);
 }
 
 .fooLink-mobile .MuiAccordionDetails-root ul li a.dailyTask:hover {
-  color: #abbdd9;
+  color: var(--pale-blue);
   cursor: auto;
+}
+
+.margin-bottom-10{
+  margin-bottom: 10px;
+}
+
+.footer-line{
+  border-right: 1px solid var(--slate-gray);
 }
 
 @media screen and (max-width: 767px) {
@@ -254,7 +272,7 @@ footer .fooLink-desktop .fooSocial .w-75 {
   }
 
   .fooSocial {
-    border-top: 1px solid #4d4d4d;
+    border-top: 1px solid var(--slate-gray);
     padding-top: 20px;
     margin-top: 10px;
   }
@@ -304,4 +322,28 @@ footer .fooLink-desktop .fooSocial .w-75 {
   .fooLink-mobile .MuiAccordionDetails-root ul {
     padding: 0px 0 15px;
   }
+}
+
+
+/* FAQ CSS */
+.faq-accordian .css-1betqn-MuiAccordionSummary-content {
+  align-items: center;
+}
+
+.faq-accordian .MuiSvgIcon-root {
+  background: linear-gradient(90deg, var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>')
+    no-repeat center;
+  -webkit-mask-size: cover;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>')
+    no-repeat center;
+}
+
+.faq-accordian .Mui-expanded .MuiSvgIcon-root {
+  background: linear-gradient(90deg,var(--blue-violet) 0%, var(--blue-vivid) 98.45%);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 11v2h10v-2zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>')
+    no-repeat center;
+  -webkit-mask-size: cover;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 11v2h10v-2zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"></path></svg>')
+    no-repeat center;
 }

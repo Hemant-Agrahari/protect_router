@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import Slider from 'react-slick'
-import VIPImg from '../../../public/assets/images/levelVip.png'
-import { useFetch } from '@/services'
-import { useAppSelector } from '@/redux/hooks'
-import LevelDataType from '@/types/levelData'
-import { useTranslation } from 'react-i18next'
+import Slider from 'react-slick';
+import VIPImg from '../../../public/assets/images/levelVip.png';
+import { useFetch } from '@/services';
+import { useAppSelector } from '@/redux/hooks';
+import LevelDataType from '@/types/levelData';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 export type levelPageData = {
   levelData: LevelDataType[]
   averagePercentage: number
@@ -52,7 +52,7 @@ const VipSlider = () => {
   }
 
   return (
-    <div className="vip-slider py-1" id={'vip-slider'}>
+    <div className="vip-slider py-1" id='vip-slider'>
       {isLoading ? (
         <div className="d-flex justify-content-center align-items-center">
           <h3>{t('Loading...')}</h3>
@@ -65,7 +65,7 @@ const VipSlider = () => {
               <div className={'advantage'} key={i + 1}>
                 <div className="advantage-contenr">
                   <div className="topSlider-img">
-                    <Image src={VIPImg} alt="levels" className="level-slider" />
+                    <CustomImage src={VIPImg} alt="levels" className="level-slider" />
                   </div>
                   <div className="slider-container p-2 pb-md-5 pb-3">
                     <div className="slider-text-main">
@@ -80,7 +80,6 @@ const VipSlider = () => {
                       <div className="col-6">
                         <div className="btn-SliderBox">
                           <div className="vip-btn-text">
-                            {' '}
                             {t('Total Deposits')}
                           </div>
                           <div className="vip-btn-text2 ">
@@ -99,19 +98,18 @@ const VipSlider = () => {
                     </div>
                     <div className="slider-cashback mt-3">
                       <h6 className="sliderCashback-title">
-                        {' '}
                         {t('LEVEL PROTECTION')}
                       </h6>
                       <div className="sliderCashback-col">
                         <h6 className="cashback-name">
-                          {t('DEPOSIT')}{' '}
+                          {t('DEPOSIT')}
                           <span>
                             ${item?.levelProtection}/{t('MONTH')}
                           </span>
                         </h6>
                       </div>
                     </div>
-                    <hr style={{ opacity: 1 }} />
+                    <hr className='opacity-1'/>
                     <div className="slider-cashback">
                       <h6 className="sliderCashback-title">
                         {t('WITHDRAWAL PRIVILEGES')}
@@ -141,10 +139,9 @@ const VipSlider = () => {
                         </h6>
                       </div>
                     </div>
-                    <hr style={{ opacity: 1 }} />
+                    <hr className='opacity-1'/>
                     <div className="slider-cashback mb-10">
                       <div className="sliderCashback-title">
-                        {' '}
                         {t('CASHBACK')}
                       </div>
                       <div className="sliderCashback-col">
@@ -155,7 +152,7 @@ const VipSlider = () => {
                       </div>
                       <div className="sliderCashback-col">
                         <h6 className="cashback-name">
-                          {t('Live Casino')}{' '}
+                          {t('Live Casino')}
                           <span> {item?.cashbackLiveCasino || 0}%</span>
                         </h6>
                       </div>

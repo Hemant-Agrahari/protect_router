@@ -1,121 +1,119 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { AffiliateModal } from '@/component/Affiliate'
-import { GetMethod } from '@/services/fetchAPI'
-import { logError, removeExtraSymbols } from '@/utils'
-import { Dialog, Tooltip } from '@mui/material'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks'
-import Login from '../component/Login'
-import { setGameProvider } from '@/redux/games/gamesReducer'
-import { useTranslation } from 'react-i18next'
+import React, { Fragment, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { AffiliateModal } from '@/component/Affiliate';
+import { GetMethod } from '@/services/fetchAPI';
+import { logError, removeExtraSymbols } from '@/utils';
+import { Dialog, Tooltip } from '@mui/material';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import Login from '../component/Login';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '@/component/common/CustomImage';
 
 const Sidebar = ({ active, handleActive }: any) => {
-  const router = useRouter()
-  const { mainType, subType } = router.query
-  const user = useAppSelector((state) => state.user.user)
-  const dispatch = useAppDispatch()
+  const router = useRouter();
+  const { mainType, subType } = router.query;
+  const user = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
 
-  const { t } = useTranslation()
-  const [otherTypeGames, setOtherTypeGames] = useState<Array<string>>()
-  const [openLoginModal, setOpenLoginModal] = useState(false)
-  const [tabIndex, setTabIndex] = useState(0)
-  const [isOpenAffiliate, setIsOpenAffiliate] = useState(false)
-  const [showMenu, setShowMenu] = useState<string>('')
-  const [promotions, setPromotions] = useState<any>([])
+  const { t } = useTranslation();
+  const [otherTypeGames, setOtherTypeGames] = useState<Array<string>>();
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [isOpenAffiliate, setIsOpenAffiliate] = useState(false);
+  const [showMenu, setShowMenu] = useState<string>('');
+  const [promotions, setPromotions] = useState<any>([]);
 
-  const handleCloseLoginModal = () => setOpenLoginModal(false)
+  const handleCloseLoginModal = () => setOpenLoginModal(false);
 
   const fetchOtherTypeGames = async () => {
     try {
-      const result: any = await GetMethod('othersTypeGames')
+      const result: any = await GetMethod('othersTypeGames');
 
       if (result.data.status !== 'success') {
-        throw new Error('othersTypeGames api is not working')
+        throw new Error('othersTypeGames api is not working');
       }
 
       if (result.data.result && result.data.result.length > 0) {
-        setOtherTypeGames(result.data.result)
+        setOtherTypeGames(result.data.result);
       }
     } catch (error) {
-      logError(error)
+      logError(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchOtherTypeGames()
+    fetchOtherTypeGames();
     GetMethod(`promotionpackage`)
       .then((response: unknown) => {
-        setPromotions((response as any)?.data.result.promotionData)
+        setPromotions((response as any)?.data.result.promotionData);
       })
       .catch((err) => {
-        logError(err)
-      })
-  }, [active])
+        logError(err);
+      });
+  }, [active]);
 
   const handleUserAuth = () => {
     if (user === null) {
-      setOpenLoginModal(true)
+      setOpenLoginModal(true);
     } else {
-      router.push('/ranking-vip')
+      router.push('/ranking-vip');
     }
-  }
+  };
 
   const handleArrowClick = (
     e: React.MouseEvent<HTMLDivElement>,
     game: string,
     isCloseSidebar: boolean,
   ) => {
-    e.stopPropagation()
+    e.stopPropagation();
     if (isCloseSidebar) {
-      handleActive()
+      handleActive();
     }
 
     if (showMenu === game) {
-      handleShowMenu('')
+      handleShowMenu('');
     } else {
-      handleShowMenu(game)
+      handleShowMenu(game);
     }
-    router.push({ pathname: '/games-category', query: { mainType: game } })
-  }
+    router.push({ pathname: '/games-category', query: { mainType: game } });
+  };
 
   const handleMainType = (
     e: React.MouseEvent<HTMLLIElement>,
     mainType: string,
   ) => {
-    handleShowMenu(mainType)
-    router.push({ pathname: '/games-category', query: { mainType } })
-  }
+    handleShowMenu(mainType);
+    router.push({ pathname: '/games-category', query: { mainType } });
+  };
 
   const handleSubType = (
     e: React.MouseEvent<HTMLLIElement>,
     mainType: string,
     subType: string,
   ) => {
-    e.stopPropagation()
-    handleActive()
-    handleShowMenu(mainType)
-    router.push({ pathname: '/games-category', query: { mainType, subType } })
-  }
+    e.stopPropagation();
+    handleActive();
+    handleShowMenu(mainType);
+    router.push({ pathname: '/games-category', query: { mainType, subType } });
+  };
 
   const hanldeOpenAffilatte = () => {
-    handleShowMenu('affilate')
-    setIsOpenAffiliate(true)
-  }
+    handleShowMenu('affilate');
+    setIsOpenAffiliate(true);
+  };
 
   const handleCloseAffilatte = () => {
-    setIsOpenAffiliate(false)
-  }
+    setIsOpenAffiliate(false);
+  };
 
   const handleSportBetting = () => {
-    handleShowMenu('sports betting')
-    dispatch(setGameProvider('sports betting' as any))
+    handleShowMenu('sports betting');
     router.push({
       pathname: '/sport-bet',
       query: { mainType: 'sports betting' },
-    })
-  }
+    });
+  };
 
   const gameTypes = [
     {
@@ -206,10 +204,10 @@ const Sidebar = ({ active, handleActive }: any) => {
       subType:
         otherTypeGames &&
         otherTypeGames.map((item: string) => {
-          return { image: '/assets/images/casino.svg', name: item }
+          return { image: '/assets/images/casino.svg', name: item };
         }),
     },
-  ]
+  ];
 
   const menuItems = [
     {
@@ -269,7 +267,7 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 24,
       linkName: 'online poker',
     },
-  ]
+  ];
 
   const menuItemsWithTooltips = [
     {
@@ -280,8 +278,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 24,
       linkName: 'Home',
       tooltipContent: (
-        <Image
-          src={'/assets/images/home.svg'}
+        <CustomImage
+          src="/assets/images/home.svg"
           alt={'Home'}
           width={24}
           height={24}
@@ -296,8 +294,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 24,
       linkName: 'Promotions',
       tooltipContent: (
-        <Image
-          src={'/assets/images/promotions.svg'}
+        <CustomImage
+          src="/assets/images/promotions.svg"
           alt={'Promotions'}
           width={24}
           height={24}
@@ -312,8 +310,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 20,
       linkName: 'Ranking VIP',
       tooltipContent: (
-        <Image
-          src={'/assets/images/rankvip.svg'}
+        <CustomImage
+          src="/assets/images/rankvip.svg"
           alt={'Ranking VIP'}
           width={20}
           height={20}
@@ -329,8 +327,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       linkName: '',
       tooltipContent: (
         <>
-          <Image
-            src={'/assets/images/affiliate.svg'}
+          <CustomImage
+            src="/assets/images/affiliate.svg"
             alt={'Affiliate'}
             width={20}
             height={20}
@@ -348,8 +346,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 20,
       linkName: 'Live Support',
       tooltipContent: (
-        <Image
-          src={'/assets/images/livesupport.svg'}
+        <CustomImage
+          src="/assets/images/livesupport.svg"
           alt={'Live Support'}
           width={20}
           height={20}
@@ -364,8 +362,8 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 20,
       linkName: 'Telegram',
       tooltipContent: (
-        <Image
-          src={'/assets/images/telegram.svg'}
+        <CustomImage
+          src="/assets/images/telegram.svg"
           alt={'Telegram'}
           width={20}
           height={20}
@@ -380,23 +378,22 @@ const Sidebar = ({ active, handleActive }: any) => {
       imgHeight: 24,
       linkName: 'online poker',
       tooltipContent: (
-        <Image
-          src={'/assets/images/poker.svg'}
+        <CustomImage
+          src="/assets/images/poker.svg"
           alt={'online poker'}
           width={24}
           height={24}
         />
       ),
     },
-  ]
+  ];
 
   const handleShowMenu = (menuItem: string) => {
-    setShowMenu(menuItem)
-  }
+    setShowMenu(menuItem);
+  };
 
   return (
     <div className="d-md-block d-none">
-      {' '}
       <div className={` sidebar ${active ? ' sidebarOpen  ' : ' close'}`}>
         {active ? (
           <ul className="nav-links ">
@@ -412,7 +409,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 }
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItemsWithTooltips[0].imgSrc}
                     alt={t(menuItemsWithTooltips[0].imgAlt)}
                     width={menuItemsWithTooltips[0].imgWidth}
@@ -448,7 +445,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 }
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItemsWithTooltips[6].imgSrc}
                     alt={t(menuItemsWithTooltips[6].imgAlt)}
                     width={menuItemsWithTooltips[6].imgWidth}
@@ -475,8 +472,7 @@ const Sidebar = ({ active, handleActive }: any) => {
             {gameTypes.map((item, index) => (
               <Fragment key={index}>
                 <li
-                  style={{ cursor: 'pointer' }}
-                  className={` ${showMenu === item.mainType.name ? 'showMenu' : ''}`}
+                  className={` ${showMenu === item.mainType.name ? 'showMenu' : ''} cursor-pointer`}
                 >
                   <div
                     className={`icon-link ${mainType === item.mainType.name ? 'enable' : ''}`}
@@ -500,7 +496,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   >
                     <div className="menu-link">
                       <div className="link_img">
-                        <Image
+                        <CustomImage
                           src={item.mainType.image}
                           alt={t(item.mainType.name)}
                           width={24}
@@ -537,7 +533,6 @@ const Sidebar = ({ active, handleActive }: any) => {
                         item?.subType?.length > 1 &&
                         item?.subType.map((subGames, index) => (
                           <Fragment key={index}>
-                            {' '}
                             <li
                               onClick={(e) =>
                                 handleSubType(
@@ -551,7 +546,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                                 className={`active ${item.subType?.length === 1 ? 'py-0' : ''}`}
                                 href="#"
                               >
-                                <Image
+                                <CustomImage
                                   src={subGames?.image}
                                   alt={t(subGames?.name)}
                                   width={24}
@@ -592,7 +587,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 }
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItems[1].imgSrc}
                     alt={t(menuItems[1].imgAlt)}
                     width={menuItems[1].imgWidth}
@@ -628,7 +623,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 onClick={handleUserAuth}
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItems[2].imgSrc}
                     alt={t(menuItems[2].imgAlt)}
                     width={menuItems[2].imgWidth}
@@ -667,7 +662,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   onClick={hanldeOpenAffilatte}
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItems[3].imgSrc}
                       alt={t(menuItems[3].imgAlt)}
                       width={menuItems[3].imgWidth}
@@ -698,7 +693,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 }
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItems[4].imgSrc}
                     alt={t(menuItems[4].imgAlt)}
                     width={menuItems[4].imgWidth}
@@ -734,7 +729,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                 }
               >
                 <div className="link_img">
-                  <Image
+                  <CustomImage
                     src={menuItems[5].imgSrc}
                     alt={t(menuItems[5].imgAlt)}
                     width={menuItems[5].imgWidth}
@@ -790,7 +785,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[0].imgSrc}
                       alt={t(menuItemsWithTooltips[0].imgAlt)}
                       width={menuItemsWithTooltips[0].imgWidth}
@@ -836,7 +831,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[6].imgSrc}
                       alt={t(menuItemsWithTooltips[6].imgAlt)}
                       width={menuItemsWithTooltips[6].imgWidth}
@@ -872,7 +867,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                                   : handleMainType(e, item.mainType.name)
                               }
                             >
-                              <Image
+                              <CustomImage
                                 src={item.mainType.image}
                                 alt={t(item.mainType.name)}
                                 width={30}
@@ -903,7 +898,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                                   <div
                                     className={`active px-0 ${item.subType?.length === 1 ? 'py-0' : ''}`}
                                   >
-                                    <Image
+                                    <CustomImage
                                       src={subGames?.image}
                                       alt={t(subGames?.name)}
                                       width={24}
@@ -943,7 +938,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                     >
                       <div className="menu-link">
                         <div className="link_img">
-                          <Image
+                          <CustomImage
                             src={item.mainType.image}
                             alt={t(item.mainType.image)}
                             width={24}
@@ -990,7 +985,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[1].imgSrc}
                       alt={t(menuItemsWithTooltips[1].imgAlt)}
                       width={menuItemsWithTooltips[1].imgWidth}
@@ -1036,7 +1031,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[2].imgSrc}
                       alt={t(menuItemsWithTooltips[2].imgAlt)}
                       width={menuItemsWithTooltips[2].imgWidth}
@@ -1080,7 +1075,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                     }
                   >
                     <div className="link_img">
-                      <Image
+                      <CustomImage
                         src={menuItemsWithTooltips[3].imgSrc}
                         alt={t(menuItemsWithTooltips[3].imgAlt)}
                         width={menuItemsWithTooltips[3].imgWidth}
@@ -1127,7 +1122,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[4].imgSrc}
                       alt={t(menuItemsWithTooltips[4].imgAlt)}
                       width={menuItemsWithTooltips[4].imgWidth}
@@ -1173,7 +1168,7 @@ const Sidebar = ({ active, handleActive }: any) => {
                   }
                 >
                   <div className="link_img">
-                    <Image
+                    <CustomImage
                       src={menuItemsWithTooltips[5].imgSrc}
                       alt={t(menuItemsWithTooltips[5].imgAlt)}
                       width={menuItemsWithTooltips[5].imgWidth}
@@ -1211,7 +1206,7 @@ const Sidebar = ({ active, handleActive }: any) => {
         />
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

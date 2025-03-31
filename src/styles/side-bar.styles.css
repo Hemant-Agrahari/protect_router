@@ -34,7 +34,7 @@
 
 .sidebar .logo-details i {
   font-size: 30px;
-  color: #fff;
+  color: var(--white);
   height: 50px;
   min-width: 78px;
   text-align: center;
@@ -43,7 +43,7 @@
 
 .sidebar .logo-details .logo_name {
   font-size: 22px;
-  color: #fff;
+  color: var(--white);
   font-weight: 600;
   transition: 0.3s ease;
   transition-delay: 0.1s;
@@ -94,11 +94,11 @@
 }
 
 .sidebar .nav-links > li:hover {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
 }
 
 .sidebar .icon-link.enable {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
   border-radius: 10px 10px 0 0;
 }
 
@@ -125,9 +125,8 @@
   min-width: 36px;
   text-align: center;
   line-height: 36px;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
-  /* margin-right: 6px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,10 +158,9 @@
   height: 1.5rem;
   border-radius: 8px;
   transition: none;
-  background-color: rgb(109 109 109);
+  background-color: var(--gray-400);
   font-size: -10px;
   padding: 4px;
-  /* color: #fff; */
 }
 
 .sidebar .nav-links > li:hover svg {
@@ -199,7 +197,7 @@
 
 .sidebar .nav-links li .sub-menu li:hover,
 .sidebar .nav-links li .sub-menu li:active {
-  background: linear-gradient(90deg, #4473e9, #7e43de);
+  background: linear-gradient(90deg, var(--blue-vivid), var(--blue-violet));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -218,7 +216,7 @@
 .sidebar .nav-links li .link_name {
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
+  color: var(--white);
   transition: all 0.4s ease;
   margin-left: 6px;
   margin-left: 2px;
@@ -271,11 +269,9 @@
   opacity: 0;
   display: block;
   display: flex;
-  /* pointer-events: none; */
   transition: 0s;
   margin-left: 14px;
-  /* background: var(--gray-400); */
-  background: linear-gradient(90deg, #4473e9e0 0%, #7e43def5 98.45%);
+  background: linear-gradient(90deg, var(--blue-royal-transparent) 0%, var(--blue-violet-transparent) 98.45%);
 }
 
 .sidebar-mobile .nav-links li .sub-menu {
@@ -291,7 +287,7 @@
 }
 
 .sidebar-mobile .sub-menu div {
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   font-size: 13px;
   padding: 0px 10px;
@@ -316,16 +312,14 @@
 
 .css-ja5taz-MuiTooltip-tooltip,
 .MuiTooltip-tooltip {
-  background: linear-gradient(90deg, #4473e9e0 0%, #7e43def5 98.45%) !important;
+  background: linear-gradient(90deg, var(--blue-royal-transparent) 0%, var(--blue-violet-transparent) 98.45%) !important;
   padding: 11px 14px !important;
   border-radius: 8px !important;
   font-family: inherit;
-  /* max-height: 38px;
-    min-height: 38px; */
 }
 
 .sidebar-mobile + .MuiTooltip-arrow {
-  color: #4473e9e0;
+  color: var(--blue-royal-transparent);
   margin-top: 0px;
 }
 
@@ -353,7 +347,7 @@
 }
 
 .sidebar.close .sub-menu a {
-  color: #fff;
+  color: var(--white);
 }
 
 .sidebar.close .nav-links .sub-menu li a img {
@@ -368,7 +362,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: unset;
   font-weight: 700;
-  color: #fff;
+  color: var(--white);
 }
 
 .sidebar .nav-links li .sub-menu .link_name {
@@ -388,12 +382,10 @@
   display: flex;
   padding: 12px;
   padding: 10px 14px;
-  color: rgb(255, 255, 255);
-  /* background-color:var(--gray-400); */
-  background: linear-gradient(90deg, #4473e9e0 0%, #7e43def5 98.45%);
+  color: var(--white);
+  background: linear-gradient(90deg var(--blue-royal-transparent) 0%,var(--blue-violet-transparent) 98.45%);
   text-align: center;
   max-width: 15rem;
-  /* margin-left: 14px; */
   position: relative;
 }
 
@@ -417,7 +409,7 @@
   transform: rotate(45deg);
   z-index: -1;
   border: 8px solid transparent;
-  border-right: 10px solid #4473e9e0;
+  border-right: 10px solid var(--blue-royal-transparent);
   transform: translate(calc(-73% + 1px), 0);
 }
 
@@ -443,7 +435,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #1d1b31;
+  background: var(--blue-deep);
   padding: 12px 0;
   transition: all 0.5s ease;
 }
@@ -467,7 +459,7 @@
   object-fit: cover;
   border-radius: 16px;
   margin: 0 14px 0 12px;
-  background: #1d1b31;
+  background: var(--blue-deep);
   transition: all 0.5s ease;
 }
 
@@ -477,7 +469,7 @@
 
 .sidebar .profile-details .profile_name,
 .sidebar .profile-details .job {
-  color: #fff;
+  color: var(--white);
   font-size: 18px;
   font-weight: 500;
   white-space: nowrap;
@@ -496,13 +488,13 @@
 .sidebar_divider {
   height: 0px;
   width: 78%;
-  border-top: 0.5px solid #3a3a3a;
+  border-top: 0.5px solid var(--gray-400);
   margin-inline: auto;
   margin-block: 10px;
 }
 
 .subGameActive {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

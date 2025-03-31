@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Dialog } from '@mui/material'
-import Login from '../Login'
-import { useAppSelector } from '@/redux/hooks'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { logError, processGames, removeExtraSymbols } from '@/utils'
-import BackToTop from '../common/BacktoTop'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from 'react';
+import { Dialog } from '@mui/material';
+import Login from '../Login';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/router';
+import { logError, processGames, removeExtraSymbols } from '@/utils';
+import BackToTop from '@/component/common/BacktoTop';
+import { useTranslation } from 'react-i18next';
+import Loader from '@/component/common/mui-component/Loader';
+import { CustomButton } from '@/component/common';
+import CustomImage from '@/component/common/CustomImage';
 
 const HomeGames = ({ handleGameLimit, provider, games, totalGames }: any) => {
-  const base_url = process.env.NEXT_PUBLIC_IMAGE_URL
-  const user = useAppSelector((state) => state.user.user)
-  const router = useRouter()
-  const { t } = useTranslation()
-  const [openLoginModal, setOpenLoginModal] = useState(false)
-  const [tabIndex, setTabIndex] = useState(0)
-  const [displayedGames, setDisplayedGames] = useState<any>([])
+  const base_url = process.env.NEXT_PUBLIC_IMAGE_URL;
+  const user = useAppSelector((state) => state.user.user);
+  const router = useRouter();
+  const { t } = useTranslation();
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [displayedGames, setDisplayedGames] = useState<any>([]);
 
-  const callaa = async () => {
+  const getHomeGameList = async () => {
     try {
-      let res = await processGames(games)
-      setDisplayedGames(res)
-      return res
+      let res = await processGames(games);
+      setDisplayedGames(res);
+      return res;
     } catch (error) {
-      logError(`Error fetching game data: ${error}`)
+      logError(`Error fetching game data: ${error}`);
     }
-  }
+  };
 
   const handleCloseLoginModal = (
     redirection?: boolean,
@@ -35,33 +37,33 @@ const HomeGames = ({ handleGameLimit, provider, games, totalGames }: any) => {
     if (redirection && gameId && provider) {
       router
         .push({ pathname: '/play-game', query: { gameId, provider } })
-        .then(() => setOpenLoginModal(false))
+        .then(() => setOpenLoginModal(false));
     } else {
-      setOpenLoginModal(false)
+      setOpenLoginModal(false);
     }
-  }
+  };
 
   const handleGameInit = (
     event: React.MouseEvent<HTMLDivElement>,
     item: any,
   ) => {
-    event.preventDefault()
+    event.preventDefault();
     if (user && user?._id) {
-      handleCloseLoginModal(true, item?._id, item?.provider)
+      handleCloseLoginModal(true, item?._id, item?.provider);
     } else {
-      setOpenLoginModal(true)
+      setOpenLoginModal(true);
     }
-  }
+  };
 
   useEffect(() => {
     try {
       if (games && Array.isArray(games) && games.length > 0) {
-        callaa()
+        getHomeGameList();
       }
     } catch (error) {
-      logError(`Error fetching game data: ${error}`)
+      logError(`Error fetching game data: ${error}`);
     }
-  }, [games])
+  }, [games]);
 
   return (
     <>
@@ -76,7 +78,7 @@ const HomeGames = ({ handleGameLimit, provider, games, totalGames }: any) => {
                     onClick={(event) => handleGameInit(event, item)}
                   >
                     <div className="gameImg">
-                      <Image
+                      <CustomImage
                         src={
                           item?.customImage
                             ? `${base_url}${item.customImage}`
@@ -118,27 +120,25 @@ const HomeGames = ({ handleGameLimit, provider, games, totalGames }: any) => {
           </Dialog>
         </div>
       ) : (
-        <div className="loader-animate-division">
-          <div className="loader"></div>
-        </div>
+        <Loader />
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className="d-flex justify-content-center">
         {totalGames > displayedGames.length && (
           <div className="loginSignUp-btn">
-            <button
+            <CustomButton
               type="button"
               className="btn signUp-btn"
               onClick={() => handleGameLimit(24)}
             >
               {t('Load more')}
-            </button>
+            </CustomButton>
           </div>
         )}
         {displayedGames.length ? <BackToTop /> : ''}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HomeGames
+export default HomeGames;

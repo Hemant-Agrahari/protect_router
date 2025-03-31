@@ -1,9 +1,10 @@
 import { Button, ClickAwayListener, Slider } from '@mui/material'
 import React, { useState } from 'react'
-import { BootstrapTooltip } from '../common'
+import { CustomMuiTooltip } from '@/component/common'
 import { HelpOutlineOutlined } from '@mui/icons-material'
 import { makeStyles } from '@mui/styles'
 import { useTranslation } from 'react-i18next'
+import CustomImage from '../common/CustomImage'
 const useStyles = makeStyles({
   sliderRoot: {
     // Hide marks' labels
@@ -13,6 +14,7 @@ const useStyles = makeStyles({
     },
   },
 })
+
 const CommissionSection = () => {
   const classes = useStyles()
   const [tooltipOpen, setTooltipOpen] = useState(false)
@@ -33,15 +35,11 @@ const CommissionSection = () => {
   const handleSecTooltipClose = () => {
     setSecondTooltipOpen(false)
   }
-  const handleSecTooltipOpen = () => {
-    setSecondTooltipOpen(true)
-  }
+
   const handleTooltipClose = () => {
     setTooltipOpen(false)
   }
-  const handleTooltipOpen = () => {
-    setTooltipOpen(true)
-  }
+
   const getInvitationValue = (value: number) => {
     if (value >= 1 && value <= 20) {
       return 5
@@ -63,24 +61,27 @@ const CommissionSection = () => {
   return (
     <div className="get-commission">
       <div className="referalPageSection-title">
-        {t('How To Get Commission On Your Bets')}{' '}
+        {t('How To Get Commission On Your Bets')}
         <ClickAwayListener onClickAway={handleTooltipClose}>
-          <BootstrapTooltip
+          <CustomMuiTooltip
             disableTouchListener
             onClose={handleTooltipClose}
             open={tooltipOpen}
             arrow
             title={<span>{t('Betting Commissions')}</span>}
           >
-            <Button className="Buttonooltip-btn" onClick={handleTooltipOpen}>
+            <Button
+              className="Buttonooltip-btn bg-transparent"
+              onClick={() => {
+                setTooltipOpen(true)
+              }}
+            >
               <HelpOutlineOutlined />
             </Button>
-          </BootstrapTooltip>
+          </CustomMuiTooltip>
         </ClickAwayListener>
       </div>
-      <div className="referalPageSection-titleText">
-        {t('LongTerm Income')}{' '}
-      </div>
+      <div className="referalPageSection-titleText">{t('LongTerm Income')}</div>
       <div className="getCommission-col">
         <div className="getCommission-colTop">
           <div className="getCommission-colTop-content">
@@ -90,16 +91,16 @@ const CommissionSection = () => {
                 <li>{t('The proportions of the 3 levels are as follows')}:</li>
                 <li>
                   {t('- Level')} 1:
-                  <span style={{ color: '#FFCD3C' }}> 50%</span> Platform
+                  <span className="yellow-bg"> 50%</span> Platform
                   {t('Platform Advantage')}
                 </li>
                 <li>
                   {t('- Level')} 2:
-                  <span style={{ color: '#FFCD3C' }}> 15%</span> Platform
+                  <span className="yellow-bg"> 15%</span> Platform
                   {t('Platform Advantage')}
                 </li>
                 <li>
-                  {t('- Level')} 3:<span style={{ color: '#FFCD3C' }}> 5%</span>{' '}
+                  {t('- Level')} 3:<span className="yellow-bg"> 5%</span>
                   {t('Platform Advantage')}
                 </li>
               </ul>
@@ -107,18 +108,28 @@ const CommissionSection = () => {
             <div className="long-term-income">{t('Commission Income')}</div>
           </div>
           <div className="getCommission-colTop-img">
-            <img src={'/assets/images/get-commission-top.png'} alt="" />
+            <CustomImage
+              src={'/assets/images/get-commission-top.png'}
+              alt="get-commission-level"
+              width={608}
+              height={504}
+            />
           </div>
         </div>
         <div className="getCommission-colBotm">
           <div className="leval-calculator-col">
-            <img src={'/assets/images/profile-level.png'} alt="" />
+            <CustomImage
+              src={'/assets/images/profile-level.png'}
+              alt="profile level"
+              width={598}
+              height={253}
+            />
           </div>
           <div className="leval-calculator-col income-calculator">
             <div className="income-title">
               {t('Static Calculator Text')}
               <ClickAwayListener onClickAway={handleSecTooltipClose}>
-                <BootstrapTooltip
+                <CustomMuiTooltip
                   disableTouchListener
                   onClose={handleSecTooltipClose}
                   open={secondTooltipOpen}
@@ -126,12 +137,15 @@ const CommissionSection = () => {
                   title={<span>{t('Earnings Calculation')}</span>}
                 >
                   <Button
-                    className="tooltip-btn"
-                    onClick={handleSecTooltipOpen}
+                    className="tooltip-btn bg-transparent"
+                    onClick={() => {
+                      setSecondTooltipOpen(true)
+                    }}
+                    type="button"
                   >
                     <HelpOutlineOutlined />
                   </Button>
-                </BootstrapTooltip>
+                </CustomMuiTooltip>
               </ClickAwayListener>
             </div>
             <div className="calculat-value">

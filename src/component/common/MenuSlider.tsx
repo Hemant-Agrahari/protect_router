@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { GetMethod } from '@/services/fetchAPI'
-import { logError } from '@/utils'
-import { useTranslation } from 'react-i18next'
+import React, { Fragment, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { GetMethod } from '@/services/fetchAPI';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import CustomImage from './CustomImage';
 
 interface Props {
   isUpperSlider?: boolean
@@ -277,6 +277,11 @@ function MenuSlider({
         name: 'live dealer',
         mainType: 'live games',
       },
+      {
+        image: '/assets/images/sports-bet-icon.svg',
+        name: 'sports betting',
+        mainType: 'sports betting',
+      },
       ...otherTypeGames,
     ],
     casino: [
@@ -321,6 +326,9 @@ function MenuSlider({
     ],
     'live games': [
       { image: '/assets/images/live_games.png', name: 'live dealer' },
+    ],
+    'sports betting': [
+      { image: '/assets/images/sports-bet-icon.svg', name: 'sports betting' },
     ],
     others: [...otherTypeGames],
   }
@@ -377,7 +385,7 @@ function MenuSlider({
                   }
                   onClick={() => hanldeUpperMenu(item.path, item.value)}
                 >
-                  <Image
+                  <CustomImage
                     src={item.img}
                     width={50}
                     height={50}
@@ -409,11 +417,11 @@ function MenuSlider({
                       }
                       onClick={() => hanldeLowerMenu(mainType as string, item)}
                     >
-                      <Image
+                      <CustomImage
                         src={item.image}
                         width={50}
                         height={50}
-                        alt={t(item.name)} // Changed from item.value to item.name
+                        alt={t(item.name)}
                       />
                       <div className="title_template text-capitalize">
                         {t(item.name)}

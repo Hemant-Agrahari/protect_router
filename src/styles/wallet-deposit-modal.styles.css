@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 14px;
-  background: var(--gray-600, #420c29);
+  background: var(--gray-600, --burgundy-red);
   border: 1px solid var(--gray-300);
   width: 23.4%;
   height: 59px;
@@ -30,7 +30,11 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: var(--white);
+}
+
+.cashBack-slider {
+  margin-top: 8px;
 }
 
 .wallet_sec_other .depo-amount span {
@@ -44,17 +48,17 @@
   font-weight: 600;
   font-size: 11px;
   line-height: 13px;
-  color: #ffc961;
+  color: var(--golden-yellow);
   margin-top: 3px;
 }
 
 .wallet_sec_other .hot {
-  background: #da384e;
+  background: var(--raspberry-red-1);
   border-radius: 0px 14px;
   font-weight: 700;
   font-size: 8px;
   line-height: 10px;
-  color: #ffffff;
+  color: var(--white);
   text-align: center;
   width: 48px;
   position: absolute;
@@ -64,7 +68,7 @@
 
 .wallet_sec_other:hover,
 .wallet_sec_other.active {
-  background: var(--gray-300, #a2246b);
+  background: var(--gray-300, --deep-pink);
 }
 
 .wallet_sec_other:hover .bonus-percentage,
@@ -72,6 +76,79 @@
 .wallet_sec_other.active .bonus-percentage,
 .wallet_sec_other.active .hot {
   display: none;
+}
+
+.doNot_div {
+  border-radius: 10px;
+}
+
+.doNotText {
+  color: var(--gray-100);
+  font-weight: 600;
+}
+
+.depositBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-btn-CPF {
+  width: 215px;
+  padding: 11px 15px;
+  border-radius: 10px;
+  color: var(--white);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal-btn-CPF-disabled {
+  width: 215px;
+  padding: 11px 15px;
+  border-radius: 10px;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: not-allowed;
+}
+
+.modal-btn-CPF:hover {
+  background-color: var(--sky-blue-3);
+}
+
+.wallet-outlined-input {
+  border-radius: 10px;
+  margin-top: 16px;
+}
+
+.wallet-outlined-input .MuiOutlinedInput-input {
+  color: var(--white);
+  border-bottom: none;
+  text-align: right;
+}
+
+.wallet-outlined-input .MuiInputAdornment-root p {
+  color: var(--white);
+  font-size: 1.25rem;
+  margin-top: 12px;
+}
+
+.wallet-deposit-image-caraosel{
+  height: 140px;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.select-currency-wallet-dropdown .MuiSelect-select {
+  text-align: left;
+  font-weight: 600;
+}
+
+.wallet-participate-checkbox .MuiSvgIcon-root{
+  font-size: 30px;
+  color: var(--gray-100);
 }
 
 @media screen and (max-width: 480px) {

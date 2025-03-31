@@ -19,7 +19,6 @@ export default function DonutUserDashboard({
             series?.todayUpgradeBonus,
           ]
         : [100],
-    // todayInvitaionBonus , todayBettingbonus , todayUpgradeBonus
     options: {
       legend: {
         show: false,
@@ -29,7 +28,7 @@ export default function DonutUserDashboard({
         justify: 'center',
 
         labels: {
-          colors: '#fff',
+          colors: 'var(--white)',
         },
       },
 

@@ -1,10 +1,11 @@
-import { GetMethod } from '@/services/fetchAPI'
-import { logError } from '@/utils'
-import { Grid } from '@mui/material'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { GetMethod } from '@/services/fetchAPI';
+import { logError } from '@/utils';
+import { Grid } from '@mui/material';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Loader from '../common/mui-component/Loader';
+import CustomImage from '../common/CustomImage';
 
 const PromotionTab = () => {
   const [promotions, setPromotions] = useState<any>([])
@@ -24,7 +25,6 @@ const PromotionTab = () => {
           }
         }
         setPromotions(responseData.data.result.promotionData)
-        // setPromotionStatic(responseData.data.result.staticPromotionData)
       })
       .catch((err) => {
         logError(err)
@@ -40,12 +40,10 @@ const PromotionTab = () => {
   return (
     <>
       {isLoading ? (
-        <div className="loader-animate-division">
-          <div className="loader"></div>
-        </div>
+      <Loader/>
       ) : (
         <div className="homeTabPromotion-content">
-          <Grid container spacing={2} sx={{ mt: 0, pl: 2, pr: 2 }}>
+          <Grid container spacing={2}  className="mt-0 pl-0 pr-2">
             {promotions?.map((item: any, index: any) => {
               return (
                 <Grid
@@ -60,19 +58,14 @@ const PromotionTab = () => {
                     href={`/promotion-center/promo-el6?id=${item?._id}`}
                     className="promotion-img"
                   >
-                    <div
-                      style={{
-                        width: '100%',
-                        position: 'relative',
-                        paddingTop: '56.25%',
-                      }}
+                    <div className='w-100 position-relative promotion-tab-padding'
                       key={item?.uuid}
                     >
-                      <Image
+                      <CustomImage
                         src={getImageSrc(item)}
                         alt={t('Image')}
-                        layout="fill" // Fill the parent container (div) with the image
-                        objectFit="cover" // Maintain aspect ratio and cover the container
+                        layout="fill"
+                        objectFit="cover"
                         className="rounded-1"
                       />
                     </div>
@@ -81,7 +74,7 @@ const PromotionTab = () => {
               )
             })}
           </Grid>
-          <Grid container spacing={2} sx={{ mt: 0, pl: 2, pr: 2 }}>
+          <Grid container spacing={2} className="mt-0 pl-0 pr-2">
             {promotionStatic?.map((item: any, index: any) => {
               return (
                 <Grid item xs={4} sm={4} md={4} lg={4} key={item}>
@@ -89,19 +82,14 @@ const PromotionTab = () => {
                     href={'/promotion-center/promo-static'}
                     className="promotion-img"
                   >
-                    <div
-                      style={{
-                        width: '100%',
-                        position: 'relative',
-                        paddingTop: '56.25%',
-                      }}
+                    <div className='w-100 position-relative promotion-tab-padding'
                       key={item?.uuid}
                     >
-                      <Image
+                      <CustomImage
                         src={getImageSrc(item)}
                         alt={t('Image')}
-                        layout="fill" // Fill the parent container (div) with the image
-                        objectFit="cover" // Maintain aspect ratio and cover the container
+                        layout="fill"
+                        objectFit="cover"
                         className="rounded-1"
                       />
                     </div>

@@ -24,7 +24,7 @@
 }
 
 .loginSignUp-btn .btn {
-  color: #fff;
+  color: var(--white);
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
@@ -32,8 +32,12 @@
 }
 
 .btn-gradient {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
-  border: 1px solid #6458e3 !important;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
 }
 
 .btn_light {
@@ -48,15 +52,23 @@
 main .loginSignUp-btn .signUp-btn {
   margin-left: 0px;
   background: var(--gray-400);
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
-  border: 1px solid #6458e3 !important;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
   padding: clamp(6px, 1vw, 12px) clamp(16px, 2vw, 30px);
 }
 
 .loginSignUp-btn .backtopbtn {
   background: var(--gray-400);
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
-  border: 1px solid #6458e3 !important;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
   padding: clamp(6px, 1vw, 12px) clamp(16px, 1vw, 30px) !important;
 }
 
@@ -82,12 +94,12 @@ main .loginSignUp-btn .signUp-btn {
 }
 
 .login-btn {
-  color: #fff;
+  color: var(--white);
   font-weight: 600;
 }
 
 .login-btn:hover {
-  color: #fff;
+  color: var(--white);
 }
 
 .signUp-btn {
@@ -109,10 +121,14 @@ main .loginSignUp-btn .signUp-btn {
 .modal-btn-losign {
   width: 100%;
   padding: clamp(14px, 1vw, 16px);
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
-  border: 1px solid #6458e3 !important;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
   border-radius: 6px;
-  color: #fff;
+  color: var(--white);
   font-weight: 700;
   font-size: clamp(16px, 1.5vw, 20px);
 }
@@ -126,10 +142,17 @@ main .loginSignUp-btn .signUp-btn {
   padding: 11px 0 !important;
 }
 
+.search-input .search-bar {
+  width: 177px !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border-radius: 8px;
+}
+
 .balance-deposit {
   display: flex;
   align-items: center;
-  background-color: var(--gray-600, #31001b);
+  background-color: var(--gray-600, --burgundy-dark);
   border: 1px solid var(--gray-300);
   border-radius: 8px;
   padding: 2px;
@@ -141,9 +164,10 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 800;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: var(--white);
   padding: 0 10px;
-  min-width: 78px;
+  /* min-width: 78px; */
+  min-width: 61px;
 }
 
 .balance-deposit .balance span {
@@ -161,8 +185,7 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
-  color: #ffffff;
-
+  color: var(--white);
   border-radius: 8px;
   padding: 8px 12px;
 }
@@ -172,7 +195,7 @@ main .loginSignUp-btn .signUp-btn {
 }
 
 .balance-deposit .deposit-btn:hover {
-  background-color: var(--gray-300, #a2246b);
+  background-color: var(--gray-300, --deep-pink);
 }
 
 .headerProfile {
@@ -180,7 +203,7 @@ main .loginSignUp-btn .signUp-btn {
   margin-left: 15px;
   border: 1px solid var(--gray-300);
   border-radius: 8px;
-  background-color: var(--gray-600, #31001b);
+  background-color: var(--gray-600, --burgundy-dark);
 }
 
 .headerProfile:before {
@@ -203,7 +226,7 @@ main .loginSignUp-btn .signUp-btn {
 .headerProfile .headerProfile-btn .profile-img {
   width: 33px;
   height: 33px;
-  background-color: #667bff;
+  background-color: var(--bright-blue);
   border-radius: 100%;
 }
 
@@ -219,11 +242,11 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .headerProfile .headerProfile-btn .MuiButton-endIcon {
-  color: #ffffff;
+  color: var(--white);
   transition: 0.5s;
   position: relative;
   top: -2px;
@@ -243,7 +266,11 @@ main .loginSignUp-btn .signUp-btn {
 
 .headerProfile-menu .MuiPopover-paper {
   width: 375px;
-  background: linear-gradient(107.38deg, #171d29 5.92%, #161c25 100%);
+  background: linear-gradient(
+    107.38deg,
+    var(--charcoal-black-1) 5.92%,
+    var(--charcoal-black-2) 100%
+  );
   border-radius: 8px;
 }
 
@@ -276,19 +303,22 @@ main .loginSignUp-btn .signUp-btn {
   width: 6px;
   height: 6px;
   border-radius: 100%;
-  background: linear-gradient(90deg, #7e43de 0%, #4473e9 98.45%);
-  box-shadow: 0 0 0 1px #141414;
+  background: linear-gradient(
+    90deg,
+    var(--blue-violet) 0%,
+    var(--blue-vivid) 98.45%
+  );
+  box-shadow: 0 0 0 1px var(--charcoal-black-3);
 }
 
 .loginSignUp-btn .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 11px 14px 9.5px 0px;
 }
 
-
 /* vip score under ui css */
 .hpMenu-top {
   padding: 15px 10px 0;
-  background: var(--gray-800, #5c2242);
+  background: var(--gray-800, --crimson-1);
   border-radius: 8px;
 }
 
@@ -296,7 +326,7 @@ main .loginSignUp-btn .signUp-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--gray-600, #a2246b);
+  background: var(--gray-600, --deep-pink);
   border-radius: 8px;
   padding: 7px 20px;
 }
@@ -304,7 +334,7 @@ main .loginSignUp-btn .signUp-btn {
 .hpMenu-top .user-info .user-img {
   width: 33px;
   height: 33px;
-  background-color: #667bff;
+  background-color: var(--bright-blue);
   border-radius: 100%;
 }
 
@@ -318,12 +348,11 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .hpMenu-top .user-info .userCopy-btn {
-  /* background-color: #420c29; */
-  background: var(--gray-300, #420c29);
+  background: var(--gray-300, --burgundy-red);
   border-radius: 4px;
   background-image: url(../../public/assets/images/userCopy-iocn.png);
   background-repeat: no-repeat;
@@ -333,7 +362,7 @@ main .loginSignUp-btn .signUp-btn {
 }
 
 .hpMenu-top .user-info .userCopy-btn:hover {
-  background-color: #6587ff;
+  background-color: var(--sky-blue);
 }
 
 .hpMenu-top .user-levelScore {
@@ -356,13 +385,20 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 800;
   font-size: 24px;
   line-height: 29px;
-  color: #fff;
+  color: var(--white);
   margin-top: 15px;
 }
 
 .hpMenu-top .user-levelScore .userScore {
   width: 235px;
   margin-left: 15px;
+}
+
+.purple-shade {
+  color: var(--medium-violet);
+}
+.yellow-shade {
+  color: var(--yellow-vivid);
 }
 
 .hpMenu-top .user-levelScore .userScore .userScore-col {
@@ -384,7 +420,7 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .hpMenu-top .user-levelScore .userScore .userScore-col .title-value .amount {
@@ -392,7 +428,7 @@ main .loginSignUp-btn .signUp-btn {
   font-size: 12px;
   line-height: 15px;
   align-items: center;
-  color: #fff;
+  color: var(--white);
 }
 
 .hpMenu-top
@@ -402,7 +438,7 @@ main .loginSignUp-btn .signUp-btn {
   .title-value
   .amount
   span {
-  color: #ffed4a;
+  color: var(--lemon-yellow);
 }
 
 .hpMenu-top
@@ -412,7 +448,7 @@ main .loginSignUp-btn .signUp-btn {
   .title-value
   .amount
   span {
-  color: #2b54e6;
+  color: var(--bright-blue);
 }
 
 .hpMenu-top .user-levelScore .userScore .userScore-col .process-score {
@@ -430,7 +466,7 @@ main .loginSignUp-btn .signUp-btn {
   width: 100%;
   height: 10px;
   border-radius: 20px;
-  background-color: #000000;
+  background-color: var(--black);
 }
 
 .hpMenu-top
@@ -440,7 +476,7 @@ main .loginSignUp-btn .signUp-btn {
   .process-score
   .MuiLinearProgress-root
   .MuiLinearProgress-bar {
-  background-color: #efa318;
+  background-color: var(--golden-yellow);
 }
 
 .hpMenu-top
@@ -453,7 +489,7 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
   margin-left: 8px;
   min-width: 35px;
   text-align: right;
@@ -474,7 +510,7 @@ main .loginSignUp-btn .signUp-btn {
   width: 100%;
   height: 10px;
   border-radius: 20px;
-  background-color: #000000;
+  background-color: var(--black);
 }
 
 .hpMenu-top
@@ -484,7 +520,7 @@ main .loginSignUp-btn .signUp-btn {
   .bet-score
   .MuiLinearProgress-root
   .MuiLinearProgress-bar {
-  background-color: #9643ff;
+  background-color: var(--medium-violet);
 }
 
 .hpMenu-top
@@ -497,7 +533,7 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
   margin-left: 8px;
   min-width: 35px;
   text-align: right;
@@ -516,6 +552,11 @@ main .loginSignUp-btn .signUp-btn {
   flex-flow: wrap;
 }
 
+.hpMenu-botm ul li {
+  width: 140px;
+  max-width: 160px;
+}
+
 .hpMenu-botm .profilePane-ul li {
   flex: 50%;
   margin-left: 15px;
@@ -532,12 +573,16 @@ main .loginSignUp-btn .signUp-btn {
 }
 
 .hpMenu-botm .profilePane-ul li a {
-  background: linear-gradient(180deg, #1469ca 0%, #193299 100%);
+  background: linear-gradient(
+    180deg,
+    var(--bright-blue-1) 0%,
+    var(--bright-blue-2) 100%
+  );
   border-radius: 10px;
   font-weight: 600;
   font-size: 14px;
   line-height: 45px;
-  color: #ffffff;
+  color: var(--white);
   padding: 0px 0px;
   display: block;
   text-decoration: none;
@@ -545,15 +590,25 @@ main .loginSignUp-btn .signUp-btn {
 
 .hpMenu-botm .profilePane-ul li a img {
   margin-right: 5px;
+  width: 28px;
+  max-width: 35px;
 }
 
 .hpMenu-botm .profilePane-ul li a:hover {
-  background: linear-gradient(180deg, #3366db 0%, #2f459f 100%);
+  background: linear-gradient(
+    180deg,
+    var(--blue-royal-1) 0%,
+    var(--blue-sapphire) 100%
+  );
 }
 
 .hpMenu-botm .profile-logout {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
-  border: 1px solid #6458e3 !important;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
   border-radius: 8px;
   padding: 10px 30px;
   border-radius: 4px;
@@ -565,7 +620,7 @@ main .loginSignUp-btn .signUp-btn {
   font-weight: 500;
   font-size: clamp(14px, 1.5vw, 15px);
   line-height: 17px;
-  color: #fff;
+  color: var(--white);
   background-image: url(../../public/assets/images/profile-logout.png);
   background-repeat: no-repeat;
   background-position: 0;
@@ -574,11 +629,119 @@ main .loginSignUp-btn .signUp-btn {
   background-size: 18px;
 }
 
+.header-result-linear-progress {
+  background-color: var(--black) !important;
+}
+
+.header-result-linear-progress .MuiLinearProgress-bar {
+  background-color: var(--yellow-vivid) !important;
+}
+
+.header-bet-result-linear-progress {
+  background-color: var(--black) !important;
+}
+
+.header-bet-result-linear-progress .MuiLinearProgress-bar {
+  background-color: var(--medium-violet) !important;
+}
+
 .hpMenu-botm .profile-logout a:hover {
   opacity: 0.7;
 }
 
+.link-container {
+  padding: 4px 8px;
+}
 
+.link-container .link-container-list {
+  padding: 15px 10px 0px;
+}
+
+.link-container .personal-link-container {
+  padding: 0px 10px 0px;
+}
+
+.referral {
+  background-image: linear-gradient(
+    180deg,
+    var(--hot-pink-1) 0%,
+    var(--midnight-blue-1) 100%
+  ) !important;
+}
+
+.personal-center {
+  background-image: linear-gradient(
+    180deg,
+    var(--orange) 0%,
+    var(--wine-red) 100%
+  ) !important;
+}
+
+.game-history {
+  background-image: linear-gradient(
+    180deg,
+    var(--medium-violet) 0%,
+    var(--dark-orchid) 100%
+  ) !important;
+}
+
+.notification-container {
+  padding: 0px 20px;
+  color: var(--gray-100);
+  margin: 15px 0px 8px 0px;
+}
+
+.notification-list {
+  margin-top: 1.5rem;
+}
+
+.notification-list .MuiPaper-root {
+  background-color: var(--burgundy-2);
+  color: var(--burgundy-1);
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
+  max-width: 450px;
+}
+
+.mark-all-read-button {
+  background-color: var(--gray-400, --crimson) !important;
+  text-transform: none;
+}
+
+.notification-icons {
+  color: var(--gray-400);
+}
+
+.notification-content {
+  color: var(--gray-400);
+}
+
+.header-paper {
+  background-color: var(--gray-600, --burgundy-red) !important;
+}
+
+.hpmenu-botm-logout {
+  padding: 0;
+}
+
+.facebook-height {
+  height: 46px;
+}
+.gmail-height {
+  height: 48px;
+}
+
+.notification-active-color {
+  background-color: var(--gray-600, --deep-pink);
+}
+
+.notification-icons {
+  color: var(--gray-100);
+}
+
+.login-forgot-text {
+  color: var(--gray-100);
+}
 
 @media screen and (max-width: 1729px) {
   .header_toggle .logo-img {
@@ -587,7 +750,6 @@ main .loginSignUp-btn .signUp-btn {
     object-fit: cover;
   }
 }
-
 
 @media screen and (max-width: 1299px) {
   .hpMenu-top .user-levelScore {
@@ -681,6 +843,12 @@ main .loginSignUp-btn .signUp-btn {
   .headerMsg {
     margin-left: 8px;
   }
+
+  .switch-languages-container {
+    width: 30.45px;
+    max-width: 30.45px;
+    margin-left: -15px;
+  }
 }
 
 @media screen and (max-width: 575.98px) {
@@ -689,14 +857,19 @@ main .loginSignUp-btn .signUp-btn {
   }
 }
 
-
 @media screen and (max-width: 575px) {
   .search-input input {
     padding-block: 12px !important;
   }
+
+  .switch-languages-container {
+    width: 30.45px;
+    max-width: 30.45px;
+    margin-left: -15px;
+  }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
   .hpMenu-top .user-levelScore .userScore {
     width: 215px;
     margin-left: 5px;
@@ -711,24 +884,32 @@ main .loginSignUp-btn .signUp-btn {
   .hpMenu-botm .profilePane-ul li a img {
     margin-right: 2px;
   }
+ 
+  .switch-languages-container {
+    width: 27.45px;
+    max-width: 27.45px;
+    margin-left: -15px;
+  }
 }
 
 @media (max-width: 420px) {
   .balance-deposit .balance {
     font-size: 12px;
-    padding: 0 6px;
+    padding: 1px 5px;
   }
   .balance-deposit .deposit-btn {
     padding: 3px 1px;
     width: 25px;
     height: auto;
   }
+
   .balance-deposit .balance img {
-    max-width: 15px;
-    height: auto;
+    display: none;
   }
+
   .headerMsg .msgIcon {
-    padding: 1px;
+    width: 36px;
+    max-width: 36px;
   }
   .headerProfile {
     margin-left: 4px;
@@ -737,11 +918,31 @@ main .loginSignUp-btn .signUp-btn {
     width: 70px;
     height: auto;
   }
+
+  .switch-languages-container {
+    width: 27.45px;
+    max-width: 27.45px;
+    margin-left: -15px;
+  }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
   .loginSignUp-btn .btn {
     font-size: 12px;
     padding: 7px 15px;
+  }
+
+  .hpMenu-botm ul li {
+    width: 126px;
+  }
+
+  .hpMenu-botm .profilePane-ul li a img {
+    margin-right: 5px;
+    width: 11px;
+    max-width: 19px;
+  }
+
+  .base-Popper-root.css-advny6-MuiPopper-root {
+    transform: translate3d(-196px, 33px, 0px) !important;
   }
 }

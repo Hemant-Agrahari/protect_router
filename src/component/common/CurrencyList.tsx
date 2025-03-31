@@ -1,6 +1,6 @@
-import CoinEthereum from '../../../public/assets/images/eth.png'
-import CoinBitcoin from '../../../public/assets/images/bitcoin.png'
-import CoinLitecoin from '../../../public/assets/images/litecoin.png'
+import CoinEthereum from '../../../public/assets/images/eth.png';
+import CoinBitcoin from '../../../public/assets/images/bitcoin.png';
+import CoinLitecoin from '../../../public/assets/images/litecoin.png';
 
 export const CurrencyList = [
   {

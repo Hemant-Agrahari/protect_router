@@ -1,53 +1,51 @@
-import { Dialog } from '@mui/material'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import PromotionBanner_Modal from '@/component/HeaderModals/PromotionBanner_Modal'
-import { PostMethod } from '@/services/fetchAPI'
-import Login from '../component/Login'
-import { NoGamesMessage } from '@/component/Homepage/NoGamesMessage'
-import TopBanners from '@/component/Homepage/TopBanners'
-import HomePageGamesAllGames from '@/component/Homepage/HomePageAllGames'
-import { GetStaticProps } from 'next'
-import { commonStaticProps } from '@/utils/translation'
-import Searchbar from '@/component/common/searchbar'
-import useDebounce from '@/utils/useDebounce'
-import dynamic from 'next/dynamic'
-import { logError } from '@/utils'
-import { useAppSelector } from '@/redux/hooks'
-import Maintenance from '@/component/Homepage/maintenance'
+import { Dialog } from '@mui/material';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
+import PromotionBanner_Modal from '@/component/HeaderModals/PromotionBanner_Modal';
+import { PostMethod } from '@/services/fetchAPI';
+import Login from '../component/Login';
+import { NoGamesMessage } from '@/component/Homepage/NoGamesMessage';
+import TopBanners from '@/component/Homepage/TopBanners';
+import HomePageGamesAllGames from '@/component/Homepage/HomePageAllGames';
+import { GetStaticProps } from 'next';
+import { commonStaticProps } from '@/utils/translation';
+import Searchbar from '@/component/common/searchbar';
+import useDebounce from '@/utils/useDebounce';
+import dynamic from 'next/dynamic';
+import { logError } from '@/utils';
+import Loader from '@/component/common/mui-component/Loader';
 
 const MenuSlider = dynamic(() => import('@/component/common/MenuSlider'), {
   ssr: false,
-})
+});
 
 // Method is for language switch
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale } = context
-  return commonStaticProps(locale!)
-}
+  const { locale } = context;
+  return commonStaticProps(locale!);
+};
 function Home({
   searchQuery,
   handleSearch,
 }: {
-  searchQuery: string
-  handleSearch: (query: string) => void
+  searchQuery: string;
+  handleSearch: (query: string) => void;
 }) {
-  const [provider, setProvider] = useState('slotegrator')
-  const [gamePost, setGamePost] = useState<any>([])
-  const isMaintenance = useAppSelector((state) => state.games.isMaintenance)
-  const [searchedGame, setSearchedGame] = useState<any>([])
-  const [isLoading, setLoading] = useState(true)
-  const [openLoginModal, setOpenLoginModal] = useState(false)
-  const handleCloseLoginModal = () => setOpenLoginModal(false)
-  const [tabIndex, setTabIndex] = useState(0)
+  const [provider, setProvider] = useState('slotegrator');
+  const [gamePost, setGamePost] = useState<any>([]);
+  const [searchedGame, setSearchedGame] = useState<any>([]);
+  const [isLoading, setLoading] = useState(true);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const handleCloseLoginModal = () => setOpenLoginModal(false);
+  const [tabIndex, setTabIndex] = useState(0);
   const [gameType, setGameType] = useState<{ type: string; subType: string }>({
     type: 'allgames',
     subType: '',
-  })
-  const gameLimits = useRef(0)
-  const totalGames = useRef(0)
+  });
+  const gameLimits = useRef(0);
+  const totalGames = useRef(0);
 
   const fetchGame = () => {
-    setLoading(true)
+    setLoading(true);
     const params = {
       search: searchQuery.trim(),
       type: gameType.type,
@@ -55,47 +53,37 @@ function Home({
       subType: gameType.subType,
       skip: '',
       limit: '',
-    }
+    };
 
     PostMethod(`game`, params)
       .then((res: any) => {
-        totalGames.current = res.data.result.totalGame
-        const games: any = res.data.result.allGames
+        totalGames.current = res.data.result.totalGame;
+        const games: any = res.data.result.allGames;
 
         if (searchQuery && searchQuery.length > 0) {
-          setSearchedGame(Object.entries(games))
-          setGamePost([])
+          setSearchedGame(Object.entries(games));
+          setGamePost([]);
         } else if (gameType.type === 'allgames') {
-          setGamePost(Object.entries(games))
+          setGamePost(Object.entries(games));
         }
       })
       .catch((error) => {
-        logError(`Error fetching game data: ${error}`)
+        logError(`Error fetching game data: ${error}`);
       })
       .finally(() => {
-        setLoading(false)
-      })
-  }
+        setLoading(false);
+      });
+  };
 
-  const debounce = useDebounce(fetchGame, 150)
+  const debounce = useDebounce(fetchGame, 150);
 
   const handleGameLimit = (digit: number) => {
-    fetchGame()
-  }
+    fetchGame();
+  };
 
   useEffect(() => {
-    debounce()
-  }, [searchQuery, isMaintenance])
-
-  if (isMaintenance) {
-    return (
-      <div className="container-fluid">
-        <TopBanners />
-
-        <Maintenance />
-      </div>
-    )
-  }
+    debounce();
+  }, [searchQuery]);
 
   return (
     <div>
@@ -116,9 +104,7 @@ function Home({
 
         {/* =========== Types wise game mapping =============== */}
         {isLoading ? (
-          <div className="loader-animate-division">
-            <div className="loader"></div>
-          </div>
+          <Loader />
         ) : (
           <div className="row  p-md-3 pb-3 pt-md-2 px-0">
             <div className="col-12">
@@ -195,9 +181,9 @@ function Home({
 
       <PromotionBanner_Modal />
     </div>
-  )
+  );
 }
 
 export default dynamic(() => Promise.resolve(Home), {
   ssr: false,
-})
+});

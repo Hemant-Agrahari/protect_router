@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
-import { FormControl, Pagination } from '@mui/material'
-import DatePicker from 'react-datepicker'
-import { addDays } from 'date-fns'
-import { useAppSelector } from '@/redux/hooks'
-import { formatDate, logError, scrollToTop } from '@/utils'
-import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
-import { PostMethod } from '@/services/fetchAPI'
+import { useEffect, useState } from 'react';
+import { FormControl } from '@mui/material';
+import { addDays } from 'date-fns';
+import { useAppSelector } from '@/redux/hooks';
+import { formatDate, logError, scrollToTop } from '@/utils';
+import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
+import { PostMethod } from '@/services/fetchAPI';
+import Loader from '@/component/common/mui-component/Loader';
+import CustomMuiPagination from '@/component/common/mui-component/CustomMuiPagination';
+import { CustomButton } from '@/component/common';
+import CustomDatePicker from '@/component/common/mui-component/CustomDatePicker';
 
 const DepositTab = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -87,29 +90,26 @@ const DepositTab = () => {
     <div>
       <div className="bonus-date">
         <FormControl className="statistics-startEndDate">
-          <DatePicker
+          <CustomDatePicker
             selected={startDate}
             onChange={handleDate}
             startDate={startDate}
             endDate={endDate}
-            selectsRange
             maxDate={new Date()}
-            placeholderText={t('Start - End Date')}
+            placeholderText={t('"Start - End Date"')}
           />
         </FormControl>
-        <button className="search-btn" onClick={handleSearch}>
+        <CustomButton className="search-btn" onClick={handleSearch}>
           {t('Search')}
-        </button>
+        </CustomButton>
       </div>
-      <div className="depositTable" style={{ overflowX: 'auto' }}>
+      <div className="depositTable over-flow-x-auto">
         {isLoading ? (
-          <div className="loader-animate-division">
-            <div className="loader"></div>
-          </div>
+          <Loader />
         ) : (
           <table className="table table-border">
             <thead>
-              <tr style={{ color: '#A0ABDB' }}>
+              <tr className="table-tr">
                 <th scope="col">{t('Transaction Id')}</th>
                 <th scope="col">{t('Date')}</th>
                 <th scope="col">{t('Deposit Amount')}</th>
@@ -119,7 +119,7 @@ const DepositTab = () => {
             <tbody>
               {depositReport?.data && depositReport?.data?.length > 0 ? (
                 depositReport?.data.map((user: any) => (
-                  <tr key={user.transactionId} style={{ color: '#fff' }}>
+                  <tr key={user.transactionId} className="text-white">
                     <td>{user.transactionId ? user?.transactionId : '--'}</td>
                     <td>{`${dayjs(user?.createdAt).format('LLL')}`}</td>
                     <td>{user?.depositAmmount}</td>
@@ -137,21 +137,19 @@ const DepositTab = () => {
           </table>
         )}
       </div>
-      {/* ======= Pagination buttons for Wallet History ===== */}
-      <div className="depositPagination">
-        <Pagination
-          className="pagination-text"
-          page={pageSkip / 10 + 1}
-          count={Math.ceil(
-            Number(depositReport?.totalCount || 1) / Number(pageLimit),
-          )}
-          onChange={(e, v: number) => {
-            setPageSkip((v - 1) * pageLimit)
-          }}
-          variant="outlined"
-          shape="rounded"
-        />
-      </div>
+      {depositReport?.totalCount && depositReport?.totalCount > 0 && (
+        <div className="depositPagination">
+          <CustomMuiPagination
+            className="pagination-text"
+            pageSkip={pageSkip}
+            totalCount={depositReport?.totalCount}
+            pageLimit={pageLimit}
+            onChange={(e, v: number) => {
+              setPageSkip((v - 1) * pageLimit)
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }

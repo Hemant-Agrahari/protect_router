@@ -1,0 +1,37 @@
+/* CustomOutlinedInput.css */
+.custom-outlined-input {
+    background: var(--gray-600, --gray-500);
+    border-radius: 8px;
+  }
+  
+  .custom-outlined-input .MuiOutlinedInput-input {
+    color: var(--white);
+    border: none;
+    background: transparent;
+  }
+  
+  .custom-outlined-input .MuiInputBase-input::placeholder {
+    color: var(--white);
+    opacity: 1;
+  }
+  
+  .custom-outlined-input .MuiOutlinedInput-root fieldset {
+    border-color: transparent;
+  }
+  
+  .custom-outlined-input .MuiOutlinedInput-root:hover fieldset {
+    border-color: transparent;
+  }
+  
+  .custom-outlined-input .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: transparent;
+  }
+  
+  .custom-outlined-input .MuiInputLabel-root {
+    color: var(--white);
+  }
+  
+  .custom-outlined-input .MuiInputAdornment-root {
+    color: var(--white);
+  }
+  

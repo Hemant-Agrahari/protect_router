@@ -5,7 +5,7 @@
   max-width: 100%;
   margin: 75px auto 30px;
   justify-content: center;
-  background: var(--gray-600, #420c29);
+  background: var(--gray-600, --burgundy-red);
   border-radius: 10px;
 }
 
@@ -16,7 +16,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #b5b5b5;
+  color: var(--gray-100);
   padding: 20px 10px;
   min-height: initial;
   text-transform: capitalize;
@@ -26,25 +26,23 @@
 
 .referalPage-tab .MuiTabs-root .MuiButtonBase-root.toInvite {
   background-image: url(../../public/assets/images/toInvite.png);
-  background-position: 60px center;
+  background-position: 36px center !important;
 }
 
 .referalPage-tab .MuiTabs-root .MuiButtonBase-root.forms {
   background-image: url(../../public/assets/images/forms.png);
-  background-position: 68px center;
+  background-position: 26px center;
 }
 
 .referalPage-tab .MuiTabs-root .MuiButtonBase-root.statistics {
   background-image: url(../../public/assets/images/statistics.png);
-  background-position: 56px center;
+  background-position: 26px center;
 }
 
 .referalPage-tab .MuiTabs-root .MuiButtonBase-root.Mui-selected {
-  color: #fff;
-}
-
-.referalPage-tab .MuiTabs-root .MuiButtonBase-root.toInvite.Mui-selected {
   background-image: url(../../public/assets/images/toInvite-h.png);
+  color: var(--white);
+  background-position: 26px !important;
 }
 
 .referalPage-tab .MuiTabs-root .MuiButtonBase-root.forms.Mui-selected {
@@ -58,7 +56,7 @@
 .referalPage-tab .MuiTabs-root .MuiTabs-indicator {
   height: 100%;
   width: 100%;
-  background-color: var(--gray-500, #a2246b);
+  background-color: var(--gray-500, --deep-pink);
   border-radius: 10px;
 }
 
@@ -73,8 +71,8 @@
 
 .partner-revenue .partner {
   width: 40%;
-  background: #420c29;
-  background: var(--gray-800, #420c29);
+  background: var(--burgundy-red);
+  background: var(--gray-800, --burgundy-red);
   border-radius: 8px;
   padding: 10px 20px;
 }
@@ -96,13 +94,13 @@
   font-weight: 800;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 10px;
   display: block;
 }
 
 .partner-revenue .partner .invite-copy .formgroup .MuiInputBase-root {
-  background-color: var(--gray-600, #31001b);
+  background-color: var(--gray-600, --burgundy-dark);
   border-radius: 10px;
   width: 100%;
 }
@@ -117,7 +115,7 @@
   font-weight: 600;
   font-size: 13px;
   line-height: 10px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .partner-revenue
@@ -126,7 +124,7 @@
   .formgroup
   .MuiInputBase-root
   .MuiButtonBase-root {
-  background: var(--gray-500, #5c2242);
+  background: var(--gray-500, --crimson-1);
   border-radius: 0px 10px 10px 0px;
   width: 37px;
   padding: 6px 10px;
@@ -149,18 +147,18 @@
   .formgroup
   .MuiInputBase-root
   .MuiButtonBase-root:hover {
-  background-color: #dd566e;
+  background-color: var(--pink-coral);
 }
 
 .partner-revenue .revenue {
   width: 60%;
-  background: var(--gray-600, #420c29);
+  background: var(--gray-600, --burgundy-red);
   border-radius: 10px;
   margin-left: 3%;
 }
 
 .partner-revenue .revenue-row {
-  background: var(--gray-800, #5c2242);
+  background: var(--gray-800, --crimson-1);
   border-radius: 10px 10px 0px 0px;
   display: flex;
   align-items: center;
@@ -177,7 +175,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: var(--white);
   display: block;
   margin-bottom: 5px;
 }
@@ -186,7 +184,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #b5b5b5;
+  color: var(--gray-100);
   display: block;
 }
 
@@ -195,19 +193,19 @@
 }
 
 .toInviteTab.partner-revenue .partner .revenue-row .revenue-col label {
-  color: #fff;
+  color: var(--white);
 }
 
 .toInviteTab.partner-revenue .partner .revenue-row .revenue-col .value {
-  color: #b5b5b5;
+  color: var(--gray-100);
 }
 
 .partner-revenue .revenue .revenue-targets {
   margin: 20px 35px 35px;
   background: linear-gradient(
     109.85deg,
-    var(--gray-600, #581d3f) 13.26%,
-    var(--gray-800, #9c2165) 88.12%
+    var(--gray-600, --crimson-red-1) 13.26%,
+    var(--gray-800, --hot-pink) 88.12%
   );
   border-radius: 10px;
   padding: 12px 15px;
@@ -220,7 +218,7 @@
   font-weight: 800;
   font-size: 20px;
   line-height: 24px;
-  color: #ffd569;
+  color: var(--golden-yellow);
   width: 200px;
 }
 
@@ -235,7 +233,7 @@
   line-height: 27px;
   display: flex;
   align-items: center;
-  color: #ffd569;
+  color: var(--golden-yellow);
   margin-bottom: 10px;
 }
 
@@ -248,14 +246,14 @@
 
 .partner-revenue .revenue .revenue-targets .goal .goal-title .MuiSvgIcon-root {
   font-size: 18px;
-  color: #fff;
+  color: var(--white);
 }
 
 .partner-revenue .revenue .revenue-targets .goal .goalText {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
+  color: var(--white);
   max-width: 230px;
 }
 
@@ -267,15 +265,15 @@
 
 @media screen and (max-width: 767.98px) {
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.toInvite {
-    background-position: 36px center;
+    background-position: 36px center !important;
   }
 
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.forms {
-    background-position: 45px center;
+    background-position: 32px center;
   }
 
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.statistics {
-    background-position: 34px center;
+    background-position: 26px center;
   }
 
   .partner-revenue {
@@ -403,6 +401,14 @@
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.statistics {
     background-position: 17px center;
   }
+
+  .referalPage-tab .MuiTabs-root .MuiButtonBase-root.statistics.Mui-selected {
+    background-position: 12px !important;
+  }
+
+  .referalPage-tab .MuiTabs-root .MuiButtonBase-root.forms.Mui-selected {
+    background-position: 17px !important;
+  }
 }
 
 @media screen and (max-width: 575px) {
@@ -418,15 +424,15 @@
   }
 
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.toInvite {
-    background-position: 16px center;
+    background-position: 16px center !important;
   }
 
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.forms {
-    background-position: 24px center;
+    background-position: 18px center;
   }
 
   .referalPage-tab .MuiTabs-root .MuiButtonBase-root.statistics {
-    background-position: 15px center;
+    background-position: 12px center;
   }
 
   .partner-revenue .revenue-row .revenue-col {
@@ -439,12 +445,23 @@
 
   .partner-revenue .revenue .revenue-targets img {
     margin: -50px 0 0;
-    max-width: 110px;
+    width: 55px;
+    max-width: 84px;
+    margin-bottom: -13px;
   }
 
   .partner-revenue .revenue .revenue-targets .rt-title {
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 9px;
+  }
+}
+
+
+@media screen and (max-width:480px) {
+  .partner-revenue .revenue .revenue-targets img {
+    width: 30px;
+    max-width: 55px;
+    margin-bottom: -20px;
   }
 }

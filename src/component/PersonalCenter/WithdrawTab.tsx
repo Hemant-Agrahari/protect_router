@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
-import { FormControl, Pagination } from '@mui/material'
-import DatePicker from 'react-datepicker'
-import { addDays } from 'date-fns'
-import { useAppSelector } from '@/redux/hooks'
-import { formatDate, logError, scrollToTop } from '@/utils'
-import dayjs from 'dayjs'
-import { useTranslation } from 'react-i18next'
-import { PostMethod } from '@/services/fetchAPI'
+import { useState, useEffect } from 'react';
+import { FormControl } from '@mui/material';
+import { addDays } from 'date-fns';
+import { useAppSelector } from '@/redux/hooks';
+import { formatDate, logError, scrollToTop } from '@/utils';
+import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
+import { PostMethod } from '@/services/fetchAPI';
+import Loader from '@/component/common/mui-component/Loader';
+import CustomMuiPagination from '@/component/common/mui-component/CustomMuiPagination';
+import { CustomButton } from '@/component/common';
+import CustomDatePicker from '@/component/common/mui-component/CustomDatePicker';
 
 const WithdrawTab = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -18,7 +21,7 @@ const WithdrawTab = () => {
   const [pageSkip, setPageSkip] = useState(0)
   const pageLimit = 10
 
-  const handleChange = (range: [Date, Date]) => {
+  const handleDate = (range: [Date, Date]) => {
     const [startDate, endDate] = range
     setStartDate(startDate)
     setEndDate(endDate)
@@ -52,7 +55,6 @@ const WithdrawTab = () => {
       if (response.data.status !== 'success') {
         throw new Error(response.data.message || t('Something went wrong'))
       }
-      //
       if (response.data.result && Array.isArray(response.data.result.data)) {
         setWalletHistory(response.data.result)
       } else {
@@ -61,7 +63,6 @@ const WithdrawTab = () => {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        // toast.error(error.message)
         logError(error)
       }
     } finally {
@@ -85,29 +86,26 @@ const WithdrawTab = () => {
     <div>
       <div className="bonus-date">
         <FormControl className="statistics-startEndDate">
-          <DatePicker
+          <CustomDatePicker
             selected={startDate}
-            onChange={handleChange}
+            onChange={handleDate}
             startDate={startDate}
             endDate={endDate}
-            selectsRange
             maxDate={new Date()}
             placeholderText={t('"Start - End Date"')}
           />
         </FormControl>
-        <button className="search-btn" onClick={handleSearch}>
+        <CustomButton className="search-btn" onClick={handleSearch}>
           {t('Search')}
-        </button>
+        </CustomButton>
       </div>
-      <div className="depositTable" style={{ overflowX: 'auto' }}>
+      <div className="depositTable deposit-table-content">
         {isLoading ? (
-          <div className="loader-animate-division">
-            <div className="loader"></div>
-          </div>
+          <Loader />
         ) : (
           <table className="table table-border">
             <thead>
-              <tr style={{ color: '#A0ABDB' }}>
+              <tr className="table-tr">
                 <th scope="col">{t('Transaction Id')}</th>
                 <th scope="col">{t('Date')}</th>
                 <th scope="col">{t('Withdrawal Value')}</th>
@@ -117,14 +115,11 @@ const WithdrawTab = () => {
             <tbody>
               {walletHistory?.data && walletHistory?.data?.length > 0 ? (
                 walletHistory?.data?.map((user: any) => (
-                  <tr key={user.transactionId} style={{ color: '#fff' }}>
+                  <tr key={user.transactionId} className="text-white">
                     <td>{user.transactionId ? user?.transactionId : '--'}</td>
                     <td>{`${dayjs(user?.createdAt).format('LLL')}`}</td>
 
                     <td>{user.withdrawValue}</td>
-                    {/* <td>{user.withdrawFee}</td>
-                  <td>{user.finalValue}</td>
-                  <td>Comments</td> */}
                     <td>{user.status}</td>
                   </tr>
                 ))
@@ -139,22 +134,19 @@ const WithdrawTab = () => {
           </table>
         )}
       </div>
-      {/* ======= Pagination buttons for Wallet History ===== */}
-
-      <div className="depositPagination">
-        <Pagination
-          className="pagination-text"
-          page={pageSkip / 10 + 1}
-          count={Math.ceil(
-            Number(walletHistory?.count || 1) / Number(pageLimit),
-          )}
-          onChange={(e, v: number) => {
-            setPageSkip((v - 1) * pageLimit)
-          }}
-          variant="outlined"
-          shape="rounded"
-        />
-      </div>
+      {walletHistory?.totalCount && walletHistory?.totalCount > 0 && (
+        <div className="depositPagination">
+          <CustomMuiPagination
+            className="pagination-text"
+            pageSkip={pageSkip}
+            totalCount={walletHistory?.totalCount}
+            pageLimit={pageLimit}
+            onChange={(e, v: number) => {
+              setPageSkip((v - 1) * pageLimit)
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }

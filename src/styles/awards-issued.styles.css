@@ -6,7 +6,7 @@
   font-weight: 800;
   font-size: 24px;
   line-height: 29px;
-  color: #ffc635;
+  color: var(--yellow-vivid);
   text-align: center;
   margin-bottom: 20px;
   display: flex;
@@ -23,7 +23,7 @@
 
 .referalPageSection-title .MuiSvgIcon-root {
   font-size: 23px;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
   padding: 0;
 }
@@ -34,7 +34,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-  color: #fff;
+  color: var(--white);
   text-align: center;
   margin-bottom: 25px;
 }
@@ -47,7 +47,7 @@
 .awardsIssued-row .awardsIssued-col {
   display: flex;
   align-items: center;
-  background-color: var(--gray-800, #420c29);
+  background-color: var(--gray-800, --burgundy-red);
   border-radius: 10px;
   padding: 27px 5px;
   margin-left: 25px;
@@ -70,7 +70,7 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 7px;
 }
 
@@ -78,7 +78,7 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  color: #ffd569;
+  color: var(--golden-yellow);
   margin-bottom: 3px;
 }
 
@@ -86,7 +86,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 @media screen and (max-width: 1199.98px) {

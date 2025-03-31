@@ -1,94 +1,87 @@
-import { useState } from 'react'
-import {
-  IconButton,
-  Box,
-  Tab,
-  Tabs,
-  Typography,
-  InputAdornment,
-  Dialog,
-} from '@mui/material'
-import { VisibilityOff, Visibility, Email, Https } from '@mui/icons-material'
-import CloseIcon from '@mui/icons-material/Close'
-import { useAppDispatch } from '@/redux/hooks'
-import { useFormik } from 'formik'
-import * as yup from 'yup'
-import SignIn from './authForms/Signin'
-import { toast } from 'react-toastify'
-import { setUser } from '@/redux/user/userReducer'
-import { useRouter } from 'next/router'
-import { Button, CustomOutlinedInput } from './common'
-import ForgetPasswordPopup from './ForgotPassword'
-import { useMutateData } from '@/services'
-import { Dispatch, SetStateAction } from 'react'
-import { logError } from '@/utils'
-import { useTranslation } from 'react-i18next'
+import { useState } from 'react';
+import { IconButton, Box, InputAdornment, Dialog } from '@mui/material';
+import { VisibilityOff, Visibility, Email, Https } from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
+import { useAppDispatch } from '@/redux/hooks';
+import { useFormik } from 'formik';
+import SignIn from './authForms/Signin';
+import { toast } from 'react-toastify';
+import { setUser } from '@/redux/user/userReducer';
+import { useRouter } from 'next/router';
+import { CustomButton, CustomMuiOutlinedInput } from '@/component/common';
+import ForgetPasswordPopup from './ForgotPassword';
+import { useMutateData } from '@/services';
+import { Dispatch, SetStateAction } from 'react';
+import { logError } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import FormErrorMessage from '@/component/common/FormErrorMessage';
+import { withZodSchema } from 'formik-validator-zod';
+import { z } from 'zod';
+import { validationMsg } from '@/utils/validationMsg';
+import CustomMuiTab from './common/mui-component/CustomMuiTab';
+import CustomMuiTypography from './common/mui-component/CustomMuiTypography';
 
 type LoginProps = {
-  handleCloseLoginModal: (redirection?: boolean) => void
-  setOpenLoginModal: Dispatch<SetStateAction<boolean>>
-  tabIndex: number // Assuming tabIndex is of type number
-  setTabIndex: Dispatch<SetStateAction<number>> // Assuming setTabIndex is a function to set a number state
-}
+  handleCloseLoginModal: (redirection?: boolean) => void;
+  setOpenLoginModal: Dispatch<SetStateAction<boolean>>;
+  tabIndex: number;
+  setTabIndex: Dispatch<SetStateAction<number>>;
+};
 
 const Login: React.FC<LoginProps> = ({
   handleCloseLoginModal,
   tabIndex,
   setTabIndex,
 }: {
-  handleCloseLoginModal: (redirection?: boolean) => void
-  tabIndex: number
-  setTabIndex: (index: number) => void
-  setOpenLoginModal: Dispatch<SetStateAction<boolean>>
+  handleCloseLoginModal: (redirection?: boolean) => void;
+  tabIndex: number;
+  setTabIndex: (index: number) => void;
+  setOpenLoginModal: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const router = useRouter()
-  const dispatch = useAppDispatch()
-  const { mutateData, isMutating } = useMutateData()
-  const { t } = useTranslation()
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { mutateData, isMutating } = useMutateData();
+  const { t } = useTranslation();
   const handleTabChange = (event: any, newTabIndex: any) => {
-    setTabIndex(newTabIndex)
-  }
-  const [openForgetPasswordModal, setOpenForgetPasswordModal] = useState(false)
-  const handleCloseForgetPassword = () => setOpenForgetPasswordModal(false)
+    setTabIndex(newTabIndex);
+  };
+  const [openForgetPasswordModal, setOpenForgetPasswordModal] = useState(false);
+  const handleCloseForgetPassword = () => setOpenForgetPasswordModal(false);
 
   const handleForgetPassword = () => {
-    setOpenForgetPasswordModal(true)
-  }
+    setOpenForgetPasswordModal(true);
+  };
 
-  // ============ Password Function =======
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show)
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: any) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
-  const validationSchema = yup.object({
-    email: yup
+  const validationSchema = z.object({
+    email: z
       .string()
-      .required(`${t('Please Enter Your E-mail')}`)
-      .matches(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-        `${t('This is not a valid email format!')}`,
-      ),
-    password: yup
-      .string()
-      .required(`${t('Please enter a password')}`)
-      .min(6, `${t('Password is too short - should be 6 chars minimum')}`),
-  })
+      .email(`${t(validationMsg.email.invalidEmail)}`)
+      .nonempty(t(validationMsg.email.require)),
+    password: z.string().nonempty(t(validationMsg.password.require)),
+  });
 
-  const formik = useFormik({
+  type ValidationSchemaType = z.infer<typeof validationSchema>;
+
+  const formik = useFormik<ValidationSchemaType>({
     initialValues: {
       email: '',
       password: '',
     },
-    validationSchema: validationSchema,
+
+    validate: withZodSchema(validationSchema),
     onSubmit: async (values) => {
       const obj = {
         email: values.email,
         password: values.password,
-      }
+      };
       mutateData('signIn', {
         body: {
           ...obj,
@@ -96,44 +89,51 @@ const Login: React.FC<LoginProps> = ({
       })
         .then((res) => {
           if (res.data.result === null) {
-            toast.error(res.data.message)
-            return
+            toast.error(res.data.message);
+            return;
           }
-          dispatch(setUser(res.data?.[0]))
-          toast.success(res?.message)
-          handleCloseLoginModal(true)
-          formik.resetForm()
+          dispatch(setUser(res.data?.[0]));
+          toast.success(res?.message);
+
+          if (router.pathname === '/') {
+            router.replace('/');
+          }
+          handleCloseLoginModal(true);
+          formik.resetForm();
         })
         .catch((err) => {
-          logError(err)
-        })
+          logError(err);
+        });
     },
-  })
+  });
 
   return (
     <div
-      className="modal-content"
-      style={{ display: openForgetPasswordModal ? 'none' : '' }}
+      className={`modal-content ${openForgetPasswordModal ? 'd-none' : ''} `}
     >
       <div className="modal_closebtn">
-        <button
+        <CustomButton
           type="button"
           className="close_form_btn"
           data-bs-dismiss="modal"
           aria-label="Close"
         >
           <CloseIcon
+            className="text-white"
             onClick={() => handleCloseLoginModal()}
-            style={{ color: '#fff' }}
           />
-        </button>
+        </CustomButton>
       </div>
       <div className="modal-body">
         <Box className="TabLogin_Signup">
-          <Tabs value={tabIndex} onChange={handleTabChange}>
-            <Tab label={t('Log in')} disableRipple={true} />
-            <Tab label={t('Sign up')} disableRipple={true} />
-          </Tabs>
+          <CustomMuiTab
+            tabClassName="login-tab"
+            tabsClassName="login-tabs"
+            value={tabIndex}
+            onChange={handleTabChange}
+            tabLabels={[t('Log in'), t('Sign up')]}
+            disableRipple={true}
+          />
         </Box>
         <Box>
           {tabIndex === 0 && (
@@ -143,31 +143,30 @@ const Login: React.FC<LoginProps> = ({
             >
               <div className="mb-2">
                 <Box>
-                  <CustomOutlinedInput
+                  <CustomMuiOutlinedInput
                     placeholder={t('E-mail')}
                     startAdornment={
                       <InputAdornment position="start">
-                        <Email sx={{ color: '#fff' }} />
+                        <Email className="text-white" />
                       </InputAdornment>
                     }
                     fullWidth
                     {...formik.getFieldProps('email')}
                   />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="text-danger mt-2 mx-2 fw-bold ">
-                      {formik.errors.email}
-                    </div>
-                  ) : null}
+                  <FormErrorMessage
+                    error={formik.errors.email}
+                    touched={formik.touched.email}
+                  />
                 </Box>
                 <Box>
-                  <CustomOutlinedInput
+                  <CustomMuiOutlinedInput
                     className="mt-4"
                     id="outlined-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder={t('Password')}
                     startAdornment={
                       <InputAdornment position="start">
-                        <Https sx={{ color: '#fff' }} />
+                        <Https className="text-white" />
                       </InputAdornment>
                     }
                     endAdornment={
@@ -177,12 +176,11 @@ const Login: React.FC<LoginProps> = ({
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}
                           edge="end"
-                          sx={{ color: 'gray' }}
                         >
                           {showPassword ? (
-                            <VisibilityOff sx={{ color: '#fff' }} />
+                            <VisibilityOff className="text-white" />
                           ) : (
-                            <Visibility sx={{ color: '#fff' }} />
+                            <Visibility className="text-white" />
                           )}
                         </IconButton>
                       </InputAdornment>
@@ -190,56 +188,39 @@ const Login: React.FC<LoginProps> = ({
                     fullWidth
                     {...formik.getFieldProps('password')}
                   />
-                  {formik.touched.password && formik.errors.password ? (
-                    <div className="text-danger mt-2 mx-2 fw-bold ">
-                      {formik.errors.password}
-                    </div>
-                  ) : null}
+                  <FormErrorMessage
+                    error={formik.errors.password}
+                    touched={formik.touched.password}
+                  />
                 </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    alignItems: 'flex-end',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontWeight: '600',
-                      mt: 2,
-                      color: '#B5B5B5',
-                      cursor: 'pointer',
-                    }}
+                <Box className="d-flex align-items-center justify-content-end">
+                  <CustomMuiTypography
+                    title={`${t('Forgot Password')}?`}
+                    className="font-weight-600 mt-3 cursor-pointer login-forgot-text"
                     onClick={() => {
-                      handleForgetPassword()
+                      handleForgetPassword();
                     }}
-                  >
-                    {t('Forgot Password')}?
-                  </Typography>
+                  />
                 </Box>
-                <Button
+                <CustomButton
                   type="submit"
                   className="modal-btn-losign mt-3"
                   isLoading={isMutating}
                 >
                   {t('Log in')}
-                </Button>
+                </CustomButton>
                 <h6 className="mt-3">
-                  <span className="f-16" style={{ color: '#BEBEBE' }}>
+                  <span className="f-16 login-age-verify-text">
                     {t(
                       'To visit this site, please ensure that you are over 18 and agree to the',
                     )}
                     &nbsp;
                   </span>
                   <span
-                    className="f-15"
-                    style={{
-                      color: '#fff',
-                      cursor: 'pointer',
-                    }}
+                    className="f-15 text-white cursor-pointer"
                     onClick={() => {
-                      handleCloseLoginModal()
-                      router.push('/privacy-policy?tab=0')
+                      handleCloseLoginModal();
+                      router.push('/privacy-policy?tab=0');
                     }}
                   >
                     <u>{t('Terms & Conditions')}</u>
@@ -265,6 +246,6 @@ const Login: React.FC<LoginProps> = ({
         </Dialog>
       </div>
     </div>
-  )
-}
-export default Login
+  );
+};
+export default Login;

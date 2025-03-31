@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Dialog } from '@mui/material'
-import Login from '../Login'
-import { useAppSelector } from '@/redux/hooks'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { logError, processGames } from '@/utils'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from 'react';
+import { Dialog } from '@mui/material';
+import Login from '../Login';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/router';
+import { logError, processGames } from '@/utils';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '@/component/common/CustomImage';
 
 const HomePageGamesAllGames = ({ provider, games }: any) => {
   const base_url = process.env.NEXT_PUBLIC_IMAGE_URL
@@ -71,8 +71,7 @@ const HomePageGamesAllGames = ({ provider, games }: any) => {
     <div className="py-3">
       <div className="d-flex flex-row tab-title">
         <h4
-          className="text-capitalize"
-          style={{ color: '#fff', fontWeight: '700' }}
+            className="text-capitalize text-white font-weight-700"
         >
           {t(provider)}
         </h4>
@@ -87,7 +86,7 @@ const HomePageGamesAllGames = ({ provider, games }: any) => {
                   onClick={(event) => handleGameInit(event, item)}
                 >
                   <div className="gameImg">
-                    <Image
+                    <CustomImage
                       src={
                         item?.customImage
                           ? `${base_url}${item.customImage}`

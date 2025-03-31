@@ -1,16 +1,16 @@
-import { useAppSelector } from '@/redux/hooks'
-import LevelDataType from '@/types/levelData'
-import Image from 'next/image'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '@/redux/hooks';
+import LevelDataType from '@/types/levelData';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 interface LevelBadgeProps {
-  level: number
-  item: LevelDataType
+  level: number;
+  item: LevelDataType;
 }
 const LevelBadge: React.FC<LevelBadgeProps> = ({ level, item }) => {
-  const user = useAppSelector((state) => state.user.user)
-  const { t } = useTranslation()
+  const user = useAppSelector((state) => state.user.user);
+  const { t } = useTranslation();
   const lvTextBackgroundColors: string[] = [
     '#37088D',
     '#750059',
@@ -23,107 +23,116 @@ const LevelBadge: React.FC<LevelBadgeProps> = ({ level, item }) => {
     '#073463',
     '#4A0A68',
     'green',
-  ]
+  ];
 
   const getBadgeStyle = (level: number): React.CSSProperties => {
-    let badgeStyle: React.CSSProperties = {}
+    let badgeStyle: React.CSSProperties = {};
 
     switch (level) {
       case 0:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #5F66FD, #0C1AFE)',
-          border: '1px solid #3E77E5',
+          background:
+            'linear-gradient(135deg, var(--soft-blue), var(--blue-royal-2))',
+          border: '1px solid var(--blue-royal-1)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 1:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #5F66FD, #0C1AFE)',
-          border: '1px solid #3E77E5',
+          background:
+            'linear-gradient(135deg, var(--soft-blue), var(--blue-royal-2))',
+          border: '1px solid var(--blue-royal-1)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 2:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #EC5AA2, #600D69)',
-          border: '1px solid #3E77E5',
+          background:
+            'linear-gradient(135deg, var(--hot-pin), var(--dark-orchid))',
+          border: '1px solid var(--blue-royal-1)',
           borderRadius: '6px',
-        }
+        };
       case 3:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #EF8335, #6F2108)',
-          border: '1px solid #F49A59',
+          background:
+            'linear-gradient(135deg, var(--golden-yellow), var(--burgundy))',
+          border: '1px solid var(--golden-yellow)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 4:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #6535EF, #6D086F)',
-          border: '1px solid #8155EF',
+          background:
+            'linear-gradient(135deg, var(--bold-purple), var(--purple-heart))',
+          border: '1px solid var(--light-purple)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 5:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #EF3535, #48086F)',
-          border: '1px solid #F96F73',
+          background:
+            'linear-gradient(135deg, var(--crimson-2), var(--purple-heart))',
+          border: '1px solid var(--deep-pink)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 6:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #35D9EF, #2F086F)',
-          border: '1px solid #4BDEF4',
+          background:
+            'linear-gradient(135deg, var(--sky-blue-3), var(--midnight-blue))',
+          border: '1px solid var(--sky-blue-3)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 7:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #E19236, #6D086F)',
-          border: '1px solid #F2A34F',
+          background:
+            'linear-gradient(135deg, var(--orange), var(--midnight-blue-1))',
+          border: '1px solid var(--orange)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 8:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #00B86B,#0B7B3F)',
-          border: '1px solid #7EE2B6',
+          background: 'linear-gradient(135deg,var(--green),var(--burgundy))',
+          border: '1px solid var(--periwinkle-1)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 9:
         badgeStyle = {
-          background: 'linear-gradient(135deg, #36AEE1, #082B6F)',
-          border: '1px solid #5AC7F8',
+          background:
+            'linear-gradient(135deg, var(--periwinkle-1), var(--midnight-blue))',
+          border: '1px solid var(--periwinkle-1)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       case 10:
         badgeStyle = {
-          background: 'linear-gradient(135deg,green, #48086F)',
-          border: '1px solid #E958ED',
+          background: 'linear-gradient(135deg,green, var(--midnight-blue-1))',
+          border: '1px solid var(--hot-pink-1)',
           borderRadius: '6px',
-        }
-        break
+        };
+        break;
       default:
         // Default styles
-        break
+        break;
     }
-    return badgeStyle
-  }
+    return badgeStyle;
+  };
 
   return (
     <div style={getBadgeStyle(level)}>
       {item?.level <= (user?.level ?? 0) ? (
-        <Image
-          src={'/assets/images/openBox.png'}
+        <CustomImage
+          src="/assets/images/openBox.png"
           alt={`${t('Level')} ${level}`}
           width={100}
           height={60}
         />
       ) : (
-        <Image
-          src={'/assets/images/closeBox.png'}
+        <CustomImage
+          src="/assets/images/closeBox.png"
           alt={`${t('Level')} ${level}`}
           width={100}
           height={60}
@@ -136,12 +145,12 @@ const LevelBadge: React.FC<LevelBadgeProps> = ({ level, item }) => {
           fontSize: '11px',
         }}
       >
-        <Image
-          src={'/assets/images/coin.png'}
+        <CustomImage
+          src="/assets/images/coin.png"
           alt={t('coin')}
           width={12}
           height={12}
-        />{' '}
+        />
         {item?.rewardAmount}
       </p>
       <div
@@ -151,14 +160,14 @@ const LevelBadge: React.FC<LevelBadgeProps> = ({ level, item }) => {
           fontSize: '10px',
           paddingTop: '4px',
           paddingBottom: '4px',
-          color: '#FFC635',
+          color: 'var(--yellow-vivid)',
           fontWeight: 'bold',
         }}
       >
         {t('Level')} {level}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LevelBadge
+export default LevelBadge;

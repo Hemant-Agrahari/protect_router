@@ -33,7 +33,7 @@
   font-size: clamp(14px, 6px + 0.7vw, 20px);
   margin-block: 0;
   font-weight: 600;
-  color: #fff;
+  color: var(--white);
   display: flex;
   align-items: center;
 }
@@ -61,14 +61,14 @@
   font-weight: 800;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .homeTab-content .homeTabContent-col .hover-col .pragmaticPlay {
   font-weight: 700;
   font-size: 10px;
   line-height: 10px;
-  color: #ffffff;
+  color: var(--white);
 }
 .homeTab-content .homeTabContent-col:hover .gameImg img,
 .homeTab-content .homeTabContent-col:focus .gameImg img {
@@ -107,7 +107,7 @@
   font-size: 16px;
   line-height: 20px;
   text-transform: capitalize;
-  color: #ffffff;
+  color: var(--white);
   padding-inline: 5px;
   padding-block: 7px;
   position: relative;
@@ -118,15 +118,19 @@
 }
 
 .tab-title {
-  border-left: 6px solid #4473e9;
-  background: linear-gradient(90deg, #000 0%, #23232300 100%);
+  border-left: 6px solid var(--blue-vivid);
+  background: linear-gradient(90deg, var(--black) 0%, var(--gray-700) 100%);
   padding: 12px 24px;
   width: 100%;
   max-width: 410px;
 }
 
 .tab-title h4 {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

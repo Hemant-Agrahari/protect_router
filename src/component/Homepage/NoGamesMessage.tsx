@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const NoGamesMessage: React.FC<Props> = ({
-  isShowHeading = false,
+  isShowHeading = true,
   gameName,
 }) => {
   const { t } = useTranslation()
@@ -20,8 +20,7 @@ export const NoGamesMessage: React.FC<Props> = ({
       {isShowHeading ? (
         <div className="d-flex flex-row tab-title">
           <h4
-            className="text-capitalize"
-            style={{ color: '#fff', fontWeight: '700' }}
+           className="text-capitalize text-white font-weight-700"
           >
             {gameName?.subType
               ? `${t(gameName.type)} / ${t(removeExtraSymbols(gameName.subType))}`
@@ -31,8 +30,7 @@ export const NoGamesMessage: React.FC<Props> = ({
       ) : null}
 
       <h3
-        className="d-flex justify-content-center my-5 "
-        style={{ color: '#fff' }}
+        className="d-flex justify-content-center my-5 text-white"
       >
         {t('No Games Found')}!
       </h3>

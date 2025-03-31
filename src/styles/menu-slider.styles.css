@@ -34,7 +34,7 @@
 }
 
 .Game_Section {
-  background: #5c2242;
+  background: var(--crimson-1);
   border-radius: 15px;
   border-radius: 0px;
   display: flex;
@@ -97,7 +97,7 @@
 
 .topheadermenu-slider .g_HignLight,
 .topmenu-slider .g_HignLight:before {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
   content: '';
   bottom: 0;
   left: 0;
@@ -107,18 +107,18 @@
   position: absolute;
 }
 .topmenu-slider .g_HignLight .title_template {
-  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .subcate-slider .g_HignLight::before {
-  border: 1px solid #4473e9;
+  border: 1px solid var(--blue-vivid);
   border: double 1px transparent;
   border-radius: 6px;
   display: inline-block;
-  background-image: linear-gradient(#171717, #171717),
-    radial-gradient(circle at top left, #7e43de, #4473e9);
+  background-image: linear-gradient(var(--gray-800), var(--gray-800)),
+    radial-gradient(circle at top left, var(--blue-violet), var(--blue-vivid));
   background-origin: border-box;
   padding: 0;
   background-clip: content-box, border-box;

@@ -1,6 +1,6 @@
 .StatisticsTab {
   padding: 25px 50px 45px;
-  background: var(--gray-800, #550b33);
+  background: var(--gray-800, --crimson-red-1);
   border-radius: 10px;
 }
 
@@ -20,7 +20,7 @@
 .bonus-date .MuiFormControl-root .MuiOutlinedInput-notchedOutline {
   border-color: transparent !important;
   border-radius: 10px;
-  color: #8a96ca;
+  color: var(--lavender-blue-3);
 }
 
 .bonus-date
@@ -31,15 +31,15 @@
 }
 
 .bonus-date .MuiFormControl-root .MuiSelect-select {
-  color: #fff;
+  color: var(--white);
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
-  background: #5c2242;
+  background: var(--crimson-1);
 }
 
 .bonus-date .MuiFormControl-root .MuiSvgIcon-root {
-  color: #fff;
+  color: var(--white);
 }
 
 .bonus-date .MuiFormControl-root.showRecord {
@@ -75,12 +75,12 @@
   input {
   width: 100%;
   border: transparent;
-  background-color: var(--gray-400, #5c2242);
+  background-color: var(--gray-400, --crimson-1);
   border-radius: 10px;
   padding: 18px 15px 18px 45px;
   font-weight: 600;
   font-size: 15px;
-  color: #fff;
+  color: var(--white);
 }
 
 .bonus-date
@@ -97,7 +97,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #fff;
+  color: var(--white);
 }
 
 .bonus-date
@@ -115,34 +115,42 @@
 
 .bonus-date .search-btn {
   margin-left: 15px;
-  background: var(--gray-600, #a2246b);
-  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--blue-vivid) 0%,
+    var(--blue-violet) 98.45%
+  );
+  border: 1px solid var(--blue) !important;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #ffffff;
-  border: 0;
+  color: var(--white);
   padding: 15px 25px;
 }
 
 .bonus-date .search-btn:hover {
-  background-color: var(--gray-400, #dd566e);
+  background-color: var(--gray-400, --pink-coral);
 }
 
 .depositTable table tr th td {
   white-space: nowrap;
-  color: #fff !important;
+  color: var(--white) !important;
   background: transparent !important;
 }
 
 .depositTable table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
-  color: white;
+  color: var(--white);
   background-color: transparent;
   font-size: 15px;
   font-weight: 500;
   box-shadow: inset 0 0 0 9999px
     var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+.deposit-table-content {
+  overflow-x: auto;
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -155,10 +163,44 @@
   .StatisticsTab {
     padding: 15px 15px 25px;
   }
+  .bonus-date {
+    flex-flow: wrap;
+  }
+
+  .bonus-date .MuiFormControl-root.showRecord {
+    order: 2;
+  }
+
+  .bonus-date .MuiFormControl-root.invitationBonus {
+    order: 3;
+    margin-left: 20px;
+    flex: auto;
+  }
+
+  .bonus-date .MuiFormControl-root.statistics-startEndDate {
+    order: 1;
+    flex: 100%;
+    margin-bottom: 20px;
+  }
+
+  .bonus-date .search-btn {
+    order: 4;
+    flex: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .bonus-date .MuiFormControl-root {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 575.98px) {
   .StatisticsTab table.table.table-border.mt-4 {
     min-width: 550px;
+  }
+  .bonus-date .MuiFormControl-root.invitationBonus {
+    margin-left: 6px;
+    width: 213px;
   }
 }

@@ -1,0 +1,169 @@
+.walletHistoryPage-tab .MuiTabs-root {
+    min-height: initial;
+    width: 720px;
+    max-width: 100%;
+    margin: 30px auto 30px;
+    justify-content: center;
+    background: var(--gray-600, --burgundy-dark);
+    border-radius: 10px;
+  }
+  
+  .walletHistoryPage-tab .MuiTabs-root .MuiButtonBase-root {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    flex: 1;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--gray-100);
+    padding: 20px 10px;
+    min-height: initial;
+    text-transform: capitalize;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .walletHistoryPage-tab .MuiTabs-root .MuiButtonBase-root.Mui-selected {
+    color: var(--white);
+  }
+  
+  .walletHistoryPage-tab .MuiTabs-root .MuiTabs-indicator {
+    height: 100%;
+    width: 100%;
+    background-color: var(--gray-500, --deep-pink);
+    border-radius: 10px;
+  }
+  
+  .walletHistoryPage-tab .MuiTabPanel-root {
+    padding: 0;
+  }
+
+  .walletHistoryPage-tab .MuiTabs-root {
+    border: 1px solid var(--gray-300);
+    background: var(--gray-600);
+    padding: 3px;
+  }
+
+  .walletHistoryPage-tab .MuiTabs-root .MuiTabs-indicator {
+    background: linear-gradient(90deg, var(--blue-vivid) 0%, var(--blue-violet) 98.45%);
+    border: 1px solid var(--blue) !important;
+    border-radius: 8px;
+  }
+
+
+
+  /* game history css */
+.custom-autocomplete .MuiAutocomplete-input {
+  color: var(--white); 
+  background-color: var(--gray-400);
+}
+
+.custom-autocomplete .MuiInputBase-input {
+  color: var(--white); 
+  opacity: 1;
+}
+
+.custom-autocomplete .MuiOutlinedInput-root {
+  background-color: var(--gray-400);
+}
+
+.custom-autocomplete .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--white);
+}
+
+.custom-autocomplete .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--white)
+}
+
+.custom-autocomplete .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--white)
+}
+
+.custom-autocomplete .MuiFormLabel-root {
+  color: var(--white)
+}
+
+.custom-autocomplete .MuiAutocomplete-paper {
+  background-color: var(--gray-400);
+}
+
+.custom-autocomplete .MuiAutocomplete-option {
+  color: var(--white);
+}
+
+.custom-autocomplete .MuiAutocomplete-option:hover {
+  background-color: var(--blue) !important;
+}
+
+/* withdraw-modal1 css */
+.withdraw-first #mui-component-select-currency,
+.withdraw-first svg {
+  color:var(--white) !important;
+}
+
+.fillInThe {
+  display: flex;
+  margin-top: 10px;
+  background-color: var(--gray-700,  --burgundy-red);
+  border-radius: 8px;
+}
+
+.fillInThe .MuiOutlinedInput-root {
+  display: flex;
+}
+
+.fillInThe .MuiOutlinedInput-root .MuiInputAdornment-root {
+  max-width: 60px;
+}
+
+.fillInThe .MuiOutlinedInput-root input {
+  flex: 1;
+  color: var(--white);
+}
+
+.fillInThe .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: 0;
+}
+
+
+.input-with-placeholder .MuiOutlinedInput-input::placeholder {
+  text-align: right;
+}
+
+.select-with-text-left .MuiSelect-select {
+  text-align: left;
+}
+
+.text-field-with-placeholder .MuiOutlinedInput-input::placeholder {
+  text-align: right;
+}
+
+
+/* wallet pop up css */
+.depoWithdro-tabContainer {
+  padding: 20px;
+  background-color: var(--gray-700,--crimson-1);
+}
+
+.depoWithdro-tabContainer .MuiOutlinedInput-root {
+  background-color: var(--gray-600,--burgundy-red);
+  border: 1px solid var(--gray-300, --burgundy-red);
+  border-radius: 8px;
+}
+
+.depoWithdro-tabContainer
+  .MuiOutlinedInput-root
+  .MuiOutlinedInput-notchedOutline {
+  border: 0;
+  border-radius: 10px;
+}
+
+.wallet-popup-containe-color {
+  background-color: var(--gray-700, --burgundy-dark) !important;
+}
+
+@media screen and (max-width: 480px) {
+  .depoWithdro-tabContainer {
+    padding: 10px;
+  }
+}

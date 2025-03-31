@@ -1,11 +1,11 @@
-import { LinearProgress } from '@mui/material'
-import { LevelBadge } from '.'
-import Image from 'next/image'
-import VIPImg from '../../../public/assets/images/levelVip.png'
-import { useAppSelector } from '@/redux/hooks'
-import { useFetch } from '@/services'
-import { levelPageData } from './VipSlider'
-import { useTranslation } from 'react-i18next'
+import { LinearProgress } from '@mui/material';
+import { LevelBadge } from '.';
+import VIPImg from '../../../public/assets/images/levelVip.png';
+import { useAppSelector } from '@/redux/hooks';
+import { useFetch } from '@/services';
+import { levelPageData } from './VipSlider';
+import { useTranslation } from 'react-i18next';
+import CustomImage from '../common/CustomImage';
 
 const VipBonus = () => {
   const user = useAppSelector((state) => state.user.user)
@@ -38,27 +38,20 @@ const VipBonus = () => {
   return (
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-4 mb-2">
-        <div
-          className="p-sm-3 p-2 py-4"
-          style={{
-            background: 'var(--gray-800, #420C29)',
-            textAlign: 'center',
-            borderRadius: '5px',
-          }}
-        >
+        <div className="p-sm-3 p-2 py-4 text-center vip-bounus-container">
           <h6>
             <span className="vip-heading-text">{t('YOUR VIP LEVEL IS')} </span>
             <span className="vip-heading-text-blue">
-              {' '}
               {t('LEVEL')} {user?.level}
             </span>
           </h6>
           <div className="userLevel mt-3">
             <div className="vipImg">
-              <Image
+              <CustomImage
                 src={VIPImg}
                 alt={`Vip ${t('image')}`}
-                style={{ maxWidth: '93px' }}
+                width={91}
+                height={113}
               />
             </div>
           </div>
@@ -69,8 +62,8 @@ const VipBonus = () => {
                   <div className="title-value">
                     <div className="title">{t('Deposit')}</div>
                     <div className="amount">
-                      <Image
-                        src={'/assets/images/coin.png'}
+                      <CustomImage
+                        src="/assets/images/coin.png"
                         alt={t('coin')}
                         width={14}
                         height={14}
@@ -78,12 +71,9 @@ const VipBonus = () => {
                       />
                       {user?.vipLevelDetails?.currenDeposit?.toFixed(2)}/
                       <span
-                        style={{
-                          color: '#FFC635',
-                        }}
                       >
-                        <Image
-                          src={'/assets/images/coin.png'}
+                        <CustomImage
+                          src='/assets/images/coin.png'
                           alt={t('coin')}
                           width={14}
                           height={14}
@@ -97,12 +87,7 @@ const VipBonus = () => {
                     <LinearProgress
                       variant="determinate"
                       value={result || 0}
-                      sx={{
-                        backgroundColor: '#000000 !important',
-                        '& .MuiLinearProgress-bar': {
-                          backgroundColor: '#FFC635 !important',
-                        },
-                      }}
+                      className='customLinearProgress'
                     />
                     <div className="progressValue"> {result}%</div>
                   </div>
@@ -111,8 +96,8 @@ const VipBonus = () => {
                   <div className="title-value">
                     <div className="title">{t('Bet Amount')}</div>
                     <div className="amount">
-                      <Image
-                        src={'/assets/images/coin.png'}
+                      <CustomImage
+                        src="/assets/images/coin.png"
                         alt={t('coin')}
                         width={14}
                         height={14}
@@ -120,12 +105,9 @@ const VipBonus = () => {
                       />
                       {user?.vipLevelDetails?.currentBet?.toFixed(2)}/
                       <span
-                        style={{
-                          color: '#9643FF',
-                        }}
                       >
-                        <Image
-                          src={'/assets/images/coin.png'}
+                        <CustomImage
+                          src="/assets/images/coin.png"
                           alt={t('coin')}
                           width={14}
                           height={14}
@@ -137,14 +119,9 @@ const VipBonus = () => {
                   </div>
                   <div className="process-score">
                     <LinearProgress
+                    className='bet-amount-linear-progress'
                       variant="determinate"
                       value={betResult || 0}
-                      sx={{
-                        backgroundColor: '#000000 !important',
-                        '& .MuiLinearProgress-bar': {
-                          backgroundColor: '#9643FF !important',
-                        },
-                      }}
                     />
                     <div className="progressValue">{betResult}%</div>
                   </div>
@@ -153,24 +130,16 @@ const VipBonus = () => {
             </div>
           </div>
           <h6 className="text-white pb-2 f-16">
-            {t('Upgrading to VIP')} {user?.level ? user?.level + 1 : 0 + 1}{' '}
+            {t('Upgrading to VIP')} {user?.level ? user?.level + 1 : 0 + 1}
             {t('also requires:')}
           </h6>
           <div className="row">
             <div className="col-6">
               <div className="ms-lg-3 upgrading-btn">
-                <div style={{ fontWeight: '600', color: '#fff' }}>
-                  {' '}
-                  {t('Bet')}
-                </div>
-                <div
-                  style={{
-                    fontWeight: '700',
-                    color: '#FFC635',
-                    marginTop: '1px',
-                  }}
+                <div className="font-weight-600 text-white">{t('Bet')}</div>
+                <div className='font-weight-700 yellow-vivid-color mt-1'
                 >
-                  ${' '}
+                  $
                   {user?.vipLevelDetails?.nextLevelBet
                     ? user?.vipLevelDetails?.nextLevelBet
                     : 0}
@@ -179,17 +148,11 @@ const VipBonus = () => {
             </div>
             <div className="col-6">
               <div className="me-md-3 upgrading-btn">
-                <div style={{ fontWeight: '600', color: '#fff' }}>
-                  {t('Deposit')}
-                </div>
+                <div className="font-weight-600 text-white">{t('Deposit')}</div>
                 <div
-                  style={{
-                    fontWeight: '700',
-                    color: '#FFC635',
-                    marginTop: '2px',
-                  }}
+                  className="font-weight-700 yellow-vivid-color mt-2"
                 >
-                  ${' '}
+                  $
                   {user?.vipLevelDetails?.nextLevelDeposit
                     ? user?.vipLevelDetails?.nextLevelDeposit
                     : 0}
@@ -203,20 +166,12 @@ const VipBonus = () => {
       <div className="col-12 col-sm-12 col-md-12 col-lg-8 mb-2 ">
         <div className="fullvip-main p-1">
           <div
-            className="p-sm-3 p-2"
-            style={{
-              background: 'var(--gray-800, #420C29)',
-              textAlign: 'center',
-              borderRadius: '5px',
-            }}
+            className="p-sm-3 p-2 text-center vip-bounus-container"
           >
-            <span
-              style={{ color: '#fff', fontWeight: '700', fontSize: '17px' }}
-            >
+            <span className="font-weight-700 text-white font-size-17">
               {t('Full VIP Bonus')}
             </span>
             <div className="d-none d-md-block ">
-              {' '}
               <div className="fullVipBonus-leval ">
                 {isLoading ? (
                   <h3>{t('Loading...')}</h3>
@@ -262,12 +217,7 @@ const VipBonus = () => {
                             ? (user.level / data.result.levelData.length) * 100
                             : 0
                         }
-                        sx={{
-                          backgroundColor: '#000000 !important',
-                          '& .MuiLinearProgress-bar': {
-                            backgroundColor: '#FFC635 !important',
-                          },
-                        }}
+                        className='linear-progress'
                       />
                     </div>
                   </div>
@@ -275,44 +225,23 @@ const VipBonus = () => {
               </div>
             </div>
             <div
-              className="f-15"
-              style={{
-                color: '#fff',
-                fontWeight: '400',
-                textAlign: 'left',
-                lineHeight: '20px',
-              }}
+              className="f-15 text-start text-white font-weight-400 lh-base"
             >
               {t('VIP level system')}
             </div>
             <div
-              className="row"
-              style={{
-                marginTop: '29px',
-              }}
+              className="row mt-4"
             >
               <div className="col-6">
                 <div
-                  className="ms-lg-3"
-                  style={{
-                    display: 'flex',
-                    padding: '8px',
-                    background: 'var(--gray-600, #a2246b)',
-                    flexDirection: 'column',
-                    borderRadius: '6px',
-                  }}
+                  className="ms-lg-3 d-flex flex-column vip-bonus-amount"
                 >
-                  <div
-                    style={{
-                      fontWeight: '700',
-                      color: '#fff',
-                      marginBottom: '3px',
-                    }}
+                  <div className='font-weight-700 text-white mb-1'
                   >
                     {t('Accumulated Bet Amount')}
                   </div>
-                  <div style={{ fontWeight: '700', color: '#FFC635' }}>
-                    ${' '}
+                  <div className="font-weight-700 yellow-vivid-color">
+                    $
                     {user?.vipLevelDetails?.currentBet
                       ? user?.vipLevelDetails?.currentBet.toFixed(2)
                       : 0}
@@ -321,26 +250,15 @@ const VipBonus = () => {
               </div>
               <div className="col-6">
                 <div
-                  className="me-md-3"
-                  style={{
-                    display: 'flex',
-                    padding: '8px',
-                    background: 'var(--gray-600, #a2246b)',
-                    flexDirection: 'column',
-                    borderRadius: '6px',
-                  }}
+                  className="me-md-3 d-flex flex-column vip-bonus-amount"
                 >
                   <div
-                    style={{
-                      fontWeight: '700',
-                      color: '#fff',
-                      marginBottom: '3px',
-                    }}
+                    className="font-weight-700 text-white mb-1"
                   >
                     {t('Accumulated Deposit Amount')}
                   </div>
-                  <div style={{ fontWeight: '700', color: '#FFC635' }}>
-                    ${' '}
+                  <div className="font-weight-700 yellow-vivid-color">
+                    $
                     {user?.vipLevelDetails?.currenDeposit
                       ? user?.vipLevelDetails?.currenDeposit.toFixed(2)
                       : 0}

@@ -2,7 +2,7 @@
   font-weight: 800;
   font-size: 24px;
   line-height: 29px;
-  color: #ffc635;
+  color: var(--yellow-vivid);
   text-align: center;
   margin-bottom: 20px;
   display: flex;
@@ -13,20 +13,8 @@
 .invitation-bonus .invitationBonus-col {
   background: linear-gradient(
     110.11deg,
-    var(--gray-2100, #4a184b) 13.46%,
-    var(--gray-2100, #86188f) 88.34%
-  );
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.invitation-bonus .invitationBonus-col {
-  background: linear-gradient(
-    110.11deg,
-    var(--gray-2100, #4a184b) 13.46%,
-    var(--gray-2100, #86188f) 88.34%
+    var(--deep-plum) 13.46%,
+    var(--purple-pink) 88.34%
   );
   border-radius: 10px;
   display: flex;
@@ -39,11 +27,14 @@
   max-width: 470px;
 }
 
-.invitation-bonus .invitationBonus-col .invitationBonus-content .title {
+.invitation-bonus
+  .invitationBonus-col
+  .invitationBonus-content
+  .invitationBonus-content-title {
   font-weight: 800;
   font-size: 24px;
   line-height: 29px;
-  color: #ffd569;
+  color: var(--golden-yellow);
   margin-bottom: 15px;
 }
 
@@ -51,7 +42,7 @@
   font-weight: 400;
   font-size: clamp(16px, 1.4vw, 18px);
   line-height: 22px;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .invitation-bonus .invitationBonus-col .invitationBonus-img {
@@ -63,7 +54,11 @@
 }
 
 .achievement-bonus {
-  background: linear-gradient(1.04deg, #2a0855 0.99%, #5c24a2 54.74%);
+  background: linear-gradient(
+    1.04deg,
+    var(--midnight-blue) 0.99%,
+    var(--midnight-blue-1) 54.74%
+  );
   border-radius: 10px;
   padding: 30px 65px;
   margin-top: 32px;
@@ -74,7 +69,7 @@
 }
 
 .achievement-bonus .cumulative-deposit .cd-col {
-  background-color: #c99eff;
+  background-color: var(--lilac);
   border-radius: 5px;
   margin-bottom: 10px;
   display: flex;
@@ -82,7 +77,7 @@
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .achievement-bonus .cumulative-deposit .cd-col .title {
@@ -102,8 +97,8 @@
 }
 
 .achievement-bonus .cumulative-deposit .colouredAchivement {
-  background-color: #fdf4b4;
-  color: #000;
+  background-color: var(--butter-yellow);
+  color: var(---black);
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -119,7 +114,10 @@
   .invitation-bonus .invitationBonus-col .invitationBonus-content {
     padding: 15px;
   }
-  .invitation-bonus .invitationBonus-col .invitationBonus-content .title {
+  .invitation-bonus
+    .invitationBonus-col
+    .invitationBonus-content
+    .invitationBonus-content-title {
     margin-bottom: 10px;
   }
 
@@ -140,6 +138,33 @@
 
   .achievement-bonus .cumulative-deposit {
     margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .invitation-bonus
+    .invitationBonus-col
+    .invitationBonus-content
+    .invitationBonus-content-title {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .invitation-bonus .invitationBonus-col .invitationBonus-img {
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .invitation-bonus .invitationBonus-col .invitationBonus-content .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .invitation-bonus .invitationBonus-col .invitationBonus-content p {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 
