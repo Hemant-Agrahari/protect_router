@@ -1,0 +1,95 @@
+.deposit-bonus {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.wallet_sec_other {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--gray-600, #420c29);
+  border: 1px solid var(--gray-300);
+  width: 23.4%;
+  height: 59px;
+  margin-left: 7px;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.wallet_sec_other:first-child,
+.wallet_sec_other:nth-child(4n + 1) {
+  margin-left: 0;
+}
+
+.wallet_sec_other .depo-amount {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.wallet_sec_other .depo-amount span {
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24px;
+  margin-right: 5px;
+}
+
+.wallet_sec_other .bonus-percentage {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ffc961;
+  margin-top: 3px;
+}
+
+.wallet_sec_other .hot {
+  background: #da384e;
+  border-radius: 0px 14px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  color: #ffffff;
+  text-align: center;
+  width: 48px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.wallet_sec_other:hover,
+.wallet_sec_other.active {
+  background: var(--gray-300, #a2246b);
+}
+
+.wallet_sec_other:hover .bonus-percentage,
+.wallet_sec_other:hover .hot,
+.wallet_sec_other.active .bonus-percentage,
+.wallet_sec_other.active .hot {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .wallet_sec_other {
+    width: 23.1%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wallet_sec_other .depo-amount {
+    font-size: 12px;
+  }
+
+  .wallet_sec_other .depo-amount span {
+    font-size: 14px;
+  }
+
+  .wallet_sec_other .bonus-percentage {
+    font-size: 10px;
+  }
+}

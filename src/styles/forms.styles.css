@@ -1,0 +1,92 @@
+.formsTab.partner-revenue {
+  margin-bottom: 30px;
+}
+
+.formsTab.partner-revenue:last-child {
+  margin-bottom: 0;
+}
+
+.formsTab.partner-revenue .partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.partner-revenue .partner .profitToday-title {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin: 15px 0 15px;
+}
+
+.pfofitTodayChart {
+  position: relative;
+  min-height: initial !important;
+  height: 160px;
+}
+
+.partner .profitToday-value {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffd569;
+  margin: 12px 0 5px;
+  text-align: center;
+}
+
+.partner .profitToday-botm {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.formsTab.partner-revenue .revenue-row {
+  justify-content: space-around;
+}
+
+.formsTab.partner-revenue .revenue-row .revenue-col label {
+  margin-bottom: 0;
+}
+
+.formsTab.partner-revenue .revenue-row .revenue-col .value {
+  color: #ffd569;
+  margin-bottom: 5px;
+}
+
+.partner-revenue .revenue .yourProfit {
+  padding: 15px 25px;
+  max-width: 850px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 26px;
+}
+
+.partner-revenue .partner .profitToday-img {
+  text-align: center;
+}
+
+@media screen and (max-width: 767.98px) {
+  .formsTab.partner-revenue .revenue-row {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .formsTab.partner-revenue .revenue-row .revenue-col .value {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .formsTab.partner-revenue .revenue-row .revenue-col label {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}

@@ -1,0 +1,222 @@
+.homeTab-content {
+  display: flex;
+  flex-flow: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
+  gap: clamp(20px, 5px + 1vw, 24px);
+}
+
+.homeTab-content .homeTabContent-col {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0;
+  background: var(--gray-800);
+  border-radius: clamp(12px, 2.5vw, 16px);
+  height: 100%;
+}
+
+.homeTab-content .homeTabContent-col .gameImg img {
+  transition: all 0.3s;
+  object-fit: cover;
+  max-width: 100%;
+  width: 100%;
+}
+
+.homeTab-content .homeTabContent-col .gameImg {
+  overflow: hidden;
+  position: relative;
+}
+
+.homeTabContent-col h6 {
+  padding-inline: 13px;
+  font-size: clamp(14px, 6px + 0.7vw, 20px);
+  margin-block: 0;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.homeTab-content .homeTabContent-col .hover-col {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(43, 41, 86, 0.8);
+  background-color: rgba(0, 0, 0, 0.39);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+  text-align: center;
+  transform: scale(0);
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.homeTab-content .homeTabContent-col .hover-col .gameTitle {
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.homeTab-content .homeTabContent-col .hover-col .pragmaticPlay {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 10px;
+  color: #ffffff;
+}
+.homeTab-content .homeTabContent-col:hover .gameImg img,
+.homeTab-content .homeTabContent-col:focus .gameImg img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.homeTab-content .homeTabContent-col:hover .hover-col,
+.homeTab-content .homeTabContent-col:focus .hover-col {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.3s;
+}
+
+.homeTabPromotion-content {
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0 -12px;
+}
+
+.homeTabPromotion-content .homeTabPromotionContent-col {
+  width: 31%;
+  margin: 0 1.13% 2%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.gameTypeName {
+  background-color: transparent;
+  justify-self: center;
+  border: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: capitalize;
+  color: #ffffff;
+  padding-inline: 5px;
+  padding-block: 7px;
+  position: relative;
+  border-radius: 4px;
+  margin: auto;
+  margin-block: 8px;
+  text-align: center;
+}
+
+.tab-title {
+  border-left: 6px solid #4473e9;
+  background: linear-gradient(90deg, #000 0%, #23232300 100%);
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 410px;
+}
+
+.tab-title h4 {
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0;
+  font-size: clamp(18px, 1.8vw, 20px);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1629px) {
+  .homeTabContent-col h6 {
+    min-height: 43px;
+    font-size: 17px;
+  }
+
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(214px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1730px) {
+  .homeTabContent-col h6 {
+    min-height: 50px;
+    font-size: 20px;
+  }
+
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media screen and (max-width: 1729px) {
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(241px, 1fr));
+    gap: 25px;
+  }
+
+  .homeTabContent-col h6 {
+    min-height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1536px) {
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1520px) {
+  .homeTabContent-col h6 {
+    min-height: 43px;
+  }
+
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+}
+
+@media screen and (max-width: 1399.98px) {
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 13px;
+  }
+
+  .homeTabContent-col h6 {
+    min-height: 36px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1299px) {
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(189px, 1fr));
+    gap: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .homeTab-content {
+    grid-template-columns: repeat(auto-fill, minmax(129px, 1fr));
+    gap: 8px;
+  }
+
+  .homeTabContent-col h6 {
+    min-height: 32px;
+    font-size: 12px;
+    padding-inline: 10px;
+  }
+}

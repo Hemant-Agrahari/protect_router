@@ -1,0 +1,52 @@
+.button__bar {
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+  padding: 0;
+  /* background: rgba(255, 255, 255, 0.3); */
+  border-radius: 40px;
+  width: 70px;
+  text-align: center;
+}
+
+.button__bar li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.button__bar li button {
+  border: none;
+  background: #fff;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 10px;
+  width: 15px;
+  border-radius: 7.5px;
+  padding: 0px 12px;
+}
+
+.button__bar .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #fff;
+}
+
+.button__bar .slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: '•';
+  text-align: center;
+  opacity: 0.25;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

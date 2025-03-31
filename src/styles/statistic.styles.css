@@ -1,0 +1,164 @@
+.StatisticsTab {
+  padding: 25px 50px 45px;
+  background: var(--gray-800, #550b33);
+  border-radius: 10px;
+}
+
+.bonus-date {
+  display: flex;
+  align-items: center;
+}
+
+.bonus-date .MuiFormControl-root {
+  margin-left: 15px;
+}
+
+.bonus-date .MuiFormControl-root:first-child {
+  margin-left: 0;
+}
+
+.bonus-date .MuiFormControl-root .MuiOutlinedInput-notchedOutline {
+  border-color: transparent !important;
+  border-radius: 10px;
+  color: #8a96ca;
+}
+
+.bonus-date
+  .MuiFormControl-root
+  .MuiInputBase-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-width: 1px;
+}
+
+.bonus-date .MuiFormControl-root .MuiSelect-select {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  background: #5c2242;
+}
+
+.bonus-date .MuiFormControl-root .MuiSvgIcon-root {
+  color: #fff;
+}
+
+.bonus-date .MuiFormControl-root.showRecord {
+  width: 70px;
+}
+
+.bonus-date .MuiFormControl-root.invitationBonus {
+  width: 230px;
+}
+
+.bonus-date .MuiFormControl-root.statistics-startEndDate {
+  flex: 1;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker__input-container::after {
+  position: absolute;
+  content: '';
+  left: 15px;
+  top: 17px;
+  background-image: url(../../public/assets/images/calendar.png);
+  background-repeat: no-repeat;
+  background-position: 0;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker__input-container
+  input {
+  width: 100%;
+  border: transparent;
+  background-color: var(--gray-400, #5c2242);
+  border-radius: 10px;
+  padding: 18px 15px 18px 45px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker__input-container
+  input:focus-visible {
+  outline: none;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker__input-container
+  input::placeholder {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker-popper {
+  padding-top: 0;
+}
+
+.bonus-date
+  .MuiFormControl-root.statistics-startEndDate
+  .react-datepicker-popper
+  .react-datepicker__triangle {
+  display: none;
+}
+
+.bonus-date .search-btn {
+  margin-left: 15px;
+  background: var(--gray-600, #a2246b);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  border: 0;
+  padding: 15px 25px;
+}
+
+.bonus-date .search-btn:hover {
+  background-color: var(--gray-400, #dd566e);
+}
+
+.depositTable table tr th td {
+  white-space: nowrap;
+  color: #fff !important;
+  background: transparent !important;
+}
+
+.depositTable table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  color: white;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: inset 0 0 0 9999px
+    var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+@media screen and (max-width: 1199.98px) {
+  .StatisticsTab {
+    padding: 25px 20px 25px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .StatisticsTab {
+    padding: 15px 15px 25px;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .StatisticsTab table.table.table-border.mt-4 {
+    min-width: 550px;
+  }
+}

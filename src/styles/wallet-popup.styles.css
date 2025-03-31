@@ -1,0 +1,23 @@
+.depoWithdro-tabContainer {
+  padding: 20px;
+  background-color: var(--gray-700, #5c2242);
+}
+
+.depoWithdro-tabContainer .MuiOutlinedInput-root {
+  background-color: var(--gray-600, #420c29);
+  border: 1px solid var(--gray-300, #420c29);
+  border-radius: 8px;
+}
+
+.depoWithdro-tabContainer
+  .MuiOutlinedInput-root
+  .MuiOutlinedInput-notchedOutline {
+  border: 0;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .depoWithdro-tabContainer {
+    padding: 10px;
+  }
+}

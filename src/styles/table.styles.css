@@ -1,0 +1,40 @@
+.depositTable table {
+  min-width: 600px;
+}
+
+.depositTable table > :not(caption) > * > * {
+  text-align: center;
+}
+
+.game-history-table table {
+  min-width: 900px;
+}
+
+.game-history-table table > :not(caption) > * > * {
+  text-align: center;
+}
+
+.white-input > * {
+  color: #fff !important;
+}
+
+.depositTable {
+  margin-top: 20px;
+}
+
+.depositTable::-webkit-scrollbar {
+  height: 3px;
+}
+
+@media screen and (max-width: 1299px) {
+  .depositTable tbody tr:last-child > * {
+    border: none;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .game-history-table table > :not(caption) > * > *,
+  .depositTable table > :not(caption) > * > * {
+    text-align: start;
+  }
+}

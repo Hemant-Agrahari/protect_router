@@ -1,0 +1,747 @@
+.header {
+  width: 100%;
+  height: 75px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  padding: 0 0.5rem;
+  background-color: var(--gray-800);
+  transition: 0.5s;
+  z-index: 100;
+}
+
+.btn {
+  border-radius: 8px !important;
+}
+
+.loginSignUp-btn {
+  display: flex;
+  margin-block: 22px;
+}
+
+.loginSignUp-btn .btn {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 7px 25px;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  border: 1px solid #6458e3 !important;
+}
+
+.btn_light {
+  border: 1px solid var(--gray-300) !important;
+  background-color: var(--gray-600) !important;
+}
+
+.loginSignUp-btn .signUp-btn {
+  margin-left: 10px;
+}
+
+main .loginSignUp-btn .signUp-btn {
+  margin-left: 0px;
+  background: var(--gray-400);
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  border: 1px solid #6458e3 !important;
+  padding: clamp(6px, 1vw, 12px) clamp(16px, 2vw, 30px);
+}
+
+.loginSignUp-btn .backtopbtn {
+  background: var(--gray-400);
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  border: 1px solid #6458e3 !important;
+  padding: clamp(6px, 1vw, 12px) clamp(16px, 1vw, 30px) !important;
+}
+
+.sideBarArrow {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.sideBarArrowOper {
+  transform: rotate(180deg);
+}
+
+.header_toggle {
+  color: var(--white);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.5vw, 20px);
+}
+
+.header_toggle .logoMobile {
+  display: none;
+}
+
+.login-btn {
+  color: #fff;
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  color: #fff;
+}
+
+.signUp-btn {
+  font-weight: 600;
+}
+
+.boom_img {
+  margin-left: 2vw;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.loginSignUp-btn {
+  display: flex;
+  align-items: center;
+}
+
+.modal-btn-losign {
+  width: 100%;
+  padding: clamp(14px, 1vw, 16px);
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  border: 1px solid #6458e3 !important;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+
+.afterLogin {
+  display: flex;
+  align-items: center;
+}
+
+.afterLogin .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 11px 0 !important;
+}
+
+.balance-deposit {
+  display: flex;
+  align-items: center;
+  background-color: var(--gray-600, #31001b);
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  padding: 2px;
+  margin-left: 15px;
+}
+
+.balance-deposit .balance {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  padding: 0 10px;
+  min-width: 78px;
+}
+
+.balance-deposit .balance span {
+  font-weight: 600;
+  font-style: normal;
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}
+
+.balance-deposit .deposit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.balance-deposit .deposit-btn span {
+  margin-left: 5px;
+}
+
+.balance-deposit .deposit-btn:hover {
+  background-color: var(--gray-300, #a2246b);
+}
+
+.headerProfile {
+  position: relative;
+  margin-left: 15px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  background-color: var(--gray-600, #31001b);
+}
+
+.headerProfile:before {
+  position: absolute;
+  content: '';
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background-color: '';
+}
+
+.headerProfile .headerProfile-btn {
+  padding: 5.5px 10px 5.5px 6px;
+  background-color: var(--gray-600);
+  border-radius: 8px;
+}
+
+.headerProfile .headerProfile-btn .profile-img {
+  width: 33px;
+  height: 33px;
+  background-color: #667bff;
+  border-radius: 100%;
+}
+
+.headerProfile .headerProfile-btn .profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1.7px solid;
+}
+
+.headerProfile .headerProfile-btn .profile-name {
+  margin-left: 5px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.headerProfile .headerProfile-btn .MuiButton-endIcon {
+  color: #ffffff;
+  transition: 0.5s;
+  position: relative;
+  top: -2px;
+}
+
+.headerProfile .headerProfile-btn:hover {
+  background-color: var(--gray-600);
+}
+
+.headerProfile .headerProfile-btn.active .MuiButton-endIcon {
+  transform: rotate(180deg);
+}
+
+.headerProfile-menu {
+  margin-top: 13px;
+}
+
+.headerProfile-menu .MuiPopover-paper {
+  width: 375px;
+  background: linear-gradient(107.38deg, #171d29 5.92%, #161c25 100%);
+  border-radius: 8px;
+}
+
+.headerProfile-menu .MuiPopover-paper ul {
+  margin: 0;
+  padding: 0;
+}
+
+.headerMsg {
+  margin-left: 15px;
+}
+
+.headerMsg .msgIcon {
+  position: relative;
+  cursor: pointer;
+  background-color: var(--gray-600);
+  border: 1px solid var(--gray-300);
+  padding: clamp(10.5px, 1vw, 10px);
+  border-radius: 8px;
+}
+
+.headerMsg .msgIcon:hover {
+  opacity: 0.8;
+}
+
+.headerMsg .msgIcon .activeMsg {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background: linear-gradient(90deg, #7e43de 0%, #4473e9 98.45%);
+  box-shadow: 0 0 0 1px #141414;
+}
+
+.loginSignUp-btn .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 11px 14px 9.5px 0px;
+}
+
+
+/* vip score under ui css */
+.hpMenu-top {
+  padding: 15px 10px 0;
+  background: var(--gray-800, #5c2242);
+  border-radius: 8px;
+}
+
+.hpMenu-top .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray-600, #a2246b);
+  border-radius: 8px;
+  padding: 7px 20px;
+}
+
+.hpMenu-top .user-info .user-img {
+  width: 33px;
+  height: 33px;
+  background-color: #667bff;
+  border-radius: 100%;
+}
+
+.hpMenu-top .user-info .user-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hpMenu-top .user-info .user-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.hpMenu-top .user-info .userCopy-btn {
+  /* background-color: #420c29; */
+  background: var(--gray-300, #420c29);
+  border-radius: 4px;
+  background-image: url(../../public/assets/images/userCopy-iocn.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 32px;
+  height: 31px;
+}
+
+.hpMenu-top .user-info .userCopy-btn:hover {
+  background-color: #6587ff;
+}
+
+.hpMenu-top .user-levelScore {
+  display: flex;
+  padding: 25px 10px 20px;
+  justify-content: space-between;
+}
+
+.hpMenu-top .user-levelScore .userLevel {
+  flex: 1;
+  text-align: center;
+}
+
+.hpMenu-top .user-levelScore .userLevel .vipImg img {
+  max-width: 45px;
+  height: auto;
+}
+
+.hpMenu-top .user-levelScore .userLevel .levalName {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+  margin-top: 15px;
+}
+
+.hpMenu-top .user-levelScore .userScore {
+  width: 235px;
+  margin-left: 15px;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col {
+  margin-bottom: 18px;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col:last-child {
+  margin-bottom: 0;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col .title-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col .title-value .title {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col .title-value .amount {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  align-items: center;
+  color: #fff;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .title-value
+  .amount
+  span {
+  color: #ffed4a;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col.betAmount
+  .title-value
+  .amount
+  span {
+  color: #2b54e6;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col .process-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .process-score
+  .MuiLinearProgress-root {
+  width: 100%;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #000000;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .process-score
+  .MuiLinearProgress-root
+  .MuiLinearProgress-bar {
+  background-color: #efa318;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .process-score
+  .progressValue {
+  flex: 1 0 50px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  margin-left: 8px;
+  min-width: 35px;
+  text-align: right;
+}
+
+.hpMenu-top .user-levelScore .userScore .userScore-col .bet-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .bet-score
+  .MuiLinearProgress-root {
+  width: 100%;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #000000;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .bet-score
+  .MuiLinearProgress-root
+  .MuiLinearProgress-bar {
+  background-color: #9643ff;
+}
+
+.hpMenu-top
+  .user-levelScore
+  .userScore
+  .userScore-col
+  .bet-score
+  .progressValue {
+  flex: 1 0 50px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  margin-left: 8px;
+  min-width: 35px;
+  text-align: right;
+  word-break: break-all;
+}
+
+.hpMenu-botm {
+  padding: 15px 15px 30px;
+}
+
+.hpMenu-botm .profilePane-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.hpMenu-botm .profilePane-ul li {
+  flex: 50%;
+  margin-left: 15px;
+  flex: 47%;
+  margin-bottom: 15px;
+}
+
+.hpMenu-botm .profilePane-ul li:first-child {
+  margin-left: 0;
+}
+
+.hpMenu-botm .profilePane-ul li:nth-child(2n + 1) {
+  margin-left: 0;
+}
+
+.hpMenu-botm .profilePane-ul li a {
+  background: linear-gradient(180deg, #1469ca 0%, #193299 100%);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 45px;
+  color: #ffffff;
+  padding: 0px 0px;
+  display: block;
+  text-decoration: none;
+}
+
+.hpMenu-botm .profilePane-ul li a img {
+  margin-right: 5px;
+}
+
+.hpMenu-botm .profilePane-ul li a:hover {
+  background: linear-gradient(180deg, #3366db 0%, #2f459f 100%);
+}
+
+.hpMenu-botm .profile-logout {
+  background: linear-gradient(90deg, #4473e9 0%, #7e43de 98.45%);
+  border: 1px solid #6458e3 !important;
+  border-radius: 8px;
+  padding: 10px 30px;
+  border-radius: 4px;
+  margin: auto;
+  text-align: center;
+}
+
+.hpMenu-botm .profile-logout a {
+  font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 15px);
+  line-height: 17px;
+  color: #fff;
+  background-image: url(../../public/assets/images/profile-logout.png);
+  background-repeat: no-repeat;
+  background-position: 0;
+  text-decoration: none;
+  padding-left: 25px;
+  background-size: 18px;
+}
+
+.hpMenu-botm .profile-logout a:hover {
+  opacity: 0.7;
+}
+
+
+
+@media screen and (max-width: 1729px) {
+  .header_toggle .logo-img {
+    width: 100px;
+    height: none;
+    object-fit: cover;
+  }
+}
+
+
+@media screen and (max-width: 1299px) {
+  .hpMenu-top .user-levelScore {
+    padding: 20px 10px 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .headerProfile {
+    height: 36px;
+    width: 36px;
+    display: grid;
+  }
+
+  .headerProfile .headerProfile-btn .profile-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .headerMsg .msgIcon {
+    padding: clamp(5px, 1vw, 5px);
+  }
+
+  .headerMsg .msgIcon .activeMsg {
+    right: 3px;
+    top: 5px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .header_toggle a img {
+    max-width: 80px;
+    width: 100%;
+    height: auto;
+  }
+
+  .header_toggle img {
+    width: 45px;
+    height: auto;
+  }
+  .header_toggle > img {
+    display: none;
+  }
+  .header_toggle .logo-img {
+    width: 80px;
+    height: auto;
+  }
+
+  .header_toggle .logo {
+    display: none;
+  }
+
+  .header_toggle .logoMobile {
+    display: block;
+  }
+
+  .balance-deposit .deposit-btn {
+    padding: 4px 8px;
+  }
+
+  .balance-deposit .deposit-btn span {
+    display: none;
+  }
+
+  .headerProfile {
+    margin-left: 7px;
+  }
+
+  .headerProfile:before {
+    display: none;
+  }
+
+  .headerProfile .headerProfile-btn {
+    padding: 0;
+    background-color: transparent;
+    min-width: initial;
+  }
+
+  .headerProfile .headerProfile-btn .profile-name {
+    display: none;
+  }
+
+  .headerProfile .headerProfile-btn .MuiButton-endIcon {
+    display: none;
+  }
+
+  .headerMsg {
+    margin-left: 8px;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .headerMsg {
+    margin-left: 7px;
+  }
+}
+
+
+@media screen and (max-width: 575px) {
+  .search-input input {
+    padding-block: 12px !important;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .hpMenu-top .user-levelScore .userScore {
+    width: 215px;
+    margin-left: 5px;
+  }
+
+  .hpMenu-botm .profilePane-ul li a {
+    font-size: 13px;
+    line-height: 15px;
+    padding: 12px 7px;
+  }
+
+  .hpMenu-botm .profilePane-ul li a img {
+    margin-right: 2px;
+  }
+}
+
+@media (max-width: 420px) {
+  .balance-deposit .balance {
+    font-size: 12px;
+    padding: 0 6px;
+  }
+  .balance-deposit .deposit-btn {
+    padding: 3px 1px;
+    width: 25px;
+    height: auto;
+  }
+  .balance-deposit .balance img {
+    max-width: 15px;
+    height: auto;
+  }
+  .headerMsg .msgIcon {
+    padding: 1px;
+  }
+  .headerProfile {
+    margin-left: 4px;
+  }
+  .header_toggle .logo-img {
+    width: 70px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .loginSignUp-btn .btn {
+    font-size: 12px;
+    padding: 7px 15px;
+  }
+}
